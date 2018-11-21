@@ -17,7 +17,7 @@ This repository will be used to seek feedback from working groups, share drafts 
 
 For more information, contact cdr-data61@csiro.au. Further updates will be added to this page as the Consumer Data Standards work gets underway.
 
-The current draft standard that is being added to as decisions are made can be found [here](https://consumerdatastandardsaustralia.github.io/standards/).
+The current draft standard that is being added to as decisions are made can be found [here](https://consumerdatastandardsaustralia.github.io/infosec/).
 
 ## Rules of engagement
 
