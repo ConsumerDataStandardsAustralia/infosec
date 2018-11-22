@@ -32,7 +32,7 @@ This is an early draft of the CDR Security Profile and thus subject to change.
 
 | Author          | Date       | Version | Description               |
 |-----------------|------------|---------|---------------------------|
-| CDS			     | 22/11/2018 | 0.0.1   | Created Original document |
+| CDS			     | 22/11/2018 | 0.0.1   | Created Original artifact |
 
 ## Symbols and Abbreviated terms
 -   **API**: Application Programming Interface
@@ -60,7 +60,7 @@ This is an early draft of the CDR Security Profile and thus subject to change.
 -   **TLS:** Transport Layer Security
 
 # Overview
-The document will detail the Consumer Data Right **[CDR]** Information Security
+This artifact will detail the Consumer Data Right **[CDR]** Information Security
 Profile (CDR-SP). This profile will be built upon the foundation of the
 Financial-grade API Read Write Profile **[FAPI-RW]** which complies with the
 Open ID Connect 1.0 standard **[OIDC]**. The CDR-SP will adhere to the OIDC
@@ -69,7 +69,7 @@ necessary. However, the CDR-SP may also extend the behaviour of the OIDC/FAPI-RW
 where allowed but will not override the behaviour outlined in the FAPI-RW
 profile and OIDC standard.
 
-Whilst this is a technical document, it is guided by the core principles that
+Whilst this is a technical artifact, it is guided by the core principles that
 have to led to the creation of the Consumer Data Right. These are:
 
 -   The CDR should be *customer focussed*.
@@ -92,18 +92,18 @@ multiple system entities which will assume one or more of the following roles:
 ## Data Holder
 The Data Holder (DR) represents a system entity that authenticates a consumer
 (resource owner or user), as part of an authorisation process (OIDC) initiated by a Data
-Recipient, and issues authorisation for that Data Recipient to access the consumer's
+Recipient, and issues an authorisation for that Data Recipient to access the consumer's
 data via published APIs. As part of this process, the consumer will provide informed
 consent before allowing access to their data (resource(s)) by the Data Recipient. For example, a Bank
 (Data Holder) will authorise access for a FinTech (Data Recipient) to access the
 resources the consumer has consented to.
 
 A Data Holder must be accredited in order to participate in the CDR Federation.
-A Holder will allow any Data Recipient, the identity of which is asserted by the Directory, to send authorisation and registrations requests to their services. References to Holder Discovery Endpoints and other metadata will be published in the Directory.
+A Holder will allow any Data Recipient, the identity of which is asserted by the Directory, to send authorisation and registrations requests to their services. References to Holder Discovery Endpoints and other related metadata will be published in the Directory.
 
 ## Data Recipient
 The Data Recipient (DR) is a CDR Federation participant that is authorised by a
-Data Holder to access data resources (APIs). For example, A FinTech company that
+Data Holder to access consumer resources (APIs). For example, A FinTech company that
 receives authorisation to access a Bank’s APIs.
 
 A Data Recipient must be accredited in order to participate in the CDR
@@ -115,7 +115,7 @@ The role and the functionality of the Directory is subject to change.
 </aside>
 
 The Directory is a central point of discovery for both Data Holders and Data
-Recipients. Data Holders and Recipient must be registered as accredited entities in the Directory in order for them to participate in the CDR Federation.  The functionality of the Directory will include but will not be limited to:
+Recipients. Data Holders and Recipient must be registered as accredited entities in the Directory in order for them to participate as members of the CDR Federation.  The functionality of the Directory will include but will not be limited to:
 
 - **Management of Identities and Access**: The Directory will allow registered persons, on behalf of Holders and Recipients, to manage the metadata of their associated organisations and systems.
 - **Management of Certificates**: The Directory will faciliate the issuing, management and revocation of digital certificates.
@@ -188,7 +188,7 @@ In accordance with the OpenID Connect Discovery standards **[OIDD]**, Data Holde
     -   REQUIRED
     -   JSON array containing a list of the Authentication Context Class
         References that this DH supports. An LoA of 3 is the minimum that must
-        be met. Please Refer to the [LoA](#_Levels_of_Access) section of this
+        be met. Please Refer to the [LoA](#levels-of-assurance-loas) section of this
         document.
 * subject\_types\_supported
     -   REQUIRED
@@ -232,14 +232,15 @@ In accordance with the OpenID Connect Discovery standards **[OIDD]**, Data Holde
         DH MAY be able to supply values for. Note that for privacy or other
         reasons, this might not be an exhaustive list.
 
+<a id="clientRegistrationEndpoint"></a>
 ## Recipient Client Registration 
 <aside class="warning">
 Dynamic Client Registration functionality is directly impacted by the emerging requirements of the Directory and thus subject to change.
 </aside>
 
-To register as a new Client at a Holder's Authorisation Server, a Data Recipient sends its Client metadata in a HTTP POST message to the Client Registration Endpoint of the Holder which includes the Client Metadata parameters that the Client chooses to specify for itself. The request carries an assertion that is signed by the CDR CA private key in order to allow the Holder to determine the validity of the Recipient request.
+To register as a new Client at a Holder's Authorisation Server, a Data Recipient sends its Client metadata, as specified in **[OIDC-CR]** in a HTTP POST message to the Client Registration Endpoint of the Holder which includes the Client Metadata parameters that the Client chooses to specify for itself. The request carries an assertion that is signed by the CDR CA private key in order to allow the Holder to determine the validity of the Recipient request.
 
-If a required value is not supplied, the Holder may use a default value from those shown below.
+If a required value is not supplied, the Holder may use a default value from those shown below.  It is expected that the Directory rules will feature additional fields and request rules not covered in this profile.
 
 **Method**: POST  
 **Successful Response**: 201<br>
@@ -313,7 +314,7 @@ If a required value is not supplied, the Holder may use a default value from tho
     -   OPTIONAL
     -   Default requested Authentication Context Class Reference values for this
         DR. An LoA of 3 is the minimum that must be met. Please refer to the
-        [LoA](#_Levels_of_Access) section of this document.
+        [LoA](#levels-of-assurance-loas) section of this document.
 -   client\_notification\_endpoint
     -   OPTIONAL
     -   When using Notification mode in **[CIBA]**, the Holder will send a request with the tokens to this callback URI.
@@ -357,7 +358,7 @@ parameters are mandatory in the JOSE Header:
     -   If present on the JWK, the `x5t` thumbprint must be included in the
         header.
 -   x5t\#S256
-    -   If present on the JWK, the `x5t\#S256` thumbprint must be included in the
+    -   If present on the JWK, the `x5t#S256` thumbprint must be included in the
         header.
 
 # Authentication Flows
@@ -376,6 +377,7 @@ authorisation code flow by supporting `response_type` of `code id_token` and `co
 id_token token`. However, this profile will only support a `response_type` of `code
 id_token`.
 
+<a id="authorisationEndpoint"></a>
 ### Authorisation Endpoint Requests
 A Data Recipient Client must make a request to a Data Holder’s authorisation
 endpoint with the following parameters:
@@ -439,7 +441,7 @@ the user. The Data Recipient will receive the `id_token`, `access_token` and
 `refresh_token` by using the notification mode.
 
 Implementation of this authentication flow is optional.
-
+<a id="bcAuthorisationEndpoint"></a>
 Requests to the `bc-authorize` endpoint will require [Client
 authentication](#client-authentication). Only the following parameters will be
 supported:
@@ -472,7 +474,7 @@ TODO: Add Sample.
 ```
 
 # Error Responses
-Error reponses and codes will confirm with **[OIDC]** and **[OAUTH]**.
+Error reponses and codes will conform with **[OIDC]** and **[OAUTH]**.
 
 <a id="client-authentication"></a>
 # Client Authentication
@@ -738,7 +740,13 @@ secured with MTLS. Trust will only be established where client and the server
 certificates involved in the TLS handshake have been issued by the CDR
 Certificate Authority (CA).
 
-# General Endpoints
+# Endpoints
+
+## Authorisation Endpoint
+This is covered under [Hybrid Authentication flow](#authorisationEndpoint).
+
+## Backchannel Authorisation Endpoint
+This is covered under [CIBA Authentication flow](#bcAuthorisationEndpoint).
 
 ## Token Endpoint
 A Data Holder issues ID, Access and Refresh Tokens to the Data Recipient from
@@ -798,13 +806,16 @@ TODO: Add Sample.
 Data Holders must implement a Revocation endpoint **[RFC7009]**. This endpoint
 is a revocation mechanism that allows a Data Recipient to invalidate its tokens
 if the end-user logs out, changes identity, or uninstalls the respective
-application. Notifying the authorization server that the token is no longer
+application. Notifying the authorisation server that the token is no longer
 needed allows the Data Holder server to clean up data associated with that token
 and the underlying authorization grant.
 
 Requests to this end point require [Data Recipient (Client)
 authentication](#client-authentication) and the client must present their
 certificate as part of an **[MTLS]** handshake.
+
+## Client Registration Endpoint
+This is covered under [Client Registration](#clientRegistrationEndpoint).
 
 ```http
 TODO: Add Sample.
@@ -826,14 +837,14 @@ This document references the following sources of information.
 | **[JWT]**      | JSON Web Token (JWT): <https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32>                                                                                            |
 | **[JWS]**      | JSON Web Signature (JWS): <http://tools.ietf.org/html/draft-ietf-jose-json-web-signature>                                                                                         |
 | **[JWE]**      | JSON Web Encryption (JWE): <http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption>                                                                                       |
-| **[MTLS]**     | OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens <https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html>                                          |
-| **[OAUTH2]**   | The OAuth 2.0 Authorization Framework**:**                                                                                                                                        |
+| **[MTLS]**     | OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens: <https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html>                                          |
+| **[OAUTH2]**   | The OAuth 2.0 Authorization Framework: <https://tools.ietf.org/html/rfc6749>                                                                                                                                    |
 | **[OIDC]**     | OpenID Connect Core 1.0 incorporating errata set 1: <http://openid.net/specs/openid-connect-core-1_0.html>                                                                        |
 | **[OIDD]**     | OpenID Connect Discovery 1.0 incorporating errata set 1: <http://openid.net/specs/openid-connect-discovery-1_0.html>                                                              |
 | **[OIDC-CR]**  | OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 1: <https://openid.net/specs/openid-connect-registration-1_0.html>                                        |
 | **[RFC4122]**  | A Universally Unique IDentifier (UUID) URN Namespace: <https://tools.ietf.org/html/rfc4122>                                                                                       |
 | **[RFC4648]**  | The Base16, Base32, and Base64 Data Encodings: <https://tools.ietf.org/html/rfc4648>                                                                                              |
-| **[RFC7009]**  | OAuth 2.0 Token Revocation:                                                                                                                                                       |
+| **[RFC7009]**  | OAuth 2.0 Token Revocation: <https://tools.ietf.org/html/rfc7009>                                                                                                                                               |
 | **[RFC7523]**  | JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <https://tools.ietf.org/html/rfc7523>                                                  |
 | **[RFC7662]**  | OAuth 2.0 Token Introspection: <https://tools.ietf.org/html/rfc7662>                                                                                                              |
 | [**X.1254]**   | X.1254 - Entity authentication assurance framework: <https://www.itu.int/rec/T-REC-X1254-201209-I/en>            
@@ -850,24 +861,24 @@ This document references the following sources of information.
 3. The user's browser is redirected to the Holder's Authorisation Endpoint.
 4. *One* of the following may occur:
   1. The user may cancel the process at any point (in Parts **A**, **B** or **C**) and will be returned to the passed redirection URI for the Recipient with the relevant error code.
-  2. The User is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the user's account.  The user's browser will be redirected back to the passed redirection URI for the Recipient with the relevant error code.
+  2. The User is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the user's account.  The user's browser will be redirected to the passed redirection URI for the Recipient with the relevant error code.
   3. The user sucessfully authenticatates and begins the consent/authorisation step (see Part **B**).
 
 
 ### Part B - Holder Authentication
 ![Part B](/images/redirPartB.png)
 #### Steps
-Part **B** illustrates the different authentication methods a Holder may present to the user.  It is important that the Holder authentication choices presented to the user are consistent with those currently utlised by the user when accessing their existing Holder online accounts.  
+Part **B** illustrates the different authentication methods a Holder may present to the user.  It is important from a usability perspective that the Holder authentication choices presented to the user are consistent with those currently utilised by the user when accessing their existing Holder online accounts.  
 The following options may be used:
 
 1. All Credentials/Factors are captured through the Browser.  On success, the consent process begins (Part **C**) .
 2. Two Factor Authentication (2FA)
-    1. A UserId and optionally a password are entered to the browser and submitted by the user.
-    2. A code or notification is sent to a user's pregistered mobile application or device (detached authentication device).  Optional.
-    3.  The user views the code (For example, a Time-based One-time Password (TOTP)) or event on their detached authentication device.
+    1. A userId and optionally a password are entered to the browser and submitted by the user.
+    2. A code or notification is sent to a user's pregistered mobile/device application (detached authentication device).  This step is optional as a user's device application may generate codes in isolation, as is the case for Time-based One-Time Password (TOTP).
+    3.  The user views the code or event on their detached authentication device.
     4. *One* of the following may occur:
-        1. The user directly enters the code (or scans a QR Code) into the brower and submits the request.  On success, the consent process begins (Part **C**).
-        2. The user does not enter the code into the browser.  The user acknowledges the authentication through the device and a secure message is sent to the Holder via a backchannel. On receipt of the message, the Holder's website redirects the user's browser to the consent page (Part **C**).
+        1. The user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the consent process begins (Part **C**).
+        2. The user does not enter the code into the browser.  The user acknowledges the authentication through the device and a secure message is sent from the device to the Holder via a backchannel. On receipt of the message, the Holder's website redirects the user's browser to the consent page (Part **C**).
 
 ### Part C - Post Consent Recipient to Holder
 ![Part C](/images/redirPartC.png)
@@ -876,17 +887,17 @@ This process continues from Part **B** afer a successful authentication.
 
 1. The user provides consent authorising the presented scopes and/or data claims.
 2. *One* of the following may occur:
-  1. The Holder creates a new pairwise identifier for the user and Recipient.  This is the first time the user has authenticated to the Holder in the context of a request from this Recipient.
-  2. This is a reauthentication.  The user has already authenticated to the Holder in the cotext of an authentication request from this Recipient.  The existing pairwise identifier for the User is allocated to the authorisation.
+  1. The Holder creates a new pairwise identifier for the user and Recipient combination.  This is the first time the user has authenticated to the Holder in the context of a request from this Recipient.
+  2. This is a reauthentication.  The user has previously authenticated to the Holder in the cotext of an authentication request from this Recipient.  The existing pairwise identifier for the user and Recipient is allocated to the authorisation.
 3.  The Holder creates the authorisation code and ID Token for the authorisation instance.
 4.  The user's browser is redirected to the Recipient's redirect URI.  The ID Token and authorisation code generated in Step 3 are attached to the URL as query string parameters or as a fragment.  The Recipient web server processes the request.
 5.  The Recipient decrypts the ID Token, verifies the signature and issuer of the ID Token, verifies the state/code hashes within the token, and also matches the presented state against it's own session state.  The Recipient Client then sends a POST request to the Holder Token Endpoint using Client Authentication and the Authorisation Code.
-6. The Holder Endpoint authenticates the Recipient Client and matches the authorisation code. On success, the Endpoint responds with an Access Token and ID Token.  
-7. The Holder creates an Event relating to the authorisation.  This event may result in shared resource owners being notified about the authorisation.
-8.  The Recipient verifies the ID Token and on success, invokes the UserInfo Endpoint using the Access Token as a Bearer Token.  The Holder verifies the token, applies Holder of Key verification check and on success, returns the requested UserInfo claims.
-9.  The Recipient optionally begins calling the Holder APIs with the Access Token and renders the result to the User's browser.
+6. The Holder Endpoint authenticates the Recipient Client and matches the authorisation code. On success, the Endpoint responds with an Access Token, Refresh Token and an ID Token.  
+7. The Holder creates an event relating to the authorisation.  This event is propogated/handled and may result in shared resource owners being notified about the authorisation.
+8.  The Recipient verifies the ID Token and on success, invokes the UserInfo Endpoint using the Access Token as a Bearer Token.  The Holder verifies the token, applies the necessary Holder of Key verification check and on success, returns the requested UserInfo claims.
+9.  The Recipient optionally begins calling the Holder APIs with the Access Token and renders the result to the user's browser.
 
 ## Sample Holder Domain Model
 ![Domain Model](/images/holderDomain.png)
 ### Description
-This represents the domain model of a hypothetical Data Holder. It is no way prescriptive but illustrates the relation between  the authorisation-related entities that may exist within a Holder's domain.
+This digram depicts the domain model of a hypothetical Data Holder. It is in no way prescriptive but illustrates the relation between the authorisation-related entities that may exist within a Holder's domain.
