@@ -1,0 +1,1604 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Consumer Data Right Security Profile</title>
+    <link href="images/images/favicon.ico" rel="icon" type="image/ico" />
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;http&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="toc-wrapper">
+      <img src="images/logo.png" class="logo" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="http">http</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <ul id="toc" class="toc-list-h1">
+          <li>
+            <a href="#infosec-profile-0-0-1" class="toc-h1 toc-link" data-title="InfoSec Profile 0.0.1">InfoSec Profile 0.0.1</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#history" class="toc-h2 toc-link" data-title="History">History</a>
+                  </li>
+                  <li>
+                    <a href="#symbols-and-abbreviated-terms" class="toc-h2 toc-link" data-title="Symbols and Abbreviated terms">Symbols and Abbreviated terms</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#overview" class="toc-h1 toc-link" data-title="Overview">Overview</a>
+          </li>
+          <li>
+            <a href="#cdr-federation" class="toc-h1 toc-link" data-title="CDR Federation">CDR Federation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#data-holder" class="toc-h2 toc-link" data-title="Data Holder">Data Holder</a>
+                  </li>
+                  <li>
+                    <a href="#data-recipient" class="toc-h2 toc-link" data-title="Data Recipient">Data Recipient</a>
+                  </li>
+                  <li>
+                    <a href="#directory" class="toc-h2 toc-link" data-title="Directory">Directory</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#discovery-and-registration" class="toc-h1 toc-link" data-title="Discovery and Registration">Discovery and Registration</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#data-holder-metadata" class="toc-h2 toc-link" data-title="Data Holder Metadata">Data Holder Metadata</a>
+                  </li>
+                  <li>
+                    <a href="#recipient-client-registration" class="toc-h2 toc-link" data-title="Recipient Client Registration">Recipient Client Registration</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#json-web-key-sets" class="toc-h1 toc-link" data-title="JSON Web Key Sets">JSON Web Key Sets</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#jose-jwt-header" class="toc-h2 toc-link" data-title="JOSE JWT Header">JOSE JWT Header</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#authentication-flows" class="toc-h1 toc-link" data-title="Authentication Flows">Authentication Flows</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#oidc-hybrid-flow" class="toc-h2 toc-link" data-title="OIDC Hybrid Flow">OIDC Hybrid Flow</a>
+                  </li>
+                  <li>
+                    <a href="#client-initiated-backchannel-authentication-ciba" class="toc-h2 toc-link" data-title="Client-Initiated Backchannel Authentication (CIBA)">Client-Initiated Backchannel Authentication (CIBA)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#error-responses" class="toc-h1 toc-link" data-title="Error Responses">Error Responses</a>
+          </li>
+          <li>
+            <a href="#client-authentication" class="toc-h1 toc-link" data-title="Client Authentication">Client Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#private_key_jwt" class="toc-h2 toc-link" data-title="private_key_jwt">private_key_jwt</a>
+                  </li>
+                  <li>
+                    <a href="#tls_client_auth" class="toc-h2 toc-link" data-title="tls_client_auth">tls_client_auth</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#oidc-client-types" class="toc-h1 toc-link" data-title="OIDC Client Types">OIDC Client Types</a>
+          </li>
+          <li>
+            <a href="#tokens" class="toc-h1 toc-link" data-title="Tokens">Tokens</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#id-token" class="toc-h2 toc-link" data-title="ID Token">ID Token</a>
+                  </li>
+                  <li>
+                    <a href="#access-token" class="toc-h2 toc-link" data-title="Access Token">Access Token</a>
+                  </li>
+                  <li>
+                    <a href="#refresh-token" class="toc-h2 toc-link" data-title="Refresh Token">Refresh Token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#scopes-and-claims" class="toc-h1 toc-link" data-title="Scopes and Claims">Scopes and Claims</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#scopes" class="toc-h2 toc-link" data-title="Scopes">Scopes</a>
+                  </li>
+                  <li>
+                    <a href="#claims" class="toc-h2 toc-link" data-title="Claims">Claims</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#identifiers-and-subject-types" class="toc-h1 toc-link" data-title="Identifiers and Subject Types">Identifiers and Subject Types</a>
+          </li>
+          <li>
+            <a href="#levels-of-assurance-loas" class="toc-h1 toc-link" data-title="Levels of Assurance (LoAs)">Levels of Assurance (LoAs)</a>
+          </li>
+          <li>
+            <a href="#transaction-security" class="toc-h1 toc-link" data-title="Transaction Security">Transaction Security</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#mutual-tls-as-a-holder-of-key-mechanism" class="toc-h2 toc-link" data-title="Mutual TLS as a Holder of Key Mechanism">Mutual TLS as a Holder of Key Mechanism</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#general-endpoints" class="toc-h1 toc-link" data-title="General Endpoints">General Endpoints</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#token-endpoint" class="toc-h2 toc-link" data-title="Token Endpoint">Token Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#userinfo-endpoint" class="toc-h2 toc-link" data-title="UserInfo Endpoint">UserInfo Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#jwks-endpoint" class="toc-h2 toc-link" data-title="JWKS Endpoint">JWKS Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#introspection-endpoint" class="toc-h2 toc-link" data-title="Introspection Endpoint">Introspection Endpoint</a>
+                  </li>
+                  <li>
+                    <a href="#revocation-endpoint" class="toc-h2 toc-link" data-title="Revocation Endpoint">Revocation Endpoint</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#references" class="toc-h1 toc-link" data-title="References">References</a>
+          </li>
+          <li>
+            <a href="#appendix" class="toc-h1 toc-link" data-title="Appendix">Appendix</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#redirect-authentication-flow" class="toc-h2 toc-link" data-title="Redirect Authentication Flow">Redirect Authentication Flow</a>
+                  </li>
+                  <li>
+                    <a href="#sample-holder-domain-model" class="toc-h2 toc-link" data-title="Sample Holder Domain Model">Sample Holder Domain Model</a>
+                  </li>
+              </ul>
+          </li>
+      </ul>
+        <ul class="toc-footer">
+            <li><a href='https://consumerdatastandards.org.au/'>Consumer Data Right Home</a></li>
+            <li><a href='https://github.com/ConsumerDataStandardsAustralia/infosec'>CDR InfoSec on GitHub</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <!---
+includes:
+ - intro
+  - standards
+  - security
+  - banking
+  - common
+  - shared
+
+--->
+<h1 id='infosec-profile-0-0-1'>InfoSec Profile 0.0.1</h1>
+<aside class="warning">
+This is an early draft of the CDR Security Profile and thus subject to change.
+</aside>
+<h2 id='history'>History</h2>
+<table><thead>
+<tr>
+<th>Author</th>
+<th>Date</th>
+<th>Version</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>CDS</td>
+<td>22/11/2018</td>
+<td>0.0.1</td>
+<td>Created Original document</td>
+</tr>
+</tbody></table>
+<h2 id='symbols-and-abbreviated-terms'>Symbols and Abbreviated terms</h2>
+<ul>
+<li>  <strong>API</strong>: Application Programming Interface</li>
+<li>  <strong>CA</strong>: Certificate Authority</li>
+<li>  <strong>CDR:</strong> Consumer Data Right</li>
+<li>  <strong>CDR-SP</strong>: Consumer Data Right Security Profile</li>
+<li>  <strong>DH:</strong> Data Holder</li>
+<li>  <strong>DR:</strong> Data Recipient</li>
+<li>  <strong>FAPI:</strong> Financial API</li>
+<li>  <strong>HOK:</strong> Holder of Key</li>
+<li>  <strong>JSON:</strong> The JavaScript Object Notation</li>
+<li>  <strong>JWE:</strong> JSON Web Encryption</li>
+<li>  <strong>JWK:</strong> JSON Web Key</li>
+<li>  <strong>JWKS:</strong> JSON Web Key Set</li>
+<li>  <strong>JWS:</strong> JSON Web Signing</li>
+<li>  <strong>JWT:</strong> JSON Web Token</li>
+<li>  <strong>IPLoA:</strong> Identity Proofing Level of Assurance</li>
+<li>  <strong>LoA:</strong> Level of Assurance</li>
+<li>  <strong>LoaAs:</strong> Levels of Assurance</li>
+<li>  <strong>MTLS:</strong> Mutual Transport Layer Security</li>
+<li>  <strong>OIDC:</strong> Open ID Connect</li>
+<li>  <strong>PII:</strong> Personally Identifiable Information</li>
+<li>  <strong>PKI:</strong> Public Key Infrastructure</li>
+<li>  <strong>REST:</strong> Representational State Transfer</li>
+<li>  <strong>TLS:</strong> Transport Layer Security</li>
+</ul>
+<h1 id='overview'>Overview</h1>
+<p>The document will detail the Consumer Data Right <strong>[CDR]</strong> Information Security
+Profile (CDR-SP). This profile will be built upon the foundation of the
+Financial-grade API Read Write Profile <strong>[FAPI-RW]</strong> which complies with the
+Open ID Connect 1.0 standard <strong>[OIDC]</strong>. The CDR-SP will adhere to the OIDC
+standard and FAPI-RW profile but will restrict implementation choices where
+necessary. However, the CDR-SP may also extend the behaviour of the OIDC/FAPI-RW
+where allowed but will not override the behaviour outlined in the FAPI-RW
+profile and OIDC standard.</p>
+
+<p>Whilst this is a technical document, it is guided by the core principles that
+have to led to the creation of the Consumer Data Right. These are:</p>
+
+<ul>
+<li>  The CDR should be <em>customer focussed</em>.</li>
+<li>  The CDR should encourage <em>competition</em>.</li>
+<li>  The CDR should create <em>opportunities</em>.</li>
+<li>  The CDR should be <em>efficient and fair</em>.</li>
+</ul>
+<h1 id='cdr-federation'>CDR Federation</h1>
+<p>The CDR Federation will facilitate the secure exchange of consumer data and federation metadata between
+multiple system entities which will assume one or more of the following roles:</p>
+
+<ul>
+<li>  <strong>Data Holder</strong>:
+
+<ul>
+<li>  Multiple Data Holders will be supported.</li>
+</ul></li>
+<li>  <strong>Data Recipient</strong>:
+
+<ul>
+<li>  Multiple Data Holders will be supported.</li>
+</ul></li>
+<li>  <strong>Directory</strong>:
+
+<ul>
+<li>  It is envisaged that only one directory will be supported and will be
+maintained by the Australian Competition and Consumer Commission (ACCC).<br></li>
+</ul></li>
+</ul>
+<h2 id='data-holder'>Data Holder</h2>
+<p>The Data Holder (DR) represents a system entity that authenticates a consumer
+(resource owner or user), as part of an authorisation process (OIDC) initiated by a Data
+Recipient, and issues authorisation for that Data Recipient to access the consumer&#39;s
+data via published APIs. As part of this process, the consumer will provide informed
+consent before allowing access to their data (resource(s)) by the Data Recipient. For example, a Bank
+(Data Holder) will authorise access for a FinTech (Data Recipient) to access the
+resources the consumer has consented to.</p>
+
+<p>A Data Holder must be accredited in order to participate in the CDR Federation.
+A Holder will allow any Data Recipient, the identity of which is asserted by the Directory, to send authorisation and registrations requests to their services. References to Holder Discovery Endpoints and other metadata will be published in the Directory.</p>
+<h2 id='data-recipient'>Data Recipient</h2>
+<p>The Data Recipient (DR) is a CDR Federation participant that is authorised by a
+Data Holder to access data resources (APIs). For example, A FinTech company that
+receives authorisation to access a Bank’s APIs.</p>
+
+<p>A Data Recipient must be accredited in order to participate in the CDR
+Federation and as such will be published as an accredited entity in the Directory.</p>
+<h2 id='directory'>Directory</h2>
+<aside class="warning">
+The role and the functionality of the Directory is subject to change.
+</aside>
+
+<p>The Directory is a central point of discovery for both Data Holders and Data
+Recipients. Data Holders and Recipient must be registered as accredited entities in the Directory in order for them to participate in the CDR Federation.  The functionality of the Directory will include but will not be limited to:</p>
+
+<ul>
+<li><strong>Management of Identities and Access</strong>: The Directory will allow registered persons, on behalf of Holders and Recipients, to manage the metadata of their associated organisations and systems.</li>
+<li><strong>Management of Certificates</strong>: The Directory will faciliate the issuing, management and revocation of digital certificates.</li>
+<li><strong>Discoverability and Search</strong>: The Directory will expose APIs and GUIs (Web applications) in order to support metadata queries across Directory entities. </li>
+</ul>
+
+<p>A full description of the Directory is beyond the scope of this document.</p>
+<h1 id='discovery-and-registration'>Discovery and Registration</h1>
+<aside class="warning">
+OIDC Discovery and Dynamic Client Registration functionality are directly impacted by the emerging requirements of the Directory and thus subject to change.
+</aside>
+<h2 id='data-holder-metadata'>Data Holder Metadata</h2>
+<p>In accordance with the OpenID Connect Discovery standards <strong>[OIDD]</strong>, Data Holders will expose, in their role as an OIDC Provider, their OIDC Metadata via a discovery endpoint:</p>
+
+<p><strong>Method</strong>: GET<br>
+<strong>URL</strong>: https://exampleholder.com.au/.well-known/openid-configuration<br>
+<strong>Successful Response</strong>: 200<br>
+<strong>Content-type</strong>: application/json</p>
+
+<p><strong>Fields:</strong></p>
+
+<ul>
+<li>issuer
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL using the https scheme with no query or fragment component that the
+DH asserts as its Issuer Identifier which must be unique across the set
+of Data Holders in the federation. This also MUST be identical to the <code>iss</code> Claim value in ID Tokens
+issued from this Issuer.</li>
+</ul></li>
+<li>authorization_endpoint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH OAuth 2.0 Authorization Endpoint. Must use https.</li>
+</ul></li>
+<li>token_endpoint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH OAuth 2.0 Token Endpoint. Must use https.</li>
+</ul></li>
+<li>introspection_endpoint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH OAuth 2.0 Introspection Endpoint. Must use https.</li>
+</ul></li>
+<li>revocation_endpoint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH OAuth 2.0 Revocation Endpoint. Must use https.</li>
+</ul></li>
+<li>userinfo_endpoint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH UserInfo Endpoint. Must use https.</li>
+</ul></li>
+<li>jwks_uri
+
+<ul>
+<li>  REQUIRED</li>
+<li>  URL of the DH’s JSON Web Key Set <strong>[JWK]</strong> document. Must use https.<br></li>
+</ul></li>
+<li>bc-authorize 
+
+<ul>
+<li>   OPTIONAL</li>
+<li>   Backchannel Authentication Endpoint as defined by <strong>[CIBA]</strong>.</li>
+</ul></li>
+<li>scopes_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JSON array containing a list of the <strong>[OAUTH2]</strong> scope values that this
+server supports. The server MUST support the <code>openid</code> scope value.</li>
+</ul></li>
+<li>response_types_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain values: <code>code</code> <code>id_token</code></li>
+<li>  JSON array containing a list of the OAuth 2.0 response_type values that
+this DH supports.</li>
+</ul></li>
+<li>response_mode_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one or more of these values: <code>fragment</code> <code>query</code></li>
+<li>  JSON array containing a list of the OAuth 2.0 response_mode values that
+this DH supports.</li>
+</ul></li>
+<li>grant_types_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain value: <code>authorization_code</code></li>
+<li>  JSON array containing a list of the OAuth 2.0 Grant Type values that
+this DH supports.</li>
+</ul></li>
+<li>acr_values_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JSON array containing a list of the Authentication Context Class
+References that this DH supports. An LoA of 3 is the minimum that must
+be met. Please Refer to the <a href="#_Levels_of_Access">LoA</a> section of this
+document.</li>
+</ul></li>
+<li>subject_types_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain value: <code>pairwise</code></li>
+<li>  JSON array containing a list of the Authentication Context Class
+References that this DH supports.</li>
+</ul></li>
+<li>id_token_signing_alg_values_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one or more of these values: <code>PS256</code> <code>ES256</code></li>
+<li>  JSON array containing a list of the JWS signing algorithms (alg values)
+supported by the OP for the ID Token to encode the Claims in a
+<strong>[JWT]</strong>.</li>
+</ul></li>
+<li>id_token_encryption_alg_values_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JSON array containing a list of the <strong>[JWE]</strong> encryption algorithms
+(enc values) supported by the OP for the ID Token to encode the Claims
+in a JWT. The DH must encrypt and sign the ID Token.</li>
+</ul></li>
+<li>id_token_encryption_enc_values_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JSON array containing a list of the <strong>[JWE]</strong> encryption algorithms
+(enc values)</li>
+</ul></li>
+<li>request_object_signing_alg_values_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one or more of these values: <code>PS256</code> <code>ES256</code></li>
+<li>  JSON array containing a list of the JWS signing algorithms (alg values)
+supported by the DH for Request Objects.</li>
+</ul></li>
+<li>  token_endpoint_auth_methods_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one or more of the following values: <code>private_key_jwt
+tls_client_auth</code></li>
+<li>  JSON array containing a list of Client Authentication methods supported
+by this Token Endpoint.</li>
+</ul></li>
+<li>  mutual_tls_sender_constrained_access_tokens
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain value: <code>true</code></li>
+<li>  A Boolean value indicating authorisation server support for mutual TLS
+sender constrained access tokens.</li>
+</ul></li>
+<li>  claims_supported
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JSON array containing a list of the Claim Names of the Claims that the
+DH MAY be able to supply values for. Note that for privacy or other
+reasons, this might not be an exhaustive list.</li>
+</ul></li>
+</ul>
+<h2 id='recipient-client-registration'>Recipient Client Registration</h2>
+<aside class="warning">
+Dynamic Client Registration functionality is directly impacted by the emerging requirements of the Directory and thus subject to change.
+</aside>
+
+<p>To register as a new Client at a Holder&#39;s Authorisation Server, a Data Recipient sends its Client metadata in a HTTP POST message to the Client Registration Endpoint of the Holder which includes the Client Metadata parameters that the Client chooses to specify for itself. The request carries an assertion that is signed by the CDR CA private key in order to allow the Holder to determine the validity of the Recipient request.</p>
+
+<p>If a required value is not supplied, the Holder may use a default value from those shown below.</p>
+
+<p><strong>Method</strong>: POST<br>
+<strong>Successful Response</strong>: 201<br>
+<strong>URL</strong>: https://directoryexample.com.au/clients<br>
+<strong>Content-type</strong>: application/json</p>
+
+<p><strong>Fields:</strong></p>
+
+<ul>
+<li>  redirect_uris
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Array of Redirection URI values used by the DR.</li>
+</ul></li>
+<li>  response_types
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain values: <code>code</code> <code>id_token</code></li>
+<li>  JSON array containing a list of the OAuth 2.0 response_type values that
+this DR is declaring that it will restrict itself to using.</li>
+</ul></li>
+<li>  grant_types
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain value: <code>authorization_code</code></li>
+<li>  JSON array containing a list of the OAuth 2.0 Grant Type values that
+this DR is declaring that it will restrict itself to using.</li>
+</ul></li>
+<li>  client_name
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Name of the DR to be presented to the end user.</li>
+</ul></li>
+<li>  jwks_uri
+
+<ul>
+<li>  CONDITIONAL</li>
+<li>  URL for the DR’s JSON Web Key Set <strong>[JWK]</strong>. Must be provided if jwks
+value is not provided. Only one of <code>jwks_uri</code> or <code>jwks</code> can be set.</li>
+</ul></li>
+<li>  jwks
+
+<ul>
+<li>  CONDITIONAL</li>
+<li>  The JWKS <strong>[JWK]</strong> for the DR passed by value. Must be provided if
+<code>jwks_uri</code> value is not provided. Only one of <code>jwks_uri</code> or <code>jwks</code> can be set.</li>
+</ul></li>
+<li>  subject_type
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must be value: <code>pairwise</code></li>
+<li>  <code>subject_type</code> requested for responses to the client.</li>
+</ul></li>
+<li>  id_token_signed_response_alg
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one of these values: <code>PS256</code> <code>ES256</code></li>
+<li>  JWS algorithm required for signing the ID Token issues to the DR Client.</li>
+</ul></li>
+<li>  id_token_encrypted_response_alg
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JWE alg algorithm required for encrypting the ID Token issued to this
+DR.</li>
+</ul></li>
+<li>  id_token_encrypted_response_enc
+
+<ul>
+<li>  REQUIRED</li>
+<li>  JWE enc required for encrypting the ID Token issued to this DR.  Only ID Tokens issued from the Authorisation Endpoint require encryption.</li>
+</ul></li>
+<li>  request_object_signing_alg
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one of these values: <code>PS256</code> <code>ES256</code></li>
+<li>  JWS alg algorithm the must be used for signing Request Objects sent to a
+DH.</li>
+</ul></li>
+<li>  token_endpoint_auth_method
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain one of the following values: <code>private_key_jwt</code>
+<code>tls_client_auth</code></li>
+<li>  The Client Authentication method supported by this DR for access to the
+DH Token Endpoint.</li>
+</ul></li>
+<li>  tls_client_auth_subject_dn
+
+<ul>
+<li>  CONDITIONAL</li>
+<li>  This must be provided where the <code>token_endpoint_auth_method</code> is
+<code>tls_client_auth</code>. This is a string representation of the expected subject
+distinguished name of the certificate this DR client will use in mutual TLS
+authentication.</li>
+</ul></li>
+<li>  mutual_tls_sender_constrained_access_tokens
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain value: <code>true</code></li>
+<li>  A Boolean value indicating the client’s intention to use mutual TLS
+sender constrained access tokens.</li>
+</ul></li>
+<li>  default_acr_values
+
+<ul>
+<li>  OPTIONAL</li>
+<li>  Default requested Authentication Context Class Reference values for this
+DR. An LoA of 3 is the minimum that must be met. Please refer to the
+<a href="#_Levels_of_Access">LoA</a> section of this document.</li>
+</ul></li>
+<li>  client_notification_endpoint
+
+<ul>
+<li>  OPTIONAL</li>
+<li>  When using Notification mode in <strong>[CIBA]</strong>, the Holder will send a request with the tokens to this callback URI.</li>
+</ul></li>
+</ul>
+<h1 id='json-web-key-sets'>JSON Web Key Sets</h1>
+<p>Data Holders and Data Recipients must publish one or more JSON Web Keys <strong>[JWK]</strong> in order to deliver signed and encrypted tokens. A JWK is a structure that represents a cryptographic key in JSON format <strong>[JSON]</strong>.
+Only public keys should be present in any JWK that is published to the CDR
+Federation. A JWK contains a <code>use</code> parameter which describes if it used for
+encryption or signing. Data Recipients must provide both
+encryption and signing keys and these must only employ algorithms that are
+permitted under the FAPI-RW profile <strong>[FAPI-RW]</strong>. For signing, these are <code>PS256</code>
+and <code>ES256</code>.</p>
+
+<p>Under this profile, the following parameters are mandatory in addition to those
+outlined under RFC7517 <strong>[JWK]</strong>:</p>
+
+<ul>
+<li>  kid
+
+<ul>
+<li>  This key ID must be the value of the date on which the key was published
+in the format YYYY-MM-DD and must be unique within the set. If more than
+one key is published on the same date, the <code>kid</code> must consist of the
+following format <code>YYYY-MM-DD.&lt;V&gt;</code> where <code>&lt;V&gt;</code> represents an increasing
+version number and positive integer. When encrypting for a target entity
+(DR), the producing entity (DH) should use the target
+entity’s most recent JWK published for that purpose. This will enable
+the support of rolling keys.</li>
+</ul></li>
+<li>  use
+
+<ul>
+<li><code>enc</code> or <code>sig</code></li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h2 id='jose-jwt-header'>JOSE JWT Header</h2>
+<p>The JOSE Header describes the cryptographic operations applied to a JSON Web
+Token <strong>[JWT]</strong>. JWTs exchanged in the CDR Federation must include a reference
+to the JWK from which they were signed or encrypted. Therefore, the following
+parameters are mandatory in the JOSE Header:</p>
+
+<ul>
+<li>  kid
+
+<ul>
+<li>  The JWK ID.</li>
+</ul></li>
+<li>  x5t
+
+<ul>
+<li>  If present on the JWK, the <code>x5t</code> thumbprint must be included in the
+header.</li>
+</ul></li>
+<li>  x5t#S256
+
+<ul>
+<li>  If present on the JWK, the <code>x5t\#S256</code> thumbprint must be included in the
+header.</li>
+</ul></li>
+</ul>
+<h1 id='authentication-flows'>Authentication Flows</h1>
+<p>This profile permits 2 types of authentication flows: OIDC Hybrid Flow
+<strong>[OIDC]</strong> and Client Initiated Backchannel Authentication <strong>[CIBA]</strong>.</p>
+
+<p>Data Holder’s must support the OIDC Hybrid Flow and may optionally support
+<strong>[CIBA]</strong>.</p>
+<h2 id='oidc-hybrid-flow'>OIDC Hybrid Flow</h2>
+<p>The OIDC Hybrid Flow is a type of redirection flow where the customer’s user
+agent is redirected from the Data Recipient’s (Relying Party) web site to a Data
+Holder’s Authorisation endpoint in the context of an OIDC authentication
+request. The Hybrid flow incorporates aspects of the both the implicit flow and
+authorisation code flow by supporting <code>response_type</code> of <code>code id_token</code> and <code>code
+id_token token</code>. However, this profile will only support a <code>response_type</code> of <code>code
+id_token</code>.</p>
+<h3 id='authorisation-endpoint-requests'>Authorisation Endpoint Requests</h3>
+<p>A Data Recipient Client must make a request to a Data Holder’s authorisation
+endpoint with the following parameters:</p>
+
+<ul>
+<li>  scope
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must include this value: <code>openid</code></li>
+<li>  Indicates the attributes being requested.</li>
+</ul></li>
+<li>  response_type
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must contain values: <code>code</code> <code>id_token</code></li>
+</ul></li>
+<li>  client_id
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Client identifier for the DR.</li>
+</ul></li>
+<li>  redirect_uri
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Redirection URI to which the response will be sent. Must be validated
+against the Client’s preregistered URIs in the Directory and must use
+the https scheme.</li>
+</ul></li>
+<li>  state
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Opaque value used to maintain state between the request and the
+callback. Sufficient entropy must be present in this value to prevent
+attackers from guessing values.</li>
+</ul></li>
+<li>  nonce
+
+<ul>
+<li>  REQUIRED</li>
+<li>  String value used to associate a Client / DR session with an ID Token,
+and to mitigate replay attacks. Sufficient entropy must be present in
+this value to prevent attackers from guessing values.</li>
+</ul></li>
+<li>  prompt
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must be set to value: <code>select_account</code></li>
+<li>  The Authorization Server SHOULD prompt the End-User to select a user
+account.</li>
+</ul></li>
+<li>  acr_values
+
+<ul>
+<li>  OPTIONAL</li>
+<li>  The DR may specify the required the <a href="#levels-of-assurance-loas">Level of
+Assurance</a>.</li>
+</ul></li>
+<li>  request
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Request Object by Value. This is a JWT signed by the Client / RP as per
+their Directory metadata whose claims match the request parameters.</li>
+<li>  Must contain the members &#39;iss&#39; (&#39;client_id&#39; of DR) and aud (Issuer
+Identifier URL for the DH).</li>
+<li>  &#39;request_uri&#39; is not supported by this profile.</li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre>
+<p>This endpoint must be hosted on a website with TLS protection (HTTPS).</p>
+<h2 id='client-initiated-backchannel-authentication-ciba'>Client-Initiated Backchannel Authentication (CIBA)</h2>
+<p>Client Initiated Backchannel Authentication (CIBA) enables a Data Recipient to
+initiate the authentication of an end-user at a Data Holder by means of out-band
+mechanisms <strong>[CIBA]</strong>. The Recipient will send to the Holder’s <code>bc-authorize</code>
+endpoint, via the HTTP POST method with <strong>[MTLS]</strong>, a request to initiate an
+end-user’s authentication. The holder will return a unique identifier for the
+authentication instance as it attempts to perform the actual authentication of
+the user. The Data Recipient will receive the <code>id_token</code>, <code>access_token</code> and
+<code>refresh_token</code> by using the notification mode.</p>
+
+<p>Implementation of this authentication flow is optional.</p>
+
+<p>Requests to the <code>bc-authorize</code> endpoint will require <a href="#client-authentication">Client
+authentication</a>. Only the following parameters will be
+supported:</p>
+
+<ul>
+<li>  scope
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must include this value: <code>openid</code></li>
+<li>  Indicates the attributes being requested.</li>
+</ul></li>
+<li>  client_notification_token
+
+<ul>
+<li>  REQUIRED</li>
+<li>  This token must be provided to allow the where Client has been
+registered to support the Notify mode.</li>
+</ul></li>
+<li>  acr_values
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must include <code>mod_pr</code> and/or <code>mod_mf</code> in order of preference.</li>
+</ul></li>
+<li>  login_hint
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Must allow the Data Holder to identify the end user. Under this profile,
+this must not personally identify the end user (for example, an email
+address would not be permitted).</li>
+</ul></li>
+<li>  request
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Request Object by Value. This is a JWT signed by the Client / RP as per
+their Directory metadata whose claims match the request parameters.</li>
+<li>  Must contain the members iss (client_id of DR) and aud (Issuer
+Identifier URL for the DH).</li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h1 id='error-responses'>Error Responses</h1>
+<p>Error reponses and codes will confirm with <strong>[OIDC]</strong> and <strong>[OAUTH]</strong>.</p>
+
+<p><a id="client-authentication"></a></p>
+<h1 id='client-authentication'>Client Authentication</h1>
+<p>As defined by the Directory Issuer metadata, this profile supports 2 forms of
+Client Authentication: <code>private_key_jwt</code> <strong>[RFC7523]</strong> and <code>tls_client_auth</code>
+<strong>[MTLS]</strong>.</p>
+<h2 id='private_key_jwt'>private_key_jwt</h2>
+<p>The <code>private_key_jwt</code> client authentication method is delivered as a JWT signed
+using the Data Recipient’s Client private key <strong>[RFC7523]</strong> as an assertion with the
+following mandatory claims:</p>
+
+<ul>
+<li>  iss
+
+<ul>
+<li>  The client ID of the DR creating the token.</li>
+</ul></li>
+<li>  sub
+
+<ul>
+<li>  The client ID of the DR creating the token.</li>
+</ul></li>
+<li>  aud
+
+<ul>
+<li>  The URL of the authorisation server’s (DH) token endpoint.</li>
+</ul></li>
+<li>  iat
+
+<ul>
+<li>  The time that the token was created by the DR.</li>
+</ul></li>
+<li>  exp
+
+<ul>
+<li>  The expiration time after which the token must be considered invalid.</li>
+</ul></li>
+<li>  jti
+
+<ul>
+<li>  A unique identifier generated by the client for this authentication. The
+identifier must not be re-used by any subsequent authentication.</li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre>
+<p>The assertion with be sent with the POST method and will include the following
+mandatory parameters:</p>
+
+<ul>
+<li>  grant_type
+
+<ul>
+<li>  Must be set to <code>authorisation_code</code>.</li>
+</ul></li>
+<li>  code
+
+<ul>
+<li>  The value of the code parameter returned in the authorisation response.</li>
+</ul></li>
+<li>  client_assertion_type
+
+<ul>
+<li>  Must be set to <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code>.</li>
+</ul></li>
+<li>  client_assertion
+
+<ul>
+<li>  The serialised assertion JWT described previously.</li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h2 id='tls_client_auth'>tls_client_auth</h2>
+<p>This profile supports the PKI Mutual TLS OAuth Client Authentication Method
+<strong>[MTLS]</strong>. The TLS handshake is utilised to validate the client&#39;s possession of
+the private key corresponding to the public key in the certificate and to
+validate the corresponding certificate chain. The client is successfully
+authenticated if the subject information in the certificate matches the expected
+DN configured or registered for that particular client. The
+certificate must be issued by the CDR Certificate Authority (CA).</p>
+<h1 id='oidc-client-types'>OIDC Client Types</h1>
+<p>Only Confidential Clients will be supported under this profile. Therefore,
+Public clients will not be supported.</p>
+<h1 id='tokens'>Tokens</h1><h2 id='id-token'>ID Token</h2>
+<p>The ID Token is a JWT <strong>[OIDC]</strong> that must be signed and encrypted when returned
+to a Data Recipient / Client and must be returned from both the Authorisation
+Endpoint and Token Endpoint. Encryption is only required for ID Tokens returned from a Holder&#39;s Authorisation Endpoint.  The signing algorithms supported by the Data Holder will be
+advertised in their Discovery Endpoint and must be either <code>PS256</code> or <code>ES256</code>.</p>
+
+<p>The ID Token returned from the Authorisation Endpoint must not contain any
+Personally identifiable information (PII) claims.</p>
+
+<p>The ID Token will, in addition to requested claims, include the following
+values:</p>
+
+<ul>
+<li>  iss
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>string</code></li>
+<li>  The issuer field is the URL of the expected issuer.</li>
+</ul></li>
+<li>  aud
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>string</code></li>
+<li>  The audience field contains the Client Id of the client.</li>
+</ul></li>
+<li>  sub
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>string</code></li>
+<li>  The identifier of the user.</li>
+</ul></li>
+<li>  acr
+
+<ul>
+<li>  CONDITONAL (Required for CIBA and optional for Hybrid Flow)</li>
+<li>  <code>string</code></li>
+<li>  The LoA at which the user was authenticated at.</li>
+<li>  For CIBA must include:
+
+<ul>
+<li>  <code>mod-pr</code> or <code>mod_mf</code>.</li>
+</ul></li>
+<li>  For Hybrid Flow, if requested, must be:
+
+<ul>
+<li>  <code>urn:cds.au:cdr:3</code></li>
+</ul></li>
+</ul></li>
+<li>  amr
+
+<ul>
+<li>  CONDTIONAL (Required for CIBA Flow Only)</li>
+<li>  Authentication Methods Reference. JSON array of strings that are
+identifiers for authentication methods used in the authentication.</li>
+<li>  Must contains one or more of the following values <strong>[CIBA]</strong>:
+
+<ul>
+<li>  <code>user</code>, <code>pin</code>, <code>fpt</code>, <code>sms</code>, <code>swk</code>, <code>hwk</code>, and <code>geo</code></li>
+</ul></li>
+</ul></li>
+<li>  nonce
+
+<ul>
+<li>  CONDITIONAL (Hybrid Flow Only)</li>
+<li>  <code>string</code></li>
+<li>  The nonce value that was provided in the authentication request.</li>
+</ul></li>
+<li>  jti
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>string</code></li>
+<li>  A unique identifier for the token.</li>
+</ul></li>
+<li>  exp
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>number</code></li>
+<li>  The expiration time for the token. Its value is a JSON number
+representing the number of seconds from 1970-01-01T0:0:0Z as measured in
+UTC until the date/time.</li>
+</ul></li>
+<li>  iat
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>number</code></li>
+<li>  The issued at time for the token. Its value is a JSON number
+representing the number of seconds from 1970-01-01T0:0:0Z as measured in
+UTC until the date/time.</li>
+</ul></li>
+<li>  nbf
+
+<ul>
+<li>  REQUIRED</li>
+<li>  <code>number</code></li>
+<li>  The not before time for the token. Its value is a JSON number
+representing the number of seconds from 1970-01-01T0:0:0Z as measured in
+UTC until the date/time.</li>
+</ul></li>
+<li>  c_hash
+
+<ul>
+<li>  CONDITIONAL (Hybrid Flow Only)</li>
+<li>  <code>string</code></li>
+<li>  The Authorisation Code Hash. This value must be returned when the ID
+Token is returned from the Authorisation endpoint.</li>
+</ul></li>
+<li>  s_hash
+
+<ul>
+<li>  CONDITIONAL (Hybrid Flow Only)</li>
+<li>  <code>string</code></li>
+<li>  The request’s State parameter hashed. This value must be returned when
+the ID Token is returned from the Authorisation endpoint.</li>
+</ul></li>
+</ul>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h3 id='hashing-value-for-state-and-authorisation-code'>Hashing value for state and authorisation code</h3>
+<p>As per OIDC instructions <strong>[OIDC]</strong>, the hash value for state and code is the base64url
+encoding of the left-most half of the hash of the octets of the ASCII
+representation of the value, where the hash algorithm used is the hash algorithm
+used in the alg Header Parameter of the ID Token&#39;s JOSE Header.</p>
+<h2 id='access-token'>Access Token</h2>
+<p>An Access Token is created and utilised as per OAuth2 standards <strong>[OAUTH2]</strong>. An
+Access Token must expire <code>n</code> minutes after it is issued by the Data Holder where <code>n</code> is determined by CDR rules.</p>
+<h2 id='refresh-token'>Refresh Token</h2>
+<p>A Refresh Token is created as and utilised as per OAuth2 standards <strong>[OAUTH2]</strong>.
+A Refresh Token must expire <code>n</code> days after it is issued where <code>n</code> is determined by CDR rules.</p>
+<h1 id='scopes-and-claims'>Scopes and Claims</h1>
+<p>Industry-specific scopes (for example, “bank_account”) will not be referenced in
+this profile.</p>
+<h2 id='scopes'>Scopes</h2>
+<p>The following scopes will be supported:</p>
+
+<ul>
+<li>  openid
+
+<ul>
+<li>  REQUIRED</li>
+<li>  Authentication requests must include the <code>openid</code> scope in order to
+conform with OIDC <strong>[OIDC]</strong>.</li>
+</ul></li>
+<li>  profile
+
+<ul>
+<li>  OPTIONAL</li>
+<li>  When the profile scope is supplied as part of an authentication request,
+this scope determines (in conjunction with consent) the personal claims
+about the authenticated subject available at the UserInfo endpoint.</li>
+<li>  Related claims:
+
+<ul>
+<li>  <code>name</code></li>
+<li>  <code>family_name</code></li>
+<li>  <code>given_name</code></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id='claims'>Claims</h2>
+<p>This profile will only support the “Normal Claims” claim type <strong>[OIDC]</strong>.</p>
+
+<p>The following OIDC claims will be supported:</p>
+
+<ul>
+<li>  sub
+
+<ul>
+<li>  <code>string</code></li>
+<li>  Mandatory in ID Token and UserInfo.</li>
+<li>  Subject - Identifier for the End-User at the Issuer (DH).</li>
+</ul></li>
+<li>  acr
+
+<ul>
+<li>  <code>string</code></li>
+<li>  Available in ID Token Only.</li>
+<li>  Authentication Context Class Reference.</li>
+<li>  If passed as an essential claim for the ID Token, the Authorization
+Server must return an <code>acr</code> Claim Value that matches one of the requested
+values. The Authorization Server may ask the End-User to re-authenticate
+with additional factors to meet this requirement. If this is an
+Essential Claim and the requirement cannot be met, then the
+Authorization Server MUST treat that outcome as a failed authentication
+attempt.</li>
+<li>  A client must not specify an <code>acr</code> claim and <code>acr_values</code> in the same
+authentication request.</li>
+<li>  Allowed acr values are described in the <a href="#levels-of-assurance-loas">LoA</a>
+section of this document.</li>
+</ul></li>
+<li>  auth_time
+
+<ul>
+<li>  <code>number</code></li>
+<li>  Available in ID Token Only.</li>
+<li>  Time when the End-User authentication occurred. Its value is a JSON
+number representing the number of seconds from 1970-01-01T0:0:0Z as
+measured in UTC until the date/time.</li>
+</ul></li>
+<li>  name
+
+<ul>
+<li>  <code>string</code></li>
+<li>  Available in ID Token and UserInfo.</li>
+<li>  End-User&#39;s full name in displayable form including all name parts.</li>
+</ul></li>
+<li>  given_name
+
+<ul>
+<li>  <code>string</code></li>
+<li>  Available in ID Token and UserInfo.</li>
+<li>  Given name(s) or first name(s) of the End-User.</li>
+</ul></li>
+<li>  family_name
+
+<ul>
+<li>  <code>string</code></li>
+<li>  Available in ID Token and UserInfo.</li>
+<li>  Surname(s) or last name(s) of the End-User.</li>
+</ul></li>
+<li>  updated_at
+
+<ul>
+<li>  <code>number</code></li>
+<li>  Available in ID Token and UserInfo.</li>
+<li>  Time the End-User&#39;s information was last updated. Its value is a JSON
+number representing the number of seconds from 1970-01-01T0:0:0Z as
+measured in UTC until the date/time.</li>
+</ul></li>
+</ul>
+<h1 id='identifiers-and-subject-types'>Identifiers and Subject Types</h1>
+<p>The identifier for an authenticated end-user is passed in the <code>sub</code> claim. The
+Data Holder must create a pairwise anonymous identifier and this value must be
+unique per Data Recipient (Client). Furthermore, the identifier must also be
+unique relative to the scenario in which the end user has authenticated. For
+example, the identifier generated for the same person when they are using a
+business account must be different to the identifier that is generated when that
+same individual is authorising as an individual.</p>
+
+<p>It is recommended that the <code>sub</code> value is generated as a universally unique
+Identifier (UUID) <strong>[RFC4122]</strong>.</p>
+
+<p><a id="levels-of-assurance-loas"></a></p>
+<h1 id='levels-of-assurance-loas'>Levels of Assurance (LoAs)</h1>
+<p>At a minimum, Data Holder authentication mechanisms must yield an LoA of 3
+[<strong>X.1254]</strong> which demonstrates there is a high-level of confidence in the
+claimed or asserted identity of the end user.</p>
+
+<p>Under this profile, an LoA is 3 is represented by the URI:
+<code>urn:cds.au:cdr:3</code></p>
+<h1 id='transaction-security'>Transaction Security</h1>
+<p>All transactions must be encrypted with TLS &gt;= 1.2 (HTTPS) and only the
+following cipher suites are permitted:</p>
+
+<ul>
+<li>  TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</li>
+<li>  TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</li>
+<li>  TLS_DHE_RSA_WITH_AES_256_GCM_SHA384</li>
+<li>  TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384</li>
+</ul>
+
+<p>The Authorisation endpoint may allow additional cipher suites as detailed in
+<strong>[BCP195]</strong>.</p>
+<h2 id='mutual-tls-as-a-holder-of-key-mechanism'>Mutual TLS as a Holder of Key Mechanism</h2>
+<p>In order to bind an issued token to a client certificate <strong>[MTLS]</strong>, the Data
+Holder’s (Open ID Provider) Token Endpoint, Revocation Endpoint, Introspection
+Endpoint, Backend Authentication Endpoint and Resource server APIs must be
+secured with MTLS. Trust will only be established where client and the server
+certificates involved in the TLS handshake have been issued by the CDR
+Certificate Authority (CA).</p>
+<h1 id='general-endpoints'>General Endpoints</h1><h2 id='token-endpoint'>Token Endpoint</h2>
+<p>A Data Holder issues ID, Access and Refresh Tokens to the Data Recipient from
+this endpoint. A Request to this end point requires <a href="#client-authentication">Data Recipient (Client)
+authentication</a>.</p>
+
+<p>Regardless of the Client Authentication method employed, this endpoint must be
+hosted on a website with <strong>[MTLS]</strong> protection (HTTPS).</p>
+<h2 id='userinfo-endpoint'>UserInfo Endpoint</h2>
+<p>The UserInfo Endpoint is an OAuth 2.0 Protected Resource <strong>[OAUTH2]</strong> hosted by
+the Data Holder that returns Claims about the authenticated End-User <strong>[OIDC]</strong>.
+The Data Recipient sends the UserInfo requests using either the HTTP GET or POST
+method. The Access Token obtained from an OIDC authentication request must be
+sent as a Bearer Token to this endpoint.</p>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h2 id='jwks-endpoint'>JWKS Endpoint</h2>
+<p>A Data Holder must host a JWKS Endpoint <strong>[JWK]</strong>, the address of which is
+advertised at their Discovery Endpoint. A Data Recipient may also
+host a JWKS Endpoint but this is not required as Recipient Clients may choose to
+register their JWKS by value as part of their registration request to the Holder. Requests to the JWKS Endpoint are made via the HTTP GET method.</p>
+
+<p>JWKS Endpoints must be secured with TLS but are not a protected resource.</p>
+
+<aside class="warning">
+Private keys are not published at this endpoint.
+</aside>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h2 id='introspection-endpoint'>Introspection Endpoint</h2>
+<p>To allow Resource Servers (hosting the CDR APIs) and Recipients to retrieve the
+metadata attached to Access and Refresh tokens and to determine the revocation
+status of these tokens, Data Holders must host a Token Introspection Endpoint
+<strong>[RFC7662]</strong>. The Introspection
+Endpoint returns a JSON document representing the meta information surrounding
+the token, including whether this token is currently active.</p>
+
+<p>Under the CDR Security Profile, the Introspection Endpoint will also contain the
+<code>cnf</code> (confirmation) field which contains an object with the value of the hash of
+the certificate to which the token is bound <strong>[MTLS]</strong>. However, the
+Introspection response must not include any information which reveals resource
+owner identity (for example, userId).</p>
+
+<p>Requests to this end point require <a href="#client-authentication">Data Recipient (Client)
+authentication</a> and the client must present their
+certificate as part of an <strong>[MTLS]</strong> handshake.</p>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h2 id='revocation-endpoint'>Revocation Endpoint</h2>
+<p>Data Holders must implement a Revocation endpoint <strong>[RFC7009]</strong>. This endpoint
+is a revocation mechanism that allows a Data Recipient to invalidate its tokens
+if the end-user logs out, changes identity, or uninstalls the respective
+application. Notifying the authorization server that the token is no longer
+needed allows the Data Holder server to clean up data associated with that token
+and the underlying authorization grant.</p>
+
+<p>Requests to this end point require <a href="#client-authentication">Data Recipient (Client)
+authentication</a> and the client must present their
+certificate as part of an <strong>[MTLS]</strong> handshake.</p>
+<pre class="highlight http tab-http"><code><span class="err">TODO: Add Sample.
+</span></code></pre><h1 id='references'>References</h1>
+<p>This document references the following sources of information.</p>
+
+<table><thead>
+<tr>
+<th><strong>Reference</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>[BCP195]</strong></td>
+<td>Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS): <a href="https://tools.ietf.org/html/bcp195">https://tools.ietf.org/html/bcp195</a></td>
+</tr>
+<tr>
+<td><strong>[CDR]</strong></td>
+<td>Consumer Data Right: <a href="https://www.accc.gov.au/focus-areas/consumer-data-right">https://www.accc.gov.au/focus-areas/consumer-data-right</a></td>
+</tr>
+<tr>
+<td><strong>[CIBA]</strong></td>
+<td>OpenID Connect MODRNA Client initiated Backchannel Authentication Flow 1.0: <a href="https://openid.net/specs/openid-connect-modrna-client-initiated-backchannel-authentication-1_0.html">https://openid.net/specs/openid-connect-modrna-client-initiated-backchannel-authentication-1_0.html</a></td>
+</tr>
+<tr>
+<td><strong>[FAPI-R]</strong></td>
+<td>Financial-grade API - Part 1: Read Only API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-1.html">https://openid.net/specs/openid-financial-api-part-1.html</a></td>
+</tr>
+<tr>
+<td><strong>[FAPI-RW]</strong></td>
+<td>Financial-grade API - Part 2: Read and Write API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-2.html">https://openid.net/specs/openid-financial-api-part-2.html</a></td>
+</tr>
+<tr>
+<td><strong>[JSON]</strong></td>
+<td>The JavaScript Object Notation (JSON) Data Interchange Format: <a href="https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a></td>
+</tr>
+<tr>
+<td><strong>[JWA]</strong></td>
+<td>JSON Web Algorithms (JWA): <a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40">https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40</a></td>
+</tr>
+<tr>
+<td><strong>[JWK]</strong></td>
+<td>JSON Web Key (JWK): <a href="https://tools.ietf.org/html/rfc7517">https://tools.ietf.org/html/rfc7517</a></td>
+</tr>
+<tr>
+<td><strong>[JWT]</strong></td>
+<td>JSON Web Token (JWT): <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32</a></td>
+</tr>
+<tr>
+<td><strong>[JWS]</strong></td>
+<td>JSON Web Signature (JWS): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-signature">http://tools.ietf.org/html/draft-ietf-jose-json-web-signature</a></td>
+</tr>
+<tr>
+<td><strong>[JWE]</strong></td>
+<td>JSON Web Encryption (JWE): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption">http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption</a></td>
+</tr>
+<tr>
+<td><strong>[MTLS]</strong></td>
+<td>OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens <a href="https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html">https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html</a></td>
+</tr>
+<tr>
+<td><strong>[OAUTH2]</strong></td>
+<td>The OAuth 2.0 Authorization Framework*<em>:</em>*</td>
+</tr>
+<tr>
+<td><strong>[OIDC]</strong></td>
+<td>OpenID Connect Core 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a></td>
+</tr>
+<tr>
+<td><strong>[OIDD]</strong></td>
+<td>OpenID Connect Discovery 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">http://openid.net/specs/openid-connect-discovery-1_0.html</a></td>
+</tr>
+<tr>
+<td><strong>[OIDC-CR]</strong></td>
+<td>OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 1: <a href="https://openid.net/specs/openid-connect-registration-1_0.html">https://openid.net/specs/openid-connect-registration-1_0.html</a></td>
+</tr>
+<tr>
+<td><strong>[RFC4122]</strong></td>
+<td>A Universally Unique IDentifier (UUID) URN Namespace: <a href="https://tools.ietf.org/html/rfc4122">https://tools.ietf.org/html/rfc4122</a></td>
+</tr>
+<tr>
+<td><strong>[RFC4648]</strong></td>
+<td>The Base16, Base32, and Base64 Data Encodings: <a href="https://tools.ietf.org/html/rfc4648">https://tools.ietf.org/html/rfc4648</a></td>
+</tr>
+<tr>
+<td><strong>[RFC7009]</strong></td>
+<td>OAuth 2.0 Token Revocation:</td>
+</tr>
+<tr>
+<td><strong>[RFC7523]</strong></td>
+<td>JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <a href="https://tools.ietf.org/html/rfc7523">https://tools.ietf.org/html/rfc7523</a></td>
+</tr>
+<tr>
+<td><strong>[RFC7662]</strong></td>
+<td>OAuth 2.0 Token Introspection: <a href="https://tools.ietf.org/html/rfc7662">https://tools.ietf.org/html/rfc7662</a></td>
+</tr>
+<tr>
+<td>[<strong>X.1254]</strong></td>
+<td>X.1254 - Entity authentication assurance framework: <a href="https://www.itu.int/rec/T-REC-X1254-201209-I/en">https://www.itu.int/rec/T-REC-X1254-201209-I/en</a></td>
+</tr>
+</tbody></table>
+<h1 id='appendix'>Appendix</h1><h2 id='redirect-authentication-flow'>Redirect Authentication Flow</h2><h3 id='part-a-recipient-to-holder'>Part A - Recipient to Holder</h3>
+<p><img src="images/redirPartA.png" alt="Part A" /></p>
+<h4 id='steps'>Steps</h4>
+<ol>
+<li>The user navigates to a Recipient Website.</li>
+<li>The user selects their preferred Holder.</li>
+<li>The user&#39;s browser is redirected to the Holder&#39;s Authorisation Endpoint.</li>
+<li><em>One</em> of the following may occur:
+
+<ol>
+<li>The user may cancel the process at any point (in Parts <strong>A</strong>, <strong>B</strong> or <strong>C</strong>) and will be returned to the passed redirection URI for the Recipient with the relevant error code.</li>
+<li>The User is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the user&#39;s account.  The user&#39;s browser will be redirected back to the passed redirection URI for the Recipient with the relevant error code.</li>
+<li>The user sucessfully authenticatates and begins the consent/authorisation step (see Part <strong>B</strong>).</li>
+</ol></li>
+</ol>
+<h3 id='part-b-holder-authentication'>Part B - Holder Authentication</h3>
+<p><img src="images/redirPartB.png" alt="Part B" /></p>
+<h4 id='steps-2'>Steps</h4>
+<p>Part <strong>B</strong> illustrates the different authentication methods a Holder may present to the user.  It is important that the Holder authentication choices presented to the user are consistent with those currently utlised by the user when accessing their existing Holder online accounts.<br>
+The following options may be used:</p>
+
+<ol>
+<li>All Credentials/Factors are captured through the Browser.  On success, the consent process begins (Part <strong>C</strong>) .</li>
+<li>Two Factor Authentication (2FA)
+
+<ol>
+<li>A UserId and optionally a password are entered to the browser and submitted by the user.</li>
+<li>A code or notification is sent to a user&#39;s pregistered mobile application or device (detached authentication device).  Optional.</li>
+<li> The user views the code (For example, a Time-based One-time Password (TOTP)) or event on their detached authentication device.</li>
+<li><em>One</em> of the following may occur:
+
+<ol>
+<li>The user directly enters the code (or scans a QR Code) into the brower and submits the request.  On success, the consent process begins (Part <strong>C</strong>).</li>
+<li>The user does not enter the code into the browser.  The user acknowledges the authentication through the device and a secure message is sent to the Holder via a backchannel. On receipt of the message, the Holder&#39;s website redirects the user&#39;s browser to the consent page (Part <strong>C</strong>).</li>
+</ol></li>
+</ol></li>
+</ol>
+<h3 id='part-c-post-consent-recipient-to-holder'>Part C - Post Consent Recipient to Holder</h3>
+<p><img src="images/redirPartC.png" alt="Part C" /></p>
+<h4 id='steps-3'>Steps</h4>
+<p>This process continues from Part <strong>B</strong> afer a successful authentication.</p>
+
+<ol>
+<li>The user provides consent authorising the presented scopes and/or data claims.</li>
+<li><em>One</em> of the following may occur:
+
+<ol>
+<li>The Holder creates a new pairwise identifier for the user and Recipient.  This is the first time the user has authenticated to the Holder in the context of a request from this Recipient.</li>
+<li>This is a reauthentication.  The user has already authenticated to the Holder in the cotext of an authentication request from this Recipient.  The existing pairwise identifier for the User is allocated to the authorisation.</li>
+</ol></li>
+<li> The Holder creates the authorisation code and ID Token for the authorisation instance.</li>
+<li> The user&#39;s browser is redirected to the Recipient&#39;s redirect URI.  The ID Token and authorisation code generated in Step 3 are attached to the URL as query string parameters or as a fragment.  The Recipient web server processes the request.</li>
+<li> The Recipient decrypts the ID Token, verifies the signature and issuer of the ID Token, verifies the state/code hashes within the token, and also matches the presented state against it&#39;s own session state.  The Recipient Client then sends a POST request to the Holder Token Endpoint using Client Authentication and the Authorisation Code.</li>
+<li>The Holder Endpoint authenticates the Recipient Client and matches the authorisation code. On success, the Endpoint responds with an Access Token and ID Token.<br></li>
+<li>The Holder creates an Event relating to the authorisation.  This event may result in shared resource owners being notified about the authorisation.</li>
+<li> The Recipient verifies the ID Token and on success, invokes the UserInfo Endpoint using the Access Token as a Bearer Token.  The Holder verifies the token, applies Holder of Key verification check and on success, returns the requested UserInfo claims.</li>
+<li> The Recipient optionally begins calling the Holder APIs with the Access Token and renders the result to the User&#39;s browser.</li>
+</ol>
+<h2 id='sample-holder-domain-model'>Sample Holder Domain Model</h2>
+<p><img src="images/holderDomain.png" alt="Domain Model" /></p>
+<h3 id='description'>Description</h3>
+<p>This represents the domain model of a hypothetical Data Holder. It is no way prescriptive but illustrates the relation between  the authorisation-related entities that may exist within a Holder&#39;s domain.</p>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="http">http</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
