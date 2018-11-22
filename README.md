@@ -15,7 +15,7 @@ A number of working groups are being established to support Data61 designing and
 
 This repository will be used to seek feedback from working groups, share drafts and proposals and review standards as they develop. Feedback on proposed decisions by the Data Standards Body will be collated and presented to the Chair, who has decision-making authority in relation to the Standards. 
 
-For more information, contact cdr-data61@csiro.au. Further updates will be added to this page as the Consumer Data Standards work gets underway.
+For more information, contact cdr-data61@csiro.au. Further updates will be added to this page as the Consumer Data InfoSec Profile work gets underway.
 
 The current draft standard that is being added to as decisions are made can be found [here](https://consumerdatastandardsaustralia.github.io/infosec/).
 
@@ -29,4 +29,9 @@ In addition, it would be appreciated if the following rules are adhered to when 
 * Please provide a single, considered response to each proposal covering all feedback concerning the proposal.
 * For transparency, if you work at or are associated with an organisation with an interest in the standards, please indicate this in your response.
 * Please ensure you are aware of and compliant with any social media guidelines or internal processes for response set by your organisation before providing feedback.
+
+## Links
+
+### Workshop Material
+#### Presentation Slides [16th November 2018 Workshop](workshops/InfoSecWorkshop16112018.pdf)
 
