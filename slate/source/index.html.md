@@ -11,17 +11,6 @@ toc_footers:
 search: true
 ---
 
-<!---
-includes:
- - intro
-  - standards
-  - security
-  - banking
-  - common
-  - shared
-
---->
-
 # InfoSec Profile 0.0.1
 
 <aside class="warning">
@@ -33,6 +22,8 @@ This is an early draft of the CDR Security Profile and thus subject to change.
 | Author          | Date       | Version | Description               |
 |-----------------|------------|---------|---------------------------|
 | CDS			     | 22/11/2018 | 0.0.1   | Created Original artifact |
+
+The detailed change log for the artifact is available [here](https://github.com/ConsumerDataStandardsAustralia/infosec/blob/master/CHANGELOG.md).
 
 ## Symbols and Abbreviated terms
 -   **API**: Application Programming Interface
