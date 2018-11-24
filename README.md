@@ -8,7 +8,7 @@ The current Information Security Profile draft standard that is evolving as deci
 ## Links
 
 ### Change Log
-#### The change log can be found [here](CHANGELOG.MD)
+#### The change log can be found [here](CHANGELOG.md)
 
 ### Workshop Material
 #### Presentation Slides [16th November 2018 Workshop](workshops/InfoSecWorkshop16112018.pdf)
