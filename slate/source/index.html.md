@@ -879,7 +879,7 @@ This process continues from Part **B** afer a successful authentication.
 1. The user provides consent authorising the presented scopes and/or data claims.
 2. *One* of the following may occur:
   1. The Holder creates a new pairwise identifier for the user and Recipient combination.  This is the first time the user has authenticated to the Holder in the context of a request from this Recipient.
-  2. This is a reauthentication.  The user has previously authenticated to the Holder in the cotext of an authentication request from this Recipient.  The existing pairwise identifier for the user and Recipient is allocated to the authorisation.
+  2. This is a reauthentication.  The user has previously authenticated to the Holder in the context of an authentication request from this Recipient.  The existing pairwise identifier for the user and Recipient is allocated to the authorisation.
 3.  The Holder creates the authorisation code and ID Token for the authorisation instance.
 4.  The user's browser is redirected to the Recipient's redirect URI.  The ID Token and authorisation code generated in Step 3 are attached to the URL as query string parameters or as a fragment.  The Recipient web server processes the request.
 5.  The Recipient decrypts the ID Token, verifies the signature and issuer of the ID Token, verifies the state/code hashes within the token, and also matches the presented state against it's own session state.  The Recipient Client then sends a POST request to the Holder Token Endpoint using Client Authentication and the Authorisation Code.
