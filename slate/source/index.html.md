@@ -11,7 +11,7 @@ toc_footers:
 search: true
 ---
 
-# InfoSec Profile 0.0.1
+# InfoSec Profile 0.0.2
 
 <aside class="warning">
 This is an early draft of the CDR Security Profile and thus subject to change.
