@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Bug [#16] (https://github.com/ConsumerDataStandardsAustralia/infosec/issues/16#issue-385969678)
+
 ## [0.0.1+1] - 2018-11-23
 ### Added
 -- First draft of CDR Info Sec Profile

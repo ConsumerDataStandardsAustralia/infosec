@@ -167,7 +167,7 @@ In accordance with the OpenID Connect Discovery standards **[OIDD]**, Data Holde
         this DH supports.
 * response\_mode\_supported
     -   REQUIRED
-    -   Must contain one or more of these values: `fragment` `query`
+    -   Must contain the following value: `fragment`
     -   JSON array containing a list of the OAuth 2.0 response_mode values that
         this DH supports.
 * grant\_types\_supported
