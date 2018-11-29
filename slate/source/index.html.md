@@ -22,6 +22,7 @@ This is an early draft of the CDR Security Profile and thus subject to change.
 | Author          | Date       | Version | Description               |
 |-----------------|------------|---------|---------------------------|
 | CDS			     | 22/11/2018 | 0.0.1   | Created Original artifact |
+| CDS			     | 30/11/2018 | 0.0.2  | Created  |
 
 The detailed change log for the artifact is available [here](https://github.com/ConsumerDataStandardsAustralia/infosec/blob/master/CHANGELOG.md).
 
