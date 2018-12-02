@@ -443,7 +443,7 @@ supported:
     -   Indicates the attributes being requested.
 -   client\_notification\_token
     -   REQUIRED
-    -   This token must be provided to allow the where Client has been
+    -   This token must be provided to demonstrate that the DR has been
         registered to support the Notify mode.
 -   acr_values
     -   REQUIRED
