@@ -654,14 +654,14 @@ The following OIDC claims will be supported:
     -   `string`
     -   Available in ID Token Only.
     -   Authentication Context Class Reference.
-    -   If passed as an essential claim for the ID Token, the Authorization
-        Server must return an `acr` Claim Value that matches one of the requested
+    -   DR must include the `acr` claim as per
+        [FAPI Part 2 §5.2.3.3]](https://openid.net/specs/openid-financial-api-part-2.html#public-client)
+    -   Authorization Server must return an `acr` Claim Value that matches one of the requested
         values. The Authorization Server may ask the End-User to re-authenticate
-        with additional factors to meet this requirement. If this is an
-        Essential Claim and the requirement cannot be met, then the
-        Authorization Server MUST treat that outcome as a failed authentication
-        attempt.
-    -   A client must not specify an `acr` claim and `acr_values` in the same
+        with additional factors to meet this requirement. If the requirement
+        cannot be met, then the Authorization Server MUST treat that outcome as
+        a failed authentication attempt.
+    -   A client must not specify an `acr` claim and `acrvalues` in the same
         authentication request.
     -   Allowed acr values are described in the [LoA](#levels-of-assurance-loas)
         section of this document.
