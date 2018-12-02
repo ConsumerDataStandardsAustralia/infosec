@@ -763,7 +763,7 @@ this endpoint. A Request to this end point requires [Data Recipient (Client)
 authentication](#client-authentication).
 
 Regardless of the Client Authentication method employed, this endpoint must be
-hosted on a website with **[MTLS]** protection (HTTPS).
+hosted on a website with **[MTLS]** protection.
 
 ## UserInfo Endpoint
 The UserInfo Endpoint is an OAuth 2.0 Protected Resource **[OAUTH2]** hosted by
