@@ -530,8 +530,10 @@ Public clients will not be supported.
 ## ID Token
 The ID Token is a JWT **[OIDC]** that must be signed and encrypted when returned
 to a Data Recipient / Client and must be returned from both the Authorisation
-Endpoint and Token Endpoint. Encryption is only required for ID Tokens returned from a Holder's Authorisation Endpoint.  The signing algorithms supported by the Data Holder will be
-advertised in their Discovery Endpoint and must be either `PS256` or `ES256`.
+Endpoint and Token Endpoint. Encryption is only required for ID Tokens returned
+from a Holder's Authorisation Endpoint. The signing algorithms supported by the
+Data Holder will be advertised in their Discovery Endpoint. The only permitted
+signing algorithms are `PS256` and `ES256`.
 
 The ID Token returned from the Authorisation Endpoint must not contain any
 Personally identifiable information (PII) claims.
