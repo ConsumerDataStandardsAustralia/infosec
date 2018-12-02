@@ -594,14 +594,12 @@ values:
 -   c_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
-    -   The Authorisation Code Hash. This value must be returned when the ID
-        Token is returned from the Authorisation endpoint.
+    -   The Authorisation Code Hash.
 -   s_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
-    -   The request’s State parameter hashed. This value must be returned when
-        the ID Token is returned from the Authorisation endpoint.
- 
+    -   The request’s State parameter hashed..
+
 ```http
 TODO: Add Sample.
 ```
