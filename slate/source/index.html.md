@@ -612,13 +612,27 @@ encoding of the left-most half of the hash of the octets of the ASCII
 representation of the value, where the hash algorithm used is the hash algorithm
 used in the `alg` Header Parameter of the ID Token's JOSE Header.
 
+```http
+TODO: Add example with working and/or pseudocode.
+TODO: Add link to relevant part(s) of spec.
+```
+
 ## Access Token
 An Access Token is created and utilised as per OAuth2 standards **[OAUTH2]**. An
 Access Token must expire `n` minutes after it is issued by the Data Holder where `n` is determined by CDR rules.
 
+```http
+TODO: Add link to relevant part(s) of spec.
+```
+
 ## Refresh Token
 A Refresh Token is created as and utilised as per OAuth2 standards **[OAUTH2]**.
 A Refresh Token must expire `n` days after it is issued where `n` is determined by CDR rules.
+
+
+```http
+TODO: Add link to relevant part(s) of spec.
+```
 
 # Scopes and Claims
 Industry-specific scopes (for example, “bank_account”) will not be referenced in
@@ -640,6 +654,10 @@ The following scopes will be supported:
         -   `name`
         -   `family_name`
         -   `given_name`
+
+```http
+TODO: Add link to relevant part(s) of spec.
+```
 
 ## Claims
 This profile will only support the “Normal Claims” claim type **[OIDC]**.
