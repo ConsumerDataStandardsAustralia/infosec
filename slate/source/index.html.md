@@ -577,20 +577,20 @@ values:
     -   REQUIRED
     -   `number`
     -   The expiration time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC expiration time.
 -   iat
     -   REQUIRED
     -   `number`
     -   The issued at time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC issued at time.
 -   nbf
     -   REQUIRED
     -   `number`
     -   The not before time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC not before time.
 -   c_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
