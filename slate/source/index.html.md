@@ -43,7 +43,6 @@ The detailed change log for the artifact is available [here](https://github.com/
 -   **JWT:** JSON Web Token
 -   **IPLoA:** Identity Proofing Level of Assurance
 -   **LoA:** Level of Assurance
--   **LoaAs:** Levels of Assurance
 -   **MTLS:** Mutual Transport Layer Security
 -   **OIDC:** Open ID Connect
 -   **PII:** Personally Identifiable Information
