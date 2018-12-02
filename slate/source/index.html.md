@@ -607,10 +607,10 @@ TODO: Add Sample.
 ```
 
 ### Hashing value for state and authorisation code
-As per OIDC instructions **[OIDC]**, the hash value for state and code is the base64url
+As per OIDC instructions **[OIDC]**, `c_hash` and `s_hash` are the base64url
 encoding of the left-most half of the hash of the octets of the ASCII
 representation of the value, where the hash algorithm used is the hash algorithm
-used in the alg Header Parameter of the ID Token's JOSE Header.
+used in the `alg` Header Parameter of the ID Token's JOSE Header.
 
 ## Access Token
 An Access Token is created and utilised as per OAuth2 standards **[OAUTH2]**. An
