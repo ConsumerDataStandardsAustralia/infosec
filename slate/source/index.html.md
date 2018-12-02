@@ -769,7 +769,7 @@ hosted on a website with **[MTLS]** protection.
 The UserInfo Endpoint is an OAuth 2.0 Protected Resource **[OAUTH2]** hosted by
 the Data Holder that returns Claims about the authenticated End-User **[OIDC]**.
 The Data Recipient sends the UserInfo requests using either the HTTP GET or POST
-method. The Access Token obtained from an OIDC authentication request must be
+method. The Access Token obtained from an OIDC token request must be
 sent as a Bearer Token to this endpoint.
 
 ```http
