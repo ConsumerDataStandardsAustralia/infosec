@@ -745,7 +745,7 @@ The Authorisation endpoint may allow additional cipher suites as detailed in
 In order to bind an issued token to a client certificate **[MTLS]**, the Data
 Holder’s (Open ID Provider) Token Endpoint, Revocation Endpoint, Introspection
 Endpoint, Backend Authentication Endpoint and Resource server APIs must be
-secured with MTLS. Trust will only be established where client and the server
+secured with MTLS. Trust will only be established where the client and server
 certificates involved in the TLS handshake have been issued by the CDR
 Certificate Authority (CA).
 
@@ -759,7 +759,7 @@ This is covered under [CIBA Authentication flow](#bcAuthorisationEndpoint).
 
 ## Token Endpoint
 A Data Holder issues ID, Access and Refresh Tokens to the Data Recipient from
-this endpoint. A Request to this end point requires [Data Recipient (Client)
+this endpoint. A Request to this endpoint requires [Data Recipient (Client)
 authentication](#client-authentication).
 
 Regardless of the Client Authentication method employed, this endpoint must be
