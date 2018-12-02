@@ -82,7 +82,7 @@ multiple system entities which will assume one or more of the following roles:
         maintained by the Australian Competition and Consumer Commission (ACCC).  
 
 ## Data Holder
-The Data Holder (DR) represents a system entity that authenticates a consumer
+The Data Holder (DH) represents a system entity that authenticates a consumer
 (resource owner or user), as part of an authorisation process (OIDC) initiated by a Data
 Recipient, and issues an authorisation for that Data Recipient to access the consumer's
 data via published APIs. As part of this process, the consumer will provide informed
@@ -424,7 +424,7 @@ This endpoint must be hosted on a website with TLS protection (HTTPS).
 
 ## Client-Initiated Backchannel Authentication (CIBA)
 Client Initiated Backchannel Authentication (CIBA) enables a Data Recipient to
-initiate the authentication of an end-user at a Data Holder by means of out-band
+initiate the authentication of an end-user at a Data Holder by means of out-of-band
 mechanisms **[CIBA]**. The Recipient will send to the Holder’s `bc-authorize`
 endpoint, via the HTTP POST method with **[MTLS]**, a request to initiate an
 end-user’s authentication. The holder will return a unique identifier for the
@@ -497,7 +497,7 @@ following mandatory claims:
 TODO: Add Sample.
 ```
 
-The assertion with be sent with the POST method and will include the following
+The assertion will be sent with the POST method and will include the following
 mandatory parameters:
 
 -   grant_type
@@ -555,7 +555,7 @@ values:
 -   acr
     -   CONDITONAL (Required for CIBA and optional for Hybrid Flow)
     -   `string`
-    -   The LoA at which the user was authenticated at.
+    -   The LoA at which the user was authenticated.
     -   For CIBA must include:
         -   `mod-pr` or `mod_mf`.
     -   For Hybrid Flow, if requested, must be:
@@ -564,7 +564,7 @@ values:
     -   CONDTIONAL (Required for CIBA Flow Only)
     -   Authentication Methods Reference. JSON array of strings that are
         identifiers for authentication methods used in the authentication.
-    -   Must contains one or more of the following values **[CIBA]**:
+    -   Must contain one or more of the following values **[CIBA]**:
         -   `user`, `pin`, `fpt`, `sms`, `swk`, `hwk`, and `geo`
 -   nonce
     -   CONDITIONAL (Hybrid Flow Only)
