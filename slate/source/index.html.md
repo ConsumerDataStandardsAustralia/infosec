@@ -669,8 +669,8 @@ The following OIDC claims will be supported:
     -   `number`
     -   Available in ID Token Only.
     -   Time when the End-User authentication occurred. Its value is a JSON
-        number representing the number of seconds from 1970-01-01T0:0:0Z as
-        measured in UTC until the date/time.
+        number representing the number of seconds from 1970-01-01T00:00:00Z to
+        the UTC `auth_time`.
 -   name
     -   `string`
     -   Available in ID Token and UserInfo.
@@ -687,8 +687,8 @@ The following OIDC claims will be supported:
     -   `number`
     -   Available in ID Token and UserInfo.
     -   Time the End-User's information was last updated. Its value is a JSON
-        number representing the number of seconds from 1970-01-01T0:0:0Z as
-        measured in UTC until the date/time.
+        number representing the number of seconds from 1970-01-01T00:00:00Z to
+        the UTC `updated_at` time.
 
 # Identifiers and Subject Types
 The identifier for an authenticated end-user is passed in the `sub` claim. The
