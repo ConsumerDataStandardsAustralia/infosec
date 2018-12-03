@@ -789,6 +789,7 @@ Private keys are not published at this endpoint.
 
 ```http
 TODO: Add Sample.
+TODO: link to relevant part(s) of spec.
 ```
 ## Introspection Endpoint
 To allow Resource Servers (hosting the CDR APIs) and Recipients to retrieve the
