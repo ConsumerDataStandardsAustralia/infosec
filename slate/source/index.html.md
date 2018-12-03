@@ -600,7 +600,7 @@ values:
 -   s_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
-    -   The request’s State parameter hashed..
+    -   The request’s State parameter hashed.
 
 ```http
 TODO: Add Sample.
