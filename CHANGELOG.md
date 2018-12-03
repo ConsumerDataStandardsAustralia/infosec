@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+ - Todos for linking directly to relevant part(s) of specifications.
+
+### Fixed
+
+ - Various typographical errors.
+ - Padding of time values in date times per ISO8601.
+ - Made it clearer which values are being referred to in _Hashing value for state and authorisation code_.
+ - Removed implication that `acr` claim is optional.
+ - Changed source of access token from "authentication request" to "token request".
+
 ## [0.0.1+1] - 2018-11-23
 ### Added
 -- First draft of CDR Info Sec Profile
