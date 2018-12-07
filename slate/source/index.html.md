@@ -423,7 +423,7 @@ This endpoint must be hosted on a website with TLS protection (HTTPS).
 
 ## Client-Initiated Backchannel Authentication (CIBA)
 Client Initiated Backchannel Authentication (CIBA) enables a Data Recipient to
-initiate the authentication of an end-user at a Data Holder by means of out-of-band
+initiate the authentication of an end-user at a Data Holder by means of out-band
 mechanisms **[CIBA]**. The Recipient will send to the Holder’s `bc-authorize`
 endpoint, via the HTTP POST method with **[MTLS]**, a request to initiate an
 end-user’s authentication. The holder will return a unique identifier for the
