@@ -41,7 +41,7 @@ The detailed change log for the artifact is available [here](https://github.com/
 -   **JWKS:** JSON Web Key Set
 -   **JWS:** JSON Web Signing
 -   **JWT:** JSON Web Token
--   **IPLoA:** Identity Proofing Level of Assurance
+-   **IP:** Identity Proofing
 -   **LoA:** Level of Assurance
 -   **MTLS:** Mutual Transport Layer Security
 -   **OIDC:** Open ID Connect
