@@ -41,9 +41,8 @@ The detailed change log for the artifact is available [here](https://github.com/
 -   **JWKS:** JSON Web Key Set
 -   **JWS:** JSON Web Signing
 -   **JWT:** JSON Web Token
--   **IPLoA:** Identity Proofing Level of Assurance
+-   **IP:** Identity Proofing
 -   **LoA:** Level of Assurance
--   **LoaAs:** Levels of Assurance
 -   **MTLS:** Mutual Transport Layer Security
 -   **OIDC:** Open ID Connect
 -   **PII:** Personally Identifiable Information
@@ -82,7 +81,7 @@ multiple system entities which will assume one or more of the following roles:
         maintained by the Australian Competition and Consumer Commission (ACCC).  
 
 ## Data Holder
-The Data Holder (DR) represents a system entity that authenticates a consumer
+The Data Holder (DH) represents a system entity that authenticates a consumer
 (resource owner or user), as part of an authorisation process (OIDC) initiated by a Data
 Recipient, and issues an authorisation for that Data Recipient to access the consumer's
 data via published APIs. As part of this process, the consumer will provide informed
@@ -444,7 +443,7 @@ supported:
     -   Indicates the attributes being requested.
 -   client\_notification\_token
     -   REQUIRED
-    -   This token must be provided to allow the where Client has been
+    -   This token must be provided to demonstrate that the DR has been
         registered to support the Notify mode.
 -   acr_values
     -   REQUIRED
@@ -497,7 +496,7 @@ following mandatory claims:
 TODO: Add Sample.
 ```
 
-The assertion with be sent with the POST method and will include the following
+The assertion will be sent with the POST method and will include the following
 mandatory parameters:
 
 -   grant_type
@@ -531,8 +530,10 @@ Public clients will not be supported.
 ## ID Token
 The ID Token is a JWT **[OIDC]** that must be signed and encrypted when returned
 to a Data Recipient / Client and must be returned from both the Authorisation
-Endpoint and Token Endpoint. Encryption is only required for ID Tokens returned from a Holder's Authorisation Endpoint.  The signing algorithms supported by the Data Holder will be
-advertised in their Discovery Endpoint and must be either `PS256` or `ES256`.
+Endpoint and Token Endpoint. Encryption is only required for ID Tokens returned
+from a Holder's Authorisation Endpoint. The signing algorithms supported by the
+Data Holder will be advertised in their Discovery Endpoint. The only permitted
+signing algorithms are `PS256` and `ES256`.
 
 The ID Token returned from the Authorisation Endpoint must not contain any
 Personally identifiable information (PII) claims.
@@ -555,7 +556,7 @@ values:
 -   acr
     -   CONDITONAL (Required for CIBA and optional for Hybrid Flow)
     -   `string`
-    -   The LoA at which the user was authenticated at.
+    -   The LoA at which the user was authenticated.
     -   For CIBA must include:
         -   `mod-pr` or `mod_mf`.
     -   For Hybrid Flow, if requested, must be:
@@ -564,7 +565,7 @@ values:
     -   CONDTIONAL (Required for CIBA Flow Only)
     -   Authentication Methods Reference. JSON array of strings that are
         identifiers for authentication methods used in the authentication.
-    -   Must contains one or more of the following values **[CIBA]**:
+    -   Must contain one or more of the following values **[CIBA]**:
         -   `user`, `pin`, `fpt`, `sms`, `swk`, `hwk`, and `geo`
 -   nonce
     -   CONDITIONAL (Hybrid Flow Only)
@@ -578,48 +579,60 @@ values:
     -   REQUIRED
     -   `number`
     -   The expiration time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC expiration time.
 -   iat
     -   REQUIRED
     -   `number`
     -   The issued at time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC issued at time.
 -   nbf
     -   REQUIRED
     -   `number`
     -   The not before time for the token. Its value is a JSON number
-        representing the number of seconds from 1970-01-01T0:0:0Z as measured in
-        UTC until the date/time.
+        representing the number of seconds from 1970-01-01T00:00:00Z to the
+        UTC not before time.
 -   c_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
-    -   The Authorisation Code Hash. This value must be returned when the ID
-        Token is returned from the Authorisation endpoint.
+    -   The Authorisation Code Hash.
 -   s_hash
     -   CONDITIONAL (Hybrid Flow Only)
     -   `string`
-    -   The request’s State parameter hashed. This value must be returned when
-        the ID Token is returned from the Authorisation endpoint.
- 
+    -   The request’s State parameter hashed.
+
 ```http
 TODO: Add Sample.
 ```
 
 ### Hashing value for state and authorisation code
-As per OIDC instructions **[OIDC]**, the hash value for state and code is the base64url
+As per OIDC instructions **[OIDC]**, `c_hash` and `s_hash` are the base64url
 encoding of the left-most half of the hash of the octets of the ASCII
 representation of the value, where the hash algorithm used is the hash algorithm
-used in the alg Header Parameter of the ID Token's JOSE Header.
+used in the `alg` Header Parameter of the ID Token's JOSE Header.
+
+```http
+TODO: Add example with working and/or pseudocode.
+TODO: Add link to relevant part(s) of spec.
+```
 
 ## Access Token
 An Access Token is created and utilised as per OAuth2 standards **[OAUTH2]**. An
 Access Token must expire `n` minutes after it is issued by the Data Holder where `n` is determined by CDR rules.
 
+```http
+TODO: Add link to relevant part(s) of spec.
+```
+
 ## Refresh Token
 A Refresh Token is created as and utilised as per OAuth2 standards **[OAUTH2]**.
 A Refresh Token must expire `n` days after it is issued where `n` is determined by CDR rules.
+
+
+```http
+TODO: Add link to relevant part(s) of spec.
+```
 
 # Scopes and Claims
 Industry-specific scopes (for example, “bank_account”) will not be referenced in
@@ -642,6 +655,10 @@ The following scopes will be supported:
         -   `family_name`
         -   `given_name`
 
+```http
+TODO: Add link to relevant part(s) of spec.
+```
+
 ## Claims
 This profile will only support the “Normal Claims” claim type **[OIDC]**.
 
@@ -656,7 +673,7 @@ The following OIDC claims will be supported:
     -   Available in ID Token Only.
     -   Authentication Context Class Reference.
     -   If passed as an essential claim for the ID Token, the Authorization
-        Server must return an `acr` Claim Value that matches one of the requested
+        Server must return an `acr` Claim Value that matches one of the requested
         values. The Authorization Server may ask the End-User to re-authenticate
         with additional factors to meet this requirement. If this is an
         Essential Claim and the requirement cannot be met, then the
@@ -670,8 +687,8 @@ The following OIDC claims will be supported:
     -   `number`
     -   Available in ID Token Only.
     -   Time when the End-User authentication occurred. Its value is a JSON
-        number representing the number of seconds from 1970-01-01T0:0:0Z as
-        measured in UTC until the date/time.
+        number representing the number of seconds from 1970-01-01T00:00:00Z to
+        the UTC `auth_time`.
 -   name
     -   `string`
     -   Available in ID Token and UserInfo.
@@ -688,8 +705,8 @@ The following OIDC claims will be supported:
     -   `number`
     -   Available in ID Token and UserInfo.
     -   Time the End-User's information was last updated. Its value is a JSON
-        number representing the number of seconds from 1970-01-01T0:0:0Z as
-        measured in UTC until the date/time.
+        number representing the number of seconds from 1970-01-01T00:00:00Z to
+        the UTC `updated_at` time.
 
 # Identifiers and Subject Types
 The identifier for an authenticated end-user is passed in the `sub` claim. The
@@ -728,7 +745,7 @@ The Authorisation endpoint may allow additional cipher suites as detailed in
 In order to bind an issued token to a client certificate **[MTLS]**, the Data
 Holder’s (Open ID Provider) Token Endpoint, Revocation Endpoint, Introspection
 Endpoint, Backend Authentication Endpoint and Resource server APIs must be
-secured with MTLS. Trust will only be established where client and the server
+secured with MTLS. Trust will only be established where the client and server
 certificates involved in the TLS handshake have been issued by the CDR
 Certificate Authority (CA).
 
@@ -742,17 +759,17 @@ This is covered under [CIBA Authentication flow](#bcAuthorisationEndpoint).
 
 ## Token Endpoint
 A Data Holder issues ID, Access and Refresh Tokens to the Data Recipient from
-this endpoint. A Request to this end point requires [Data Recipient (Client)
+this endpoint. A Request to this endpoint requires [Data Recipient (Client)
 authentication](#client-authentication).
 
 Regardless of the Client Authentication method employed, this endpoint must be
-hosted on a website with **[MTLS]** protection (HTTPS).
+hosted on a website with **[MTLS]** protection.
 
 ## UserInfo Endpoint
 The UserInfo Endpoint is an OAuth 2.0 Protected Resource **[OAUTH2]** hosted by
 the Data Holder that returns Claims about the authenticated End-User **[OIDC]**.
 The Data Recipient sends the UserInfo requests using either the HTTP GET or POST
-method. The Access Token obtained from an OIDC authentication request must be
+method. The Access Token obtained from the Token Endpoint must be
 sent as a Bearer Token to this endpoint.
 
 ```http
@@ -772,6 +789,7 @@ Private keys are not published at this endpoint.
 
 ```http
 TODO: Add Sample.
+TODO: link to relevant part(s) of spec.
 ```
 ## Introspection Endpoint
 To allow Resource Servers (hosting the CDR APIs) and Recipients to retrieve the
