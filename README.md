@@ -7,6 +7,10 @@ The current Information Security Profile draft standard that is evolving as deci
 
 ## Links
 
+### Newsletters
+
+#### You can subscribe to CDR Information Secutity newsletters [here](https://us18.campaign-archive.com/home/?u=fb3bcb1ec5662d9767ab3c414&id=d59b5d73bc).
+
 ### Change Log
 #### The change log can be found [here](CHANGELOG.md)
 
