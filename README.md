@@ -11,7 +11,10 @@ The current Information Security Profile draft standard that is evolving as deci
 #### The change log can be found [here](CHANGELOG.md)
 
 ### Workshop Material
+
 #### Presentation Slides [16th November 2018 Workshop](workshops/InfoSecWorkshop16112018.pdf)
+
+#### Presentation Slides [6th December 2018 Workshop](workshops/InfoSecWorkshop0612018.pdf)
 
 ## CDR Overview
 
