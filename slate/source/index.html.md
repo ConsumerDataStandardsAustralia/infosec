@@ -672,13 +672,15 @@ The following OIDC claims will be supported:
     -   `string`
     -   Available in ID Token Only.
     -   Authentication Context Class Reference.
-    -   DR must include the `acr` claim as per
-        [FAPI Part 2 §5.2.3.3]](https://openid.net/specs/openid-financial-api-part-2.html#public-client)
-    -   Authorization Server must return an `acr` Claim Value that matches one of the requested
+    -   If passed as an essential claim for the ID Token, the Authorization
+        Server must return an `acr` Claim Value that matches one of the requested
         values. The Authorization Server may ask the End-User to re-authenticate
-        with additional factors to meet this requirement. If the requirement
-        cannot be met, then the Authorization Server MUST treat that outcome as
-        a failed authentication attempt.
+        with additional factors to meet this requirement. If this is an
+        Essential Claim and the requirement cannot be met, then the
+        Authorization Server MUST treat that outcome as a failed authentication
+        attempt.
+    -   A client must not specify an `acr` claim and `acr_values` in the same
+        authentication request.
     -   Allowed acr values are described in the [LoA](#levels-of-assurance-loas)
         section of this document.
 -   auth_time
@@ -767,7 +769,7 @@ hosted on a website with **[MTLS]** protection.
 The UserInfo Endpoint is an OAuth 2.0 Protected Resource **[OAUTH2]** hosted by
 the Data Holder that returns Claims about the authenticated End-User **[OIDC]**.
 The Data Recipient sends the UserInfo requests using either the HTTP GET or POST
-method. The Access Token obtained from an OIDC token request must be
+method. The Access Token obtained from the Token Endpoint must be
 sent as a Bearer Token to this endpoint.
 
 ```http
