@@ -679,8 +679,6 @@ The following OIDC claims will be supported:
         with additional factors to meet this requirement. If the requirement
         cannot be met, then the Authorization Server MUST treat that outcome as
         a failed authentication attempt.
-    -   A client must not specify an `acr` claim and `acrvalues` in the same
-        authentication request.
     -   Allowed acr values are described in the [LoA](#levels-of-assurance-loas)
         section of this document.
 -   auth_time
