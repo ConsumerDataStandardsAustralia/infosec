@@ -910,4 +910,4 @@ This process continues from Part **B** afer a successful authentication.
 ## Sample Holder Domain Model
 ![Domain Model](/images/holderDomain.png)
 ### Description
-This digram depicts the domain model of a hypothetical Data Holder. It is in no way prescriptive but illustrates the associations between the authorisation-related entities that may exist within a Holder's domain.
+This diagram depicts the domain model of a hypothetical Data Holder. It is in no way prescriptive but illustrates the associations between the authorisation-related entities that may exist within a Holder's domain.
