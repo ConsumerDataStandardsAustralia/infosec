@@ -23,3 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Bug [#16] (https://github.com/ConsumerDataStandardsAustralia/infosec/issues/16#issue-385969678)
+
+## [0.0.2+2] - 2018-12-08
+### Added
+ - Todos for linking directly to relevant part(s) of specifications.
+
+### Fixed
+ - Various typographical errors.
+ - Padding of time values in date times per ISO8601.
+ - Made it clearer which values are being referred to in _Hashing value for state and authorisation code_.
