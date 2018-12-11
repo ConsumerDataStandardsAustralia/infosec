@@ -573,7 +573,7 @@ authorisation code flow detailed under <strong>[OIDC]</strong>.</p>
 
 <p>Only a <code>response_type</code> (see <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication">section 3</a> of <strong>[OIDC]</strong>) of <code>code id_token</code> SHALL be allowed.</p>
 
-<p>Request Object references SHALL not be support and therefore the <code>request_uri</code> parameter SHALL NOT be supported.</p>
+<p>The <code>request_uri</code> parameter SHALL NOT be supported.</p>
 
 <p><a id="ciba-flow"></a></p>
 <h2 id='4-2-client-initiated-backchannel-authentication-ciba'>4.2. Client-Initiated Backchannel Authentication (CIBA)</h2>
@@ -906,11 +906,11 @@ Additional content will be added to this section when the Directory requirements
 
 <p>Requst Objects MUST be signed by Recipients as specified in <a href="https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations">section 8.6</a> of <strong>[FAPI-RW]</strong>.</p>
 
-<p>Recipient Clients MUST include a <code>consentId</code> value in the Request Object.  A high-level Consent overview is provided in the <a href="#consent">consent section</a> of this artifact.</p>
+<p>Recipient Clients MUST include a <code>consentId</code> value in the Request Object.  A high-level overview of consent is provided in the <a href="#consent">section 14</a> of this artifact.</p>
 
 <p>Holder Authorisation Servers MUST treat a Request Object that does not contain a <code>consentId</code> as invalid.</p>
 
-<p>Request Object references SHALL not be supported and therefore the <code>request_uri</code> parameter SHALL NOT be supported.</p>
+<p>Request Object references SHALL not be supported.</p>
 <h2 id='12-1-holder-authorisation-server-vot'>12.1. Holder Authorisation Server VoT</h2>
 <blockquote>
 <p>Non-Normative Example - vtr</p>
@@ -1167,7 +1167,7 @@ Host: www.holder.com.au
 
 <p>The <code>request_uri</code> parameter SHALL NOT be supported.</p>
 
-<p>Please refer to the <a href="#request-object">Request Object section</a> for a description of requirements relating to the <code>request</code> parameter.</p>
+<p>A description of requirements relating to the <code>request</code> parameter can be found in the <a href="#request-object">section 12</a>.</p>
 <h2 id='13-3-backchannel-authorisation-endpoint'>13.3. Backchannel Authorisation Endpoint</h2>
 <table><thead>
 <tr>
@@ -1197,7 +1197,7 @@ Host: www.holder.com.au
 
 <p>The polling mode for clients SHALL NOT be supported.</p>
 
-<p>Please refer to the <a href="#request-object">Request Object section</a> for a description of requirements relating to the <code>request</code> parameter.</p>
+<p>A description of requirements relating to the <code>request</code> parameter can be found in the <a href="#request-object">section 12</a>.</p>
 <h2 id='13-4-token-endpoint'>13.4. Token Endpoint</h2>
 <table><thead>
 <tr>
@@ -1454,7 +1454,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 </tr>
 </tbody></table>
 <h3 id='13-9-1-request'>13.9.1. Request</h3>
-<p>To register as a new Client at a Holder&#39;s Authorisation Server, a Data Recipient MUST <code>POST</code> its Client metadata to the Holder&#39;s Registration Endpoint in the form of an (encoded) signed <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong>.  This process is specified in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Registration</a> <strong>[OIDC-CR]</strong>. The registering <strong>[JWT]</strong> is signed by the private key of the Client and MUST include a <a href="https://tools.ietf.org/html/rfc7591#page-14">software statement</a>.  The software statement is an  encoded <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong> signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.</p>
+<p>To register as a new Client at a Holder&#39;s Authorisation Server, a Data Recipient MUST <code>POST</code> its Client metadata to the Holder&#39;s Registration Endpoint in the form of an (encoded) signed <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong>.  This process is specified in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Registration</a> <strong>[OIDC-CR]</strong>. The registering <strong>[JWT]</strong> is signed by the private key of the Client and MUST include a <a href="https://tools.ietf.org/html/rfc7591#page-14">software statement</a>.  The software statement is an encoded <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong> signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.</p>
 
 <p>The registering <strong>[JWT]</strong> MUST include, at a minimum, the following fields:</p>
 
@@ -1471,7 +1471,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 <li><code>token_endpoint_auth_method</code>: The chosen Client authentication mechanism.</li>
 </ul>
 
-<p>If the Client supports a <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">CIBA</a> <strong>[CIBA]</strong> notification endpoint, this may be specified as:</p>
+<p>If the Client supports a <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">CIBA</a> <strong>[CIBA]</strong> notification endpoint, this MUST be specified as:</p>
 
 <ul>
 <li><code>client_notification_endpoint</code>: A callback URI.</li>
@@ -1479,9 +1479,8 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 
 <p>This request MUST be made with MTLS as specified in <a href="#mutual-tls">section 11.2</a>.  </p>
 
-<p>Holders MUST ensure that the <code>CN</code> (Common Name) in the Client certificate <code>subject</code> field matches the <code>software_id</code> claim present in the software statement.  </p>
-
-<p>Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.</p>
+<p>Holders MUST ensure that the <code>CN</code> (Common Name) in the Client certificate <code>subject</code> field matches the <code>software_id</code> claim present in the software statement.<br>
+Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.</p>
 <h3 id='13-9-2-response'>13.9.2. Response</h3>
 <p>The Holder MUST respond in accordance with <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Registration</a> <strong>[OIDC-CR]</strong> sections 3.2 and 3.3. </p>
 

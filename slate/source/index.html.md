@@ -139,7 +139,7 @@ authorisation code flow detailed under **[OIDC]**.
 
 Only a `response_type` (see [section 3](https://openid.net/specs/openid-connect-core-1_0.html#Authentication) of **[OIDC]**) of `code id_token` SHALL be allowed.
 
-Request Object references SHALL not be support and therefore the `request_uri` parameter SHALL NOT be supported.
+The `request_uri` parameter SHALL NOT be supported.
 
 <a id="ciba-flow"></a>
 ## 4.2. Client-Initiated Backchannel Authentication (CIBA)
@@ -455,11 +455,11 @@ The Request Object is a signed and encoded JWT specified in [section 6.1](https:
 
 Requst Objects MUST be signed by Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
-Recipient Clients MUST include a `consentId` value in the Request Object.  A high-level Consent overview is provided in the [consent section](#consent) of this artifact.
+Recipient Clients MUST include a `consentId` value in the Request Object.  A high-level overview of consent is provided in the [section 14](#consent) of this artifact.
 
 Holder Authorisation Servers MUST treat a Request Object that does not contain a `consentId` as invalid.
 
-Request Object references SHALL not be supported and therefore the `request_uri` parameter SHALL NOT be supported.
+Request Object references SHALL not be supported.
 
 ## 12.1. Holder Authorisation Server VoT
 
@@ -679,7 +679,7 @@ Only a `response_type` (see [section 3](https://openid.net/specs/openid-connect-
 
 The `request_uri` parameter SHALL NOT be supported.
 
-Please refer to the [Request Object section](#request-object) for a description of requirements relating to the `request` parameter.
+A description of requirements relating to the `request` parameter can be found in the [section 12](#request-object).
 
 ## 13.3. Backchannel Authorisation Endpoint
 | Description | Value   |  
@@ -693,7 +693,7 @@ The requirements for the Backchannel Authorisation Endpoint are specified in the
 
 The polling mode for clients SHALL NOT be supported.
 
-Please refer to the [Request Object section](#request-object) for a description of requirements relating to the `request` parameter.
+A description of requirements relating to the `request` parameter can be found in the [section 12](#request-object).
 
 ## 13.4. Token Endpoint
 | Description | Value   |  
@@ -858,7 +858,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 
 ### 13.9.1. Request
 
-To register as a new Client at a Holder's Authorisation Server, a Data Recipient MUST `POST` its Client metadata to the Holder's Registration Endpoint in the form of an (encoded) signed [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]**.  This process is specified in [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]**. The registering **[JWT]** is signed by the private key of the Client and MUST include a [software statement](https://tools.ietf.org/html/rfc7591#page-14).  The software statement is an  encoded [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]** signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.
+To register as a new Client at a Holder's Authorisation Server, a Data Recipient MUST `POST` its Client metadata to the Holder's Registration Endpoint in the form of an (encoded) signed [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]**.  This process is specified in [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]**. The registering **[JWT]** is signed by the private key of the Client and MUST include a [software statement](https://tools.ietf.org/html/rfc7591#page-14).  The software statement is an encoded [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]** signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.
 
 The registering **[JWT]** MUST include, at a minimum, the following fields:
 
@@ -873,14 +873,13 @@ The registering **[JWT]** MUST include, at a minimum, the following fields:
 - `request_object_signing_alg`:  Request Object signing algorithm.
 - `token_endpoint_auth_method`: The chosen Client authentication mechanism.
 
-If the Client supports a [CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[CIBA]** notification endpoint, this may be specified as:
+If the Client supports a [CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[CIBA]** notification endpoint, this MUST be specified as:
 
 - `client_notification_endpoint`: A callback URI.
 
 This request MUST be made with MTLS as specified in [section 11.2](#mutual-tls).  
 
 Holders MUST ensure that the `CN` (Common Name) in the Client certificate `subject` field matches the `software_id` claim present in the software statement.  
-
 Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.
 
 ### 13.9.2. Response
