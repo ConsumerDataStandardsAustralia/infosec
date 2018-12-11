@@ -266,6 +266,8 @@ Endpoint and Token Endpoint. Furthermore, as described under [section 5.2.2](htt
 
 The `amr` claim, which represents Authentication Methods References, MAY be returned as part of [Hybrid Flow authentication](#hybrid) but MUST be returned as part of a [CIBA authentication flow](#ciba-flow).
 
+ID Tokens MUST be signed by Holders as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
+
 The ID Token returned from the Authorisation Endpoint MUST NOT contain any Personally identifiable information (PII) claims.
 
 An ID Token MUST not contain both a `vot` claim (see [Vectors of Trust](#vector-loas)) and an `acr` claim .
@@ -332,7 +334,7 @@ Levels Of Assurance (LoAs), returned after a successful authentication, MAY be r
 
 - [Single Ordinal](#ordinal-loa): A single LoA value is represented.
   - Holder's MUST support this mechanism. 
-- [Vector](#vectors-loas): One or more LoAs, represented by a vector value, are represented.
+- [Vector](#vector-loas): One or more LoAs, represented by a vector value, are represented.
   - Holder's MAY support this mechanism.
 
 In accordance with **[FAPI-RW]**:
@@ -395,14 +397,15 @@ All HTTP calls MUST be made using HTTPS incorporating TLS >= 1.2. Only the follo
 
 <a id="mutual-tls"></a>
 ## 11.2. Mutual TLS
-All Business-to-Business (B2B) service calls, that is back-channel communication between Recipient and Holder systems, MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake:
-
-- The presented Client transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Server MUST NOT trust Client transport certicates issued by other authorities. 
-- The presented Server transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Client MUST NOT trust Server transport certicates issued by other authorities.
 
 <aside class="information">
 Additional content will be added to this section when the Directory requirements are established. For example, verification/revocation of transport certificates.
 </aside>
+
+All Business-to-Business (B2B) service calls, that is back-channel communication between Recipient and Holder systems, MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake:
+
+- The presented Client transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Server MUST NOT trust Client transport certicates issued by other authorities. 
+- The presented Server transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Client MUST NOT trust Server transport certicates issued by other authorities.
 
 ## 11.3. Holder of Key Mechanism
 
@@ -450,6 +453,8 @@ MTLS HoK allows issued tokens to be bound to a client certificate as specified i
 ```
 
 The Request Object is a signed and encoded JWT specified in [section 6.1](https://openid.net/specs/openid-connect-core-1_0.html#RequestObject) of **[OIDC]**.  As per **[FAPI-RW]** [section 5.2.2](https://openid.net/specs/openid-financial-api-part-2.html#authorization-server) and **[CIBA]** [section 5.2.2](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-522-authorization-server), the `request` parameter MUST be present on requests to both the **[OIDC]** Hybrid Authorisation Endpoint and **[CIBA]** Backchannel Authorisation Endpoint. The Request Object enables **[OIDC]** requests to be passed in a single and self-contained parameter.
+
+Requst Objects MUST be signed by Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
 Recipient Clients MUST include a `consentId` value in the Request Object.  Consent is specified in the [consent section](#consent) of this artifact.
 
@@ -562,7 +567,7 @@ Content-Type: application/json
   "bc-authorize": "https://www.dh.com.au/bc-authorise",
   "scopes_supported": ["openid", "profile"],
   "response_types_supported": ["code id_token"],
-  "response_mode_supported": ["fragment"],
+  "response_modes_supported": ["fragment"],
   "grant_types_supported": ["authorization_code", "client_credentials"],
   "acr_values_supported": ["urn:cds.au:cdr:2","urn:cds.au:cdr:3"],
   "vot_values_supported": ["CL1","CL2"],
@@ -611,7 +616,7 @@ Holder's that support [CIBA](https://bitbucket.org/openid/fapi/src/master/Financ
 
 - `bc-authorize`: The CIBA Authorisation Endpoint.
 
-<a id=""></a>
+<a id="authorisation-endpoint"></a>
 ## 13.2. Authorisation Endpoint
 
 > Non-Normative Example
@@ -738,6 +743,10 @@ Holder's MUST support a UserInfo Endpoint.
 The implementation of the JWKS Endpoint is directly impacted by the emerging requirements of the Directory and thus subject to change.
 </aside>
 
+<aside class="warning">
+Private keys MUST NOT be published at this endpoint.
+</aside>
+
 | Description | Value   |  
 |---|---|
 | Hosted By  | Directory  |  
@@ -749,10 +758,6 @@ The JWKS Endpoint returns a **[JSON]** document containing a JSON Web Key Set de
 
 -   `kid`: This is used to match a specific key withing a JWKS and thus must be unique within the set.
 -   `use`: This is used to identify the intended use of the public key.  Supported values are `sig` and `enc`.
-
-<aside class="warning">
-Private keys MUST NOT be published at this endpoint.
-</aside>
 
 ## 13.7. Introspection Endpoint
 
@@ -875,23 +880,27 @@ This request MUST be made with MTLS as specified in [section 11.2](#mutual-tls).
 
 Holders MUST ensure that the `CN` (Common Name) in the Client certificate `subject` field matches the `software_id` claim present in the aforementioned software statement.  
 
-### 13.9.2. Response 
+Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.
+
+### 13.9.2. Response
 
 The Holder MUST respond in accordance with [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]** sections 3.2 and 3.3. 
 
 <a id="consent"></a>
 # 14. Consent
-Prior to the commencement of an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  This Consent occurence is assigned a unique `consentId` and referenced by the Holder as part of an authorisation process with the Consumer.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.
-
-The specifics of the Consent API and processing of Consent are beyond the scope of this document.    
-
-A Data Holder Token Endpoint MUST:
-
-- Support the `grant type` of `client_credentials` strictly for the purpose of passing an Access Token to a Recipient which is to be used for invoking the Consent API.
 
 <aside class="warning">
 Consent is a work-in-progress and thus subject to change.
 </aside>
+
+Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique `consentId` and referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.
+
+The specifics of the Consent API and processing of Consent are beyond the scope of this document.
+
+A Data Holder Token Endpoint MUST:
+
+- Support the `grant type` of `client_credentials` strictly for the purpose of passing an Access Token to a Recipient which can be then used to invoke the Consent API.
+
 
 # 15. Normative References
 
