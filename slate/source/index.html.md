@@ -139,7 +139,7 @@ authorisation code flow detailed under **[OIDC]**.
 
 Only a `response_type` (see [section 3](https://openid.net/specs/openid-connect-core-1_0.html#Authentication) of **[OIDC]**) of `code id_token` SHALL be allowed.
 
-`request_uri` parameters SHALL NOT be supported.
+Request Object references SHALL not be support and therefore the `request_uri` parameter SHALL NOT be supported.
 
 <a id="ciba-flow"></a>
 ## 4.2. Client-Initiated Backchannel Authentication (CIBA)
@@ -195,8 +195,7 @@ grant_type=authorization_code&
 }
 ```
 
-
-The `private_key_jwt` client authentication method is enabled through the delivery of an encoded **[JWT]** signed using the Data Recipient Client's private key and thus faciliates non-repudiation. The **[JWT]** represents an assertion and MUST include the following claims:
+The `private_key_jwt` client authentication method is enabled through the delivery of an encoded **[JWT]** signed using the Data Recipient Client's private key and thus faciliates non-repudiation. The **[JWT]** represents an assertion that MUST include the following claims:
 
 - `iss`: The client ID of the bearer.
 - `sub`: The client ID of the bearer.
@@ -215,7 +214,7 @@ When invoking a protected endpoint, the aforementioned assertion MUST be sent wi
 
 ## 5.2. tls\_client\_auth
 This profile supports the [PKI Mutual TLS OAuth Client Authentication Method](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2)
-**[MTLS]**. The TLS handshake requirements are covered in the [Mutual TLS section](#mutual-tls).  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. 
+**[MTLS]**. TLS handshake requirements are covered in the [Mutual TLS section](#mutual-tls).  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. 
 
 # 6. OIDC Client Types
 Only Confidential Clients SHALL be supported under this profile. Therefore, Public clients SHALL NOT be supported.
@@ -456,9 +455,11 @@ The Request Object is a signed and encoded JWT specified in [section 6.1](https:
 
 Requst Objects MUST be signed by Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
-Recipient Clients MUST include a `consentId` value in the Request Object.  Consent is specified in the [consent section](#consent) of this artifact.
+Recipient Clients MUST include a `consentId` value in the Request Object.  A high-level Consent overview is provided in the [consent section](#consent) of this artifact.
 
 Holder Authorisation Servers MUST treat a Request Object that does not contain a `consentId` as invalid.
+
+Request Object references SHALL not be supported and therefore the `request_uri` parameter SHALL NOT be supported.
 
 ## 12.1. Holder Authorisation Server VoT
 
@@ -605,7 +606,7 @@ At a minimum, the Provider metadata MUST include:
 - `user_info_endpoint`: URL of the UserInfo Endpoint.
 - `jwks_uri`: URL of the JWKS Endpoint.
 - `scopes_supported`:  This list of supported scopes.
-- `claims_supported`:  The listof supported claims.
+- `claims_supported`:  The list of supported claims.
 - `acr_values_supported`:  The supported ACR values.
 
 Holder's that support [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT**] MUST include:
@@ -857,7 +858,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 
 ### 13.9.1. Request
 
-To register as a new Client at a Holder's Authorisation Server, a Data Recipient MUST `POST` its Client metadata to the Holder's Registration Endpoint in the form of an (encoded) signed [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]**.  This process is specified in [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]**. The registering **[JWT]** is signed by the private key of the Client and MUST include a [software statement](https://tools.ietf.org/html/rfc7591#page-14).  The software statement is an  encoded [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]** signed by the CDR CA private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.
+To register as a new Client at a Holder's Authorisation Server, a Data Recipient MUST `POST` its Client metadata to the Holder's Registration Endpoint in the form of an (encoded) signed [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]**.  This process is specified in [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]**. The registering **[JWT]** is signed by the private key of the Client and MUST include a [software statement](https://tools.ietf.org/html/rfc7591#page-14).  The software statement is an  encoded [JWT](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32) **[JWT]** signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.
 
 The registering **[JWT]** MUST include, at a minimum, the following fields:
 
@@ -878,7 +879,7 @@ If the Client supports a [CIBA](https://bitbucket.org/openid/fapi/src/master/Fin
 
 This request MUST be made with MTLS as specified in [section 11.2](#mutual-tls).  
 
-Holders MUST ensure that the `CN` (Common Name) in the Client certificate `subject` field matches the `software_id` claim present in the aforementioned software statement.  
+Holders MUST ensure that the `CN` (Common Name) in the Client certificate `subject` field matches the `software_id` claim present in the software statement.  
 
 Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.
 
@@ -893,7 +894,7 @@ The Holder MUST respond in accordance with [OpenID Connect Registration](https:/
 Consent is a work-in-progress and thus subject to change.
 </aside>
 
-Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique `consentId` and referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.
+Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique `consentId` and is referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.
 
 The specifics of the Consent API and processing of Consent are beyond the scope of this document.
 

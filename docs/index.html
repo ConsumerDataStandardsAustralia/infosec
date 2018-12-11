@@ -573,7 +573,7 @@ authorisation code flow detailed under <strong>[OIDC]</strong>.</p>
 
 <p>Only a <code>response_type</code> (see <a href="https://openid.net/specs/openid-connect-core-1_0.html#Authentication">section 3</a> of <strong>[OIDC]</strong>) of <code>code id_token</code> SHALL be allowed.</p>
 
-<p><code>request_uri</code> parameters SHALL NOT be supported.</p>
+<p>Request Object references SHALL not be support and therefore the <code>request_uri</code> parameter SHALL NOT be supported.</p>
 
 <p><a id="ciba-flow"></a></p>
 <h2 id='4-2-client-initiated-backchannel-authentication-ciba'>4.2. Client-Initiated Backchannel Authentication (CIBA)</h2>
@@ -627,7 +627,7 @@ grant_type=authorization_code&amp;
   "jti": "37747cd1-c105-4569-9f75-4adf28b73e31"
 }
 </code></pre>
-<p>The <code>private_key_jwt</code> client authentication method is enabled through the delivery of an encoded <strong>[JWT]</strong> signed using the Data Recipient Client&#39;s private key and thus faciliates non-repudiation. The <strong>[JWT]</strong> represents an assertion and MUST include the following claims:</p>
+<p>The <code>private_key_jwt</code> client authentication method is enabled through the delivery of an encoded <strong>[JWT]</strong> signed using the Data Recipient Client&#39;s private key and thus faciliates non-repudiation. The <strong>[JWT]</strong> represents an assertion that MUST include the following claims:</p>
 
 <ul>
 <li><code>iss</code>: The client ID of the bearer.</li>
@@ -649,7 +649,7 @@ grant_type=authorization_code&amp;
 </ul>
 <h2 id='5-2-tls_client_auth'>5.2. tls_client_auth</h2>
 <p>This profile supports the <a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2">PKI Mutual TLS OAuth Client Authentication Method</a>
-<strong>[MTLS]</strong>. The TLS handshake requirements are covered in the <a href="#mutual-tls">Mutual TLS section</a>.  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. </p>
+<strong>[MTLS]</strong>. TLS handshake requirements are covered in the <a href="#mutual-tls">Mutual TLS section</a>.  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. </p>
 <h1 id='6-oidc-client-types'>6. OIDC Client Types</h1>
 <p>Only Confidential Clients SHALL be supported under this profile. Therefore, Public clients SHALL NOT be supported.</p>
 <h1 id='7-tokens'>7. Tokens</h1><h2 id='7-1-id-token'>7.1. ID Token</h2>
@@ -906,9 +906,11 @@ Additional content will be added to this section when the Directory requirements
 
 <p>Requst Objects MUST be signed by Recipients as specified in <a href="https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations">section 8.6</a> of <strong>[FAPI-RW]</strong>.</p>
 
-<p>Recipient Clients MUST include a <code>consentId</code> value in the Request Object.  Consent is specified in the <a href="#consent">consent section</a> of this artifact.</p>
+<p>Recipient Clients MUST include a <code>consentId</code> value in the Request Object.  A high-level Consent overview is provided in the <a href="#consent">consent section</a> of this artifact.</p>
 
 <p>Holder Authorisation Servers MUST treat a Request Object that does not contain a <code>consentId</code> as invalid.</p>
+
+<p>Request Object references SHALL not be supported and therefore the <code>request_uri</code> parameter SHALL NOT be supported.</p>
 <h2 id='12-1-holder-authorisation-server-vot'>12.1. Holder Authorisation Server VoT</h2>
 <blockquote>
 <p>Non-Normative Example - vtr</p>
@@ -1072,7 +1074,7 @@ OpenID Provider Configuration is directly impacted by the emerging requirements 
 <li><code>user_info_endpoint</code>: URL of the UserInfo Endpoint.</li>
 <li><code>jwks_uri</code>: URL of the JWKS Endpoint.</li>
 <li><code>scopes_supported</code>:  This list of supported scopes.</li>
-<li><code>claims_supported</code>:  The listof supported claims.</li>
+<li><code>claims_supported</code>:  The list of supported claims.</li>
 <li><code>acr_values_supported</code>:  The supported ACR values.</li>
 </ul>
 
@@ -1452,7 +1454,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 </tr>
 </tbody></table>
 <h3 id='13-9-1-request'>13.9.1. Request</h3>
-<p>To register as a new Client at a Holder&#39;s Authorisation Server, a Data Recipient MUST <code>POST</code> its Client metadata to the Holder&#39;s Registration Endpoint in the form of an (encoded) signed <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong>.  This process is specified in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Registration</a> <strong>[OIDC-CR]</strong>. The registering <strong>[JWT]</strong> is signed by the private key of the Client and MUST include a <a href="https://tools.ietf.org/html/rfc7591#page-14">software statement</a>.  The software statement is an  encoded <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong> signed by the CDR CA private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.</p>
+<p>To register as a new Client at a Holder&#39;s Authorisation Server, a Data Recipient MUST <code>POST</code> its Client metadata to the Holder&#39;s Registration Endpoint in the form of an (encoded) signed <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong>.  This process is specified in <a href="https://openid.net/specs/openid-connect-registration-1_0.html">OpenID Connect Registration</a> <strong>[OIDC-CR]</strong>. The registering <strong>[JWT]</strong> is signed by the private key of the Client and MUST include a <a href="https://tools.ietf.org/html/rfc7591#page-14">software statement</a>.  The software statement is an  encoded <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">JWT</a> <strong>[JWT]</strong> signed by the CDR Certificate Authority private key and thus supports non-repudiation.  The content of and mechanism for retrieving and generating a software statement is beyond the scope of this profile.</p>
 
 <p>The registering <strong>[JWT]</strong> MUST include, at a minimum, the following fields:</p>
 
@@ -1477,7 +1479,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 
 <p>This request MUST be made with MTLS as specified in <a href="#mutual-tls">section 11.2</a>.  </p>
 
-<p>Holders MUST ensure that the <code>CN</code> (Common Name) in the Client certificate <code>subject</code> field matches the <code>software_id</code> claim present in the aforementioned software statement.  </p>
+<p>Holders MUST ensure that the <code>CN</code> (Common Name) in the Client certificate <code>subject</code> field matches the <code>software_id</code> claim present in the software statement.  </p>
 
 <p>Holders MUST verify that the embedded software statement has been signed by the CDR Certificate Authority.</p>
 <h3 id='13-9-2-response'>13.9.2. Response</h3>
@@ -1489,7 +1491,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 Consent is a work-in-progress and thus subject to change.
 </aside>
 
-<p>Prior to initiating an authentication request to a Holder&#39;s Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique <code>consentId</code> and referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.</p>
+<p>Prior to initiating an authentication request to a Holder&#39;s Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique <code>consentId</code> and is referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.</p>
 
 <p>The specifics of the Consent API and processing of Consent are beyond the scope of this document.</p>
 
