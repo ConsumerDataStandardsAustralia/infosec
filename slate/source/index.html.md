@@ -504,7 +504,7 @@ If a Holder supports **[VoT]**, they MUST accept Request objects which MAY conta
 	- This is this VoT equivalent of an an `acr` essential claim.
 	- If the `vot` Claim is requested as an Essential Claim for the ID Token with a values parameter requesting specific VoT values, the Holder Authorization Server MUST return a `vot` Claim Value that matches one of the requested values. The Authorization Server MAY ask the End-User to re-authenticate with additional factors to meet this requirement. If this requirement cannot be met, then the Holder Authorization Server MUST treat that outcome as a failed authentication.
 
-## 12.2. Receipient Client using VoT
+## 12.2. Recipient Client using VoT
 
 > Non-Normative Example - vot as an Essential Claim
 
