@@ -362,7 +362,7 @@ An LoA of 3 is represented by the URI: `urn:cds.au:cdr:3`
 ## 10.2. Vector
 
 ## 10.2.1. Overview
-This profile incorporates support for [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT]**. A Vector, in this context, allows for the representation of multiple orthogonal components dimensions that may, but are not limited to, carry information relating to:
+This profile incorporates support for [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT]**. A Vector, in this context, allows for the representation of multiple, orthogonal components that may, but are not limited to, carry information relating to:
 
 - Identity Proofing
 - Primary Credential Usage
