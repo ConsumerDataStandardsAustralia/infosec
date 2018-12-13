@@ -336,25 +336,20 @@ Levels Of Assurance (LoAs), returned after a successful authentication, MAY be r
 - [Vector](#vector-loas): One or more LoAs, represented by a vector value, are represented.
   - Holder's MAY support this mechanism.
 
-In accordance with **[FAPI-RW]**:
-
--  *READ* operations SHALL only be allowed where __at least__ an LoA of 2 has been achieved which demonstrates, as outlined in the [Entity authentication assurance framework] (https://www.itu.int/rec/T-REC-X.1254) **[X.1254]**, that:
-  - There is *some confidence* in the claimed or asserted identity of the entity. This LoA is used when moderate risk is associated with erroneous authentication. *Single-factor authentication is acceptable*. 
-- *WRITE* operations SHALL only be allowed where __at least__ an LoA of 3 has been achieved which demonstrates, as outlined in the [Entity authentication assurance framework] (https://www.itu.int/rec/T-REC-X.1254) **[X.1254]**, that:
-  - There is *high confidence* in the claimed or asserted identity of the entity. This LoA is used where substantial risk is associated with erroneous authentication. This LoA shall employ *multifactor authentication*.
-
 <a id="ordinal-loa"></a>
 ## 10.1. Single Ordinal
 A Single LoA value is carried in the `acr` claim which is described in [section 2](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) of **[OIDC]**.  
 
-An LoA of 2 is represented by the URI: `urn:cds.au:cdr:2`
-
- - 	The authenticator used to attain this level MUST conform with the Credential Level `CL1` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
+ - *READ* operations SHALL only be allowed where __at least__ an LoA of 2 has been achieved.
+   - An LoA of 2 is represented by the URI: `urn:cds.au:cdr:2`
+   - 	The authenticator used to attain this level MUST conform with the Credential Level `CL1` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
 ) **[TDIF]** Authentication Credential Requirements specification.
 
-An LoA of 3 is represented by the URI: `urn:cds.au:cdr:3`
 
- - 	The authenticators used to attain this level MUST conform with the Credential Level `CL2` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
+
+ - *WRITE* operations SHALL only be allowed where __at least__ an LoA of 3 has been achieved.
+   - An LoA of 3 is represented by the URI: `urn:cds.au:cdr:3`
+   - The authenticators used to attain this level MUST conform with the Credential Level `CL2` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
 ) **[TDIF]** Authentication Credential Requirements specification.
 
 
@@ -376,10 +371,13 @@ It is anticipated that due to their characteristics, which include composability
 
 The following VoT values SHALL be supported to represent authentication assurance levels when employing **[VoT]**.  These are carried in the `vot` claim of an ID Token:
 
- - `CL1`: This is Credential Level CL1 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
-   - This is equivalent to LoA 2.
- - `CL2`: This is Credential Level CL2 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
-   - This is equivalent to LoA 3.
+- `CL1`: This is Credential Level CL1 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
+
+- `CL2`: This is Credential Level CL2 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
+  
+*READ* operations SHALL only be allowed where __at least__ A `CL1` has been provided.
+
+*WRITE* operations SHALL only be allowed where __at least__ A `CL2` has been provided.
 
 <aside class="information">
 The Trustmark URI is yet to be defined.
@@ -926,7 +924,6 @@ A Data Holder Token Endpoint MUST:
 | <a id="RFC7523"></a>**[RFC7523]**  | JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <https://tools.ietf.org/html/rfc7523> |                                              
 | <a id="RFC7662"></a>**[RFC7662]**  | OAuth 2.0 Token Introspection: <https://tools.ietf.org/html/rfc7662>| 
 | <a id="VOT"></a>**[VOT]** | Vectors of Trust, draft-richer-vectors-of-trust-15 <https://tools.ietf.org/html/draft-richer-vectors-of-trust-15>      
-| <a id="X.1254"></a>**[X.1254]**   | X.1254 - Entity authentication assurance framework: <https://www.itu.int/rec/T-REC-X1254-201209-I/en> |    
 
 # 16. Informative References
 
@@ -936,7 +933,7 @@ A Data Holder Token Endpoint MUST:
 | <a id="CDR"></a>**[CDR]**      | Consumer Data Right: <https://www.accc.gov.au/focus-areas/consumer-data-right>                                                                                                    |
 | <a id="FAPI"></a>**[FAPI]**      | Financial-Grade API - Home Page <https://openid.net/wg/fapi/>                                                                                                     |
 | <a id="RFC4122"></a>**[RFC4122]**  | A Universally Unique Identifier (UUID) URN Namespace: <https://tools.ietf.org/html/rfc4122> |
-   
+| <a id="X.1254"></a>**[X.1254]**   | X.1254 - Entity authentication assurance framework: <https://www.itu.int/rec/T-REC-X1254-201209-I/en> |    
 
 # 17. Appendix
 

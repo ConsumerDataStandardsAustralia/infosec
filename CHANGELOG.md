@@ -45,3 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.3+2] - 2018-12-14
 ### Fixed
 - Typographic errors.
+
+### Added
+- X1254 is an informative reference.

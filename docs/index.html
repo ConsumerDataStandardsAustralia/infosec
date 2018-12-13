@@ -774,35 +774,23 @@ Identifier (UUID) <strong>[RFC4122]</strong>.</p>
 </ul></li>
 </ul>
 
-<p>In accordance with <strong>[FAPI-RW]</strong>:</p>
-
-<ul>
-<li> <em>READ</em> operations SHALL only be allowed where <strong>at least</strong> an LoA of 2 has been achieved which demonstrates, as outlined in the <a href="https://www.itu.int/rec/T-REC-X.1254">Entity authentication assurance framework</a> <strong>[X.1254]</strong>, that:
-
-<ul>
-<li>There is <em>some confidence</em> in the claimed or asserted identity of the entity. This LoA is used when moderate risk is associated with erroneous authentication. <em>Single-factor authentication is acceptable</em>. </li>
-</ul></li>
-<li><em>WRITE</em> operations SHALL only be allowed where <strong>at least</strong> an LoA of 3 has been achieved which demonstrates, as outlined in the <a href="https://www.itu.int/rec/T-REC-X.1254">Entity authentication assurance framework</a> <strong>[X.1254]</strong>, that:
-
-<ul>
-<li>There is <em>high confidence</em> in the claimed or asserted identity of the entity. This LoA is used where substantial risk is associated with erroneous authentication. This LoA shall employ <em>multifactor authentication</em>.</li>
-</ul></li>
-</ul>
-
 <p><a id="ordinal-loa"></a></p>
 <h2 id='10-1-single-ordinal'>10.1. Single Ordinal</h2>
 <p>A Single LoA value is carried in the <code>acr</code> claim which is described in <a href="https://openid.net/specs/openid-connect-core-1_0.html#IDToken">section 2</a> of <strong>[OIDC]</strong>.  </p>
 
-<p>An LoA of 2 is represented by the URI: <code>urn:cds.au:cdr:2</code></p>
+<ul>
+<li><p><em>READ</em> operations SHALL only be allowed where <strong>at least</strong> an LoA of 2 has been achieved.</p>
 
 <ul>
-<li> The authenticator used to attain this level MUST conform with the Credential Level <code>CL1</code> rules specified under the <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">Trusted Digital Identity Framework</a> <strong>[TDIF]</strong> Authentication Credential Requirements specification.</li>
-</ul>
-
-<p>An LoA of 3 is represented by the URI: <code>urn:cds.au:cdr:3</code></p>
+<li>An LoA of 2 is represented by the URI: <code>urn:cds.au:cdr:2</code></li>
+<li>   The authenticator used to attain this level MUST conform with the Credential Level <code>CL1</code> rules specified under the <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">Trusted Digital Identity Framework</a> <strong>[TDIF]</strong> Authentication Credential Requirements specification.</li>
+</ul></li>
+<li><p><em>WRITE</em> operations SHALL only be allowed where <strong>at least</strong> an LoA of 3 has been achieved.</p>
 
 <ul>
-<li> The authenticators used to attain this level MUST conform with the Credential Level <code>CL2</code> rules specified under the <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">Trusted Digital Identity Framework</a> <strong>[TDIF]</strong> Authentication Credential Requirements specification.</li>
+<li>An LoA of 3 is represented by the URI: <code>urn:cds.au:cdr:3</code></li>
+<li>The authenticators used to attain this level MUST conform with the Credential Level <code>CL2</code> rules specified under the <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">Trusted Digital Identity Framework</a> <strong>[TDIF]</strong> Authentication Credential Requirements specification.</li>
+</ul></li>
 </ul>
 
 <p><a id="vector-loas"></a></p>
@@ -823,17 +811,13 @@ Identifier (UUID) <strong>[RFC4122]</strong>.</p>
 <p>The following VoT values SHALL be supported to represent authentication assurance levels when employing <strong>[VoT]</strong>.  These are carried in the <code>vot</code> claim of an ID Token:</p>
 
 <ul>
-<li><code>CL1</code>: This is Credential Level CL1 <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">defined</a> by the <strong>[TDIF]</strong> Authentication Credential Requirements specification.
-
-<ul>
-<li>This is equivalent to LoA 2.</li>
-</ul></li>
-<li><code>CL2</code>: This is Credential Level CL2 <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">defined</a> by the <strong>[TDIF]</strong> Authentication Credential Requirements specification.
-
-<ul>
-<li>This is equivalent to LoA 3.</li>
-</ul></li>
+<li><p><code>CL1</code>: This is Credential Level CL1 <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">defined</a> by the <strong>[TDIF]</strong> Authentication Credential Requirements specification.</p></li>
+<li><p><code>CL2</code>: This is Credential Level CL2 <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">defined</a> by the <strong>[TDIF]</strong> Authentication Credential Requirements specification.</p></li>
 </ul>
+
+<p><em>READ</em> operations SHALL only be allowed where <strong>at least</strong> A <code>CL1</code> has been provided.</p>
+
+<p><em>WRITE</em> operations SHALL only be allowed where <strong>at least</strong> A <code>CL2</code> has been provided.</p>
 
 <aside class="information">
 The Trustmark URI is yet to be defined.
@@ -1586,10 +1570,6 @@ Consent is a work-in-progress and thus subject to change.
 <td><a id="VOT"></a><strong>[VOT]</strong></td>
 <td>Vectors of Trust, draft-richer-vectors-of-trust-15 <a href="https://tools.ietf.org/html/draft-richer-vectors-of-trust-15">https://tools.ietf.org/html/draft-richer-vectors-of-trust-15</a></td>
 </tr>
-<tr>
-<td><a id="X.1254"></a><strong>[X.1254]</strong></td>
-<td>X.1254 - Entity authentication assurance framework: <a href="https://www.itu.int/rec/T-REC-X1254-201209-I/en">https://www.itu.int/rec/T-REC-X1254-201209-I/en</a></td>
-</tr>
 </tbody></table>
 <h1 id='16-informative-references'>16. Informative References</h1>
 <table><thead>
@@ -1613,6 +1593,10 @@ Consent is a work-in-progress and thus subject to change.
 <tr>
 <td><a id="RFC4122"></a><strong>[RFC4122]</strong></td>
 <td>A Universally Unique Identifier (UUID) URN Namespace: <a href="https://tools.ietf.org/html/rfc4122">https://tools.ietf.org/html/rfc4122</a></td>
+</tr>
+<tr>
+<td><a id="X.1254"></a><strong>[X.1254]</strong></td>
+<td>X.1254 - Entity authentication assurance framework: <a href="https://www.itu.int/rec/T-REC-X1254-201209-I/en">https://www.itu.int/rec/T-REC-X1254-201209-I/en</a></td>
 </tr>
 </tbody></table>
 <h1 id='17-appendix'>17. Appendix</h1><h2 id='17-1-client-credentials-grant-type'>17.1. Client Credentials grant type</h2>
