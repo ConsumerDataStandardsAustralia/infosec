@@ -116,7 +116,7 @@ The Directory is a central point of discovery for both Data Holders and Data
 Recipients. Data Holders and Recipient must be registered as accredited entities in the Directory in order for them to participate as members of the CDR Federation.  The functionality of the Directory will include but will not be limited to:
 
 - **Management of Identities and Access**: The Directory will allow registered persons, on behalf of Holders and Recipients, to manage the metadata of their associated organisations and systems.
-- **Management of Certificates**: The Directory will faciliate the issuing, management and revocation of digital certificates.
+- **Management of Certificates**: The Directory will facilitate the issuing, management and revocation of digital certificates.
 - **Discoverability and Search**: The Directory will expose APIs and GUIs (Web applications) in order to support metadata queries across Directory entities. 
 
 A full description of the Directory is beyond the scope of this document.
@@ -160,7 +160,7 @@ The polling mode for clients SHALL NOT be supported.
 This profile supports the 2 forms of
 Client Authentication described under [section 5.2.2](https://openid.net/specs/openid-financial-api-part-2.html#authorization-server) of the **[FAPI-RW]** profile: 
 
-- `private_key_jwt` specifed under [section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) of **[OIDC]**.
+- `private_key_jwt` specified under [section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) of **[OIDC]**.
 - `tls_client_auth` specified under [section 2](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2) of **[MTLS]**.
 
 ## 5.1. private\_key\_jwt
@@ -195,7 +195,7 @@ grant_type=authorization_code&
 }
 ```
 
-The `private_key_jwt` client authentication method is enabled through the delivery of an encoded **[JWT]** signed using the Data Recipient Client's private key and thus faciliates non-repudiation. The **[JWT]** represents an assertion that MUST include the following claims:
+The `private_key_jwt` client authentication method is enabled through the delivery of an encoded **[JWT]** signed using the Data Recipient Client's private key and thus facilitates non-repudiation. The **[JWT]** represents an assertion that MUST include the following claims:
 
 - `iss`: The client ID of the bearer.
 - `sub`: The client ID of the bearer.
@@ -403,8 +403,8 @@ Additional content will be added to this section when the Directory requirements
 
 All Business-to-Business (B2B) service calls, that is back-channel communication between Recipient and Holder systems, MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake:
 
-- The presented Client transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Server MUST NOT trust Client transport certicates issued by other authorities. 
-- The presented Server transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Client MUST NOT trust Server transport certicates issued by other authorities.
+- The presented Client transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Server MUST NOT trust Client transport certificates issued by other authorities.
+- The presented Server transport certificate MUST be issued by the CDR Certificate Authority (CA).  The Client MUST NOT trust Server transport certificates issued by other authorities.
 
 ## 11.3. Holder of Key Mechanism
 
@@ -453,7 +453,7 @@ MTLS HoK allows issued tokens to be bound to a client certificate as specified i
 
 The Request Object is a signed and encoded JWT specified in [section 6.1](https://openid.net/specs/openid-connect-core-1_0.html#RequestObject) of **[OIDC]**.  As per **[FAPI-RW]** [section 5.2.2](https://openid.net/specs/openid-financial-api-part-2.html#authorization-server) and **[CIBA]** [section 5.2.2](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-522-authorization-server), the `request` parameter MUST be present on requests to both the **[OIDC]** Hybrid Authorisation Endpoint and **[CIBA]** Backchannel Authorisation Endpoint. The Request Object enables **[OIDC]** requests to be passed in a single and self-contained parameter.
 
-Requst Objects MUST be signed by Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
+Request Objects MUST be signed by Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
 Recipient Clients MUST include a `consentId` value in the Request Object.  A high-level overview of consent is provided in the [section 14](#consent) of this artifact.
 
@@ -504,7 +504,7 @@ If a Holder supports **[VoT]**, they MUST accept Request objects which MAY conta
 	- This is this VoT equivalent of an an `acr` essential claim.
 	- If the `vot` Claim is requested as an Essential Claim for the ID Token with a values parameter requesting specific VoT values, the Holder Authorization Server MUST return a `vot` Claim Value that matches one of the requested values. The Authorization Server MAY ask the End-User to re-authenticate with additional factors to meet this requirement. If this requirement cannot be met, then the Holder Authorization Server MUST treat that outcome as a failed authentication.
 
-## 12.2. Receipient Client using VoT
+## 12.2. Recipient Client using VoT
 
 > Non-Normative Example - vot as an Essential Claim
 
@@ -562,7 +562,7 @@ Content-Type: application/json
   "token_endpoint": "https://www.dh.com.au/token",
   "introspection_endpoint": "https://www.dh.com.au/introspect",
   "revocation_endpoint": "https://www.dh.com.au/revoke",
-  "user_info_endpoint": "https://www.dh.com.au/userinfo",
+  "userinfo_endpoint": "https://www.dh.com.au/userinfo",
   "jwks_uri": "https://www.dh.com.au/jwks",
   "registration_endpoint": "https://www.dh.com.au/register",
   "bc-authorize": "https://www.dh.com.au/bc-authorise",
@@ -603,7 +603,7 @@ At a minimum, the Provider metadata MUST include:
 - `token_endpoint`: URL of the Token Endpoint.
 - `introspection_endpoint`: URL of the Introspection Endpoint.
 - `revocation_endpoint`: URL of the Revocation Endpoint.
-- `user_info_endpoint`: URL of the UserInfo Endpoint.
+- `userinfo_endpoint`: URL of the UserInfo Endpoint.
 - `jwks_uri`: URL of the JWKS Endpoint.
 - `scopes_supported`:  This list of supported scopes.
 - `claims_supported`:  The list of supported claims.
@@ -757,7 +757,7 @@ Private keys MUST NOT be published at this endpoint.
 
 The JWKS Endpoint returns a **[JSON]** document containing a JSON Web Key Set described in [section 5](https://tools.ietf.org/html/rfc7517#section-5) of **[JWK]**.  The JWK format is described in [section 4](https://tools.ietf.org/html/rfc7517#section-4) of **[JWK]**.  In addition to the mandatory fields specified in **[JWK]**, each JWK MUST include, at a minimum, the following fields:
 
--   `kid`: This is used to match a specific key withing a JWKS and thus must be unique within the set.
+-   `kid`: This is used to match a specific key within a JWKS and thus must be unique within the set.
 -   `use`: This is used to identify the intended use of the public key.  Supported values are `sig` and `enc`.
 
 ## 13.7. Introspection Endpoint
@@ -893,7 +893,7 @@ The Holder MUST respond in accordance with [OpenID Connect Registration](https:/
 Consent is a work-in-progress and thus subject to change.
 </aside>
 
-Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurence is assigned a unique `consentId` and is referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurance.
+Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurrence is assigned a unique `consentId` and is referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurrence.
 
 The specifics of the Consent API and processing of Consent are beyond the scope of this document.
 
@@ -935,7 +935,7 @@ A Data Holder Token Endpoint MUST:
 | <a id="BCP195"></a>**[BCP195]**   | Recommendations for Secure Use of Transport Layer Security (TLS) and Datagram Transport Layer Security (DTLS): <https://tools.ietf.org/html/bcp195>   
 | <a id="CDR"></a>**[CDR]**      | Consumer Data Right: <https://www.accc.gov.au/focus-areas/consumer-data-right>                                                                                                    |
 | <a id="FAPI"></a>**[FAPI]**      | Financial-Grade API - Home Page <https://openid.net/wg/fapi/>                                                                                                     |
-| <a id="RFC4122"></a>**[RFC4122]**  | A Universally Unique IDentifier (UUID) URN Namespace: <https://tools.ietf.org/html/rfc4122> |
+| <a id="RFC4122"></a>**[RFC4122]**  | A Universally Unique Identifier (UUID) URN Namespace: <https://tools.ietf.org/html/rfc4122> |
    
 
 # 17. Appendix
@@ -954,7 +954,7 @@ A Data Holder Token Endpoint MUST:
 4. *One* of the following may occur:
   1. The user may cancel the process at any point (in Parts **A**, **B** or **C**) and will be returned to the passed redirection URI for the Recipient with the relevant error code.
   2. The User is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the user's account.  The user's browser will be redirected to the passed redirection URI for the Recipient with the relevant error code.
-  3. The user sucessfully authenticatates and begins the consent/authorisation step (see Part **B**).
+  3. The user successfully authenticates and begins the consent/authorisation step (see Part **B**).
 
 
 ### Part B - Holder Authentication
@@ -966,7 +966,7 @@ The following options may be used:
 1. All Credentials/Factors are captured through the Browser.  On success, the consent process begins (Part **C**) .
 2. Two Factor Authentication (2FA)
     1. A userId and optionally a password are entered to the browser and submitted by the user.
-    2. A code or notification is sent to a user's pregistered mobile/device application (detached authentication device).  This step is optional as a user's device application may generate codes in isolation, as is the case for Time-based One-Time Password (TOTP).
+    2. A code or notification is sent to a user's preregistered mobile/device application (detached authentication device).  This step is optional as a user's device application may generate codes in isolation, as is the case for Time-based One-Time Password (TOTP).
     3.  The user views the code or event on their detached authentication device.
     4. *One* of the following may occur:
         1. The user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the consent process begins (Part **C**).
@@ -975,7 +975,7 @@ The following options may be used:
 ### Part C - Post Consent Recipient to Holder
 ![Part C](/images/redirPartC.png)
 #### Steps
-This process continues from Part **B** afer a successful authentication.
+This process continues from Part **B** after a successful authentication.
 
 1. The user provides consent authorising the presented scopes and/or data claims.
 2. *One* of the following may occur:
@@ -985,7 +985,7 @@ This process continues from Part **B** afer a successful authentication.
 4.  The user's browser is redirected to the Recipient's redirect URI.  The ID Token and authorisation code generated in Step 3 are attached to the URL as query string parameters or as a fragment.  The Recipient web server processes the request.
 5.  The Recipient decrypts the ID Token, verifies the signature and issuer of the ID Token, verifies the state/code hashes within the token, and also matches the presented state against it's own session state.  The Recipient Client then sends a POST request to the Holder Token Endpoint using Client Authentication and the Authorisation Code.
 6. The Holder Endpoint authenticates the Recipient Client and matches the authorisation code. On success, the Endpoint responds with an Access Token, Refresh Token and an ID Token.  
-7. The Holder creates an event relating to the authorisation.  This event is propogated/handled and may result in shared resource owners being notified about the authorisation.
+7. The Holder creates an event relating to the authorisation.  This event is propagated/handled and may result in shared resource owners being notified about the authorisation.
 8.  The Recipient verifies the ID Token and on success, invokes the UserInfo Endpoint using the Access Token as a Bearer Token.  The Holder verifies the token, applies the necessary Holder of Key verification check and on success, returns the requested UserInfo claims.
 9.  The Recipient optionally begins calling the Holder APIs with the Access Token and renders the result to the user's browser.
 
