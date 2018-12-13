@@ -36,12 +36,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.3+1] - 2018-12-11
 ### Added
  - Define Normative and Non-Normative elements - Feature [#24](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/24).
- - Claify Request Object Content - Feature [#13](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/13).
+ - Clarify Request Object Content - Feature [#13](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/13).
  - Consent and Authorisation - Feature [#12](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/12)
  - Refine Introspection Endpoint section - Feature [#11](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/11)
  - Add Vectors of Trust - Feature [#10](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/10)
  - Update LoAs with LoA 2 [#4](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/4)
 
 ## [0.0.3+2] - 2018-12-14
-### Added
-- Added broad IP Levels to Align with X.1254 - Feature
+### Fixed
+- Typographic errors.
