@@ -45,3 +45,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.3+2] - 2018-12-14
 ### Fixed
 - Typographic errors.
+
+## [0.0.3+3] - 2018-12-14
+### Changed
+- X1254 is now an informative reference - Feature [#37](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/37).
+
+### Added
+- 12.2 might imply vectors of trust is required. Feature [#30](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/30)
+
+### Fixed
+- Add `essential` field in examples of essential claims  - Bug [#29](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/29)

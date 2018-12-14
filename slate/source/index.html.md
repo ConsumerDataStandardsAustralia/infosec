@@ -305,7 +305,7 @@ The following [normal](https://openid.net/specs/openid-connect-core-1_0.html#Nor
 
 -  `sub`: [Pairwise Pseudonymous Identifier (PPID)](#identifiers) for the End-User at the Holder.
 -  `vot`: MUST contain a valid [VoT value](#vector-loas).  
--  `vtm`: The **[VoT]** trustmark URI. 
+-  `vtm`: The **[VOT]** trustmark URI. 
 -  `acr`: Authentication Context Class Reference.  MUST contain a valid [ordinal LoA value](#ordinal-loa).
 -  `amr`: Authentication Methods References.
 -  `auth_time`: Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC `auth_time`.
@@ -336,50 +336,48 @@ Levels Of Assurance (LoAs), returned after a successful authentication, MAY be r
 - [Vector](#vector-loas): One or more LoAs, represented by a vector value, are represented.
   - Holder's MAY support this mechanism.
 
-In accordance with **[FAPI-RW]**:
-
--  *READ* operations SHALL only be allowed where __at least__ an LoA of 2 has been achieved which demonstrates, as outlined in the [Entity authentication assurance framework] (https://www.itu.int/rec/T-REC-X.1254) **[X.1254]**, that:
-  - There is *some confidence* in the claimed or asserted identity of the entity. This LoA is used when moderate risk is associated with erroneous authentication. *Single-factor authentication is acceptable*. 
-- *WRITE* operations SHALL only be allowed where __at least__ an LoA of 3 has been achieved which demonstrates, as outlined in the [Entity authentication assurance framework] (https://www.itu.int/rec/T-REC-X.1254) **[X.1254]**, that:
-  - There is *high confidence* in the claimed or asserted identity of the entity. This LoA is used where substantial risk is associated with erroneous authentication. This LoA shall employ *multifactor authentication*.
-
 <a id="ordinal-loa"></a>
 ## 10.1. Single Ordinal
 A Single LoA value is carried in the `acr` claim which is described in [section 2](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) of **[OIDC]**.  
 
-An LoA of 2 is represented by the URI: `urn:cds.au:cdr:2`
-
- - 	The authenticator used to attain this level MUST conform with the Credential Level `CL1` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
+  - An LoA of 2 is represented by the URI: `urn:cds.au:cdr:2`
+    - The authenticator used to attain this level MUST conform with the Credential Level `CL1` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
 ) **[TDIF]** Authentication Credential Requirements specification.
 
-An LoA of 3 is represented by the URI: `urn:cds.au:cdr:3`
 
- - 	The authenticators used to attain this level MUST conform with the Credential Level `CL2` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
+  - An LoA of 3 is represented by the URI: `urn:cds.au:cdr:3`
+    - The authenticators used to attain this level MUST conform with the Credential Level `CL2` rules specified under the [Trusted Digital Identity Framework](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework
 ) **[TDIF]** Authentication Credential Requirements specification.
 
+*READ* operations SHALL only be allowed where __at least__ an LoA of 2 has been achieved.
+
+*WRITE* operations SHALL only be allowed where __at least__ an LoA of 3 has been achieved.
 
 <a id="vector-loas"></a>
 ## 10.2. Vector
 
 ## 10.2.1. Overview
-This profile incorporates support for [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT]**. A Vector, in this context, allows for the representation of multiple orthogonal components dimensions that may, but are not limited to, carry information relating to:
+This profile incorporates support for [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VOT]**. A Vector, in this context, allows for the representation of multiple orthogonal components dimensions that may, but are not limited to, carry information relating to:
 
 - Identity Proofing
 - Primary Credential Usage
 - Primary Credential Management
 - Assertion/Federation Presentation
 
-It is anticipated that due to their characteristics, which include composability, extensibility, and expressiveness, VoTs will be become the dominant standard for assurance representation at Identity Providers. Furthermore, as the **[CDR]** matures and incorporates requirements for Identity Proofing, Credential Management, and Assertion Presentation, these independent LoAs will be progressively added to the VoT **[CDR]** ecosystem. However, the dynamic capabilities of **[VoT]** will ensure that their addition does not break existing **[CDR]** implementations.
+It is anticipated that due to their characteristics, which include composability, extensibility, and expressiveness, VoTs will be become the dominant standard for assurance representation at Identity Providers. Furthermore, as the **[CDR]** matures and incorporates requirements for Identity Proofing, Credential Management, and Assertion Presentation, these independent LoAs will be progressively added to the VoT **[CDR]** ecosystem. However, the dynamic capabilities of **[VOT]** will ensure that their addition does not break existing **[CDR]** implementations.
 
 <a id="vot-values"></a>
 ## 10.2.2. VoT Values
 
-The following VoT values SHALL be supported to represent authentication assurance levels when employing **[VoT]**.  These are carried in the `vot` claim of an ID Token:
+The following VoT values SHALL be supported to represent authentication assurance levels when employing **[VOT]**.  These are carried in the `vot` claim of an ID Token:
 
- - `CL1`: This is Credential Level CL1 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
-   - This is equivalent to LoA 2.
- - `CL2`: This is Credential Level CL2 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
-   - This is equivalent to LoA 3.
+- `CL1`: This is Credential Level CL1 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
+
+- `CL2`: This is Credential Level CL2 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
+  
+*READ* operations SHALL only be allowed where __at least__ a `CL1` has been provided.
+
+*WRITE* operations SHALL only be allowed where __at least__ a `CL2` has been provided.
 
 <aside class="information">
 The Trustmark URI is yet to be defined.
@@ -445,7 +443,8 @@ MTLS HoK allows issued tokens to be bound to a client certificate as specified i
     },
    "id_token":
     {
-     "acr": {"values": ["urn:cds.au:cdr:3"]}
+     "acr": {"essential": true,
+             "values": ["urn:cds.au:cdr:3"]}
     }
   } 
 }
@@ -493,7 +492,7 @@ Decoded Request Object JWT
 }
 ```
 
-If a Holder supports **[VoT]**, they MUST accept Request objects which MAY contain:
+If a Holder supports **[VOT]**, they MUST accept Request objects which MAY contain:
 
 - A `vtr` value. 
   - Allowed Values are specified in the [VoT values section](#vot-values) of this artifact.  
@@ -528,7 +527,8 @@ Decoded Request Object JWT
   {
    "id_token":
     {
-     "vot": {"values": ["CL2"]}
+     "vot": {"essential": true,
+             "values": ["CL2"]}
     }
   } 
 }
@@ -536,9 +536,7 @@ Decoded Request Object JWT
 	
 For *WRITE* operations, a Recipient client:
 
-- SHALL request user authentication at LoA 3 or greater by requesting the `vot` claim as an essential claim.
-
-The relationship between LoAs and VoT values is specified in the [VoT values section](#vot-values) of this artifact.
+- SHALL, where a Holder supports **[VOT]**, request user authentication with a Credential Level of 2 (`CL2`) or greater by requesting the `vot` claim as an essential claim.
 
 # 13. Endpoints
 
@@ -594,7 +592,7 @@ OpenID Provider Configuration is directly impacted by the emerging requirements 
 
 Data Holders MUST make their OpenID Provider Metadata available via a configuration endpoint as outlined in [Section 3 of the OpenID Connect Discovery standards] (https://openid.net/specs/openid-connect-discovery-1_0.html) **[OIDD]**. 
 
-Where a Holder is supporting [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT**] or [CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[CIBA]**, the published OpenID Provider metadata SHALL reflect that support.
+Where a Holder is supporting [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VOT]** or [CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[CIBA]**, the published OpenID Provider metadata SHALL reflect that support.
 
 At a minimum, the Provider metadata MUST include:
 
@@ -609,7 +607,7 @@ At a minimum, the Provider metadata MUST include:
 - `claims_supported`:  The list of supported claims.
 - `acr_values_supported`:  The supported ACR values.
 
-Holder's that support [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VoT**] MUST include:
+Holder's that support [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VOT]** MUST include:
 
 - `vot_values_supported`:  The list of supported component values.
 
@@ -884,13 +882,13 @@ Holders MUST verify that the embedded software statement has been signed by the 
 
 ### 13.9.2. Response
 
-The Holder MUST respond in accordance with [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]** sections 3.2 and 3.3. 
+The Holder MUST respond in accordance with [OpenID Connect Registration](https://openid.net/specs/openid-connect-registration-1_0.html) **[OIDC-CR]** sections 3.2 and 3.3.
 
 <a id="consent"></a>
 # 14. Consent
 
 <aside class="warning">
-Consent is a work-in-progress and thus subject to change.
+How querying, communication, and revocation of consent will be supported technically are a current key area of focus. An approach to consent will be published in January 2019, for the purposes of delivering version 1 of the standards.
 </aside>
 
 Prior to initiating an authentication request to a Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Holder.  A Consent occurrence is assigned a unique `consentId` and is referenced by the Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Recipient is to be considered the Resource Owner of the Consent occurrence.
@@ -926,7 +924,6 @@ A Data Holder Token Endpoint MUST:
 | <a id="RFC7523"></a>**[RFC7523]**  | JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <https://tools.ietf.org/html/rfc7523> |                                              
 | <a id="RFC7662"></a>**[RFC7662]**  | OAuth 2.0 Token Introspection: <https://tools.ietf.org/html/rfc7662>| 
 | <a id="VOT"></a>**[VOT]** | Vectors of Trust, draft-richer-vectors-of-trust-15 <https://tools.ietf.org/html/draft-richer-vectors-of-trust-15>      
-| <a id="X.1254"></a>**[X.1254]**   | X.1254 - Entity authentication assurance framework: <https://www.itu.int/rec/T-REC-X1254-201209-I/en> |    
 
 # 16. Informative References
 
@@ -936,7 +933,7 @@ A Data Holder Token Endpoint MUST:
 | <a id="CDR"></a>**[CDR]**      | Consumer Data Right: <https://www.accc.gov.au/focus-areas/consumer-data-right>                                                                                                    |
 | <a id="FAPI"></a>**[FAPI]**      | Financial-Grade API - Home Page <https://openid.net/wg/fapi/>                                                                                                     |
 | <a id="RFC4122"></a>**[RFC4122]**  | A Universally Unique Identifier (UUID) URN Namespace: <https://tools.ietf.org/html/rfc4122> |
-   
+| <a id="X.1254"></a>**[X.1254]**   | X.1254 - Entity authentication assurance framework: <https://www.itu.int/rec/T-REC-X1254-201209-I/en> |    
 
 # 17. Appendix
 
