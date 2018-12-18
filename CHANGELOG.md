@@ -55,3 +55,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Add `essential` field in examples of essential claims  - Bug [#29](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/29)
+
+## [0.0.3+4] - 2018-12-18
+
+### Fixed
+- Improved clarity of document.
+- Simplified introduction.
+- CIBA is now FAPI-CIBA
+- Fixed some typographic errors.
+- Replaced customer with consumer.
+- Removed references to accreditation of Data Holder.
+- Holder and Recipient are now Data Holder and Data Recipient.
+- `iss` claim is not supported on request object.
+- `iat` claim in not mandatory as part of private key client authentication JWT.
+- `bc-authorize` is now `backchannel_authentication_endpoint` on OIDD.
+- *user* is now *end-user* in appendix.
