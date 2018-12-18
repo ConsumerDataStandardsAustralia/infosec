@@ -555,7 +555,7 @@ Recipients. Data Holders and Data Recipients must be created as entities in the 
 <li>The Client Initiated Backchannel Authentication flow outlined under the <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">FAPI CIBA profile</a> <strong>[FAPI-CIBA]</strong>.
 
 <ul>
-<li> This MAY be supported by Holders.</li>
+<li> This MAY be supported by Data Holders.</li>
 </ul></li>
 </ul>
 
@@ -801,7 +801,7 @@ Identifier (UUID) <strong>[RFC4122]</strong>.</p>
 
 <p><a id="vector-loas"></a></p>
 <h2 id='10-2-vector'>10.2. Vector</h2><h2 id='10-2-1-overview'>10.2.1. Overview</h2>
-<p>This profile incorporates support for future use of <a href="https://tools.ietf.org/html/draft-richer-vectors-of-trust-15">Vectors of Trust</a> <strong>[VOT]</strong> (currently unsupported by the <strong>[TDIF]</strong>). A Vector, in this context, allows for the representation of multiple orthogonal components dimensions that may, but are not limited to, carry information relating to:</p>
+<p>This profile incorporates support for <a href="https://tools.ietf.org/html/draft-richer-vectors-of-trust-15">Vectors of Trust</a> <strong>[VOT]</strong>. A Vector, in this context, allows for the representation of multiple orthogonal components dimensions that may, but are not limited to, carry information relating to:</p>
 
 <ul>
 <li>Identity Proofing</li>
@@ -895,11 +895,11 @@ Additional content will be added to this section when the Registry requirements 
 </code></pre>
 <p>The Request Object is a signed and encoded JWT specified in <a href="https://openid.net/specs/openid-connect-core-1_0.html#RequestObject">section 6.1</a> of <strong>[OIDC]</strong>.  As per <strong>[FAPI-RW]</strong> <a href="https://openid.net/specs/openid-financial-api-part-2.html#authorization-server">section 5.2.2</a> and <strong>[FAPI-CIBA]</strong> <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-522-authorization-server">section 5.2.2</a>, the <code>request</code> parameter MUST be present on requests to both the <strong>[OIDC]</strong> Hybrid Authorisation Endpoint and <strong>[FAPI-CIBA]</strong> Backchannel Authorisation Endpoint. The Request Object enables <strong>[OIDC]</strong> requests to be passed in a single and self-contained parameter.</p>
 
-<p>Request Objects MUST be signed by Recipients as specified in <a href="https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations">section 8.6</a> of <strong>[FAPI-RW]</strong>.</p>
+<p>Request Objects MUST be signed by Data Recipients as specified in <a href="https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations">section 8.6</a> of <strong>[FAPI-RW]</strong>.</p>
 
-<p>Recipient Clients MUST include a <code>consentId</code> value in the Request Object.  A high-level overview of consent is provided in the <a href="#consent">section 14</a> of this artifact.</p>
+<p>Data Recipients MUST include a <code>consentId</code> value in the Request Object.  A high-level overview of consent is provided in the <a href="#consent">section 14</a> of this artifact.</p>
 
-<p>Holder Authorisation Servers MUST treat a Request Object that does not contain a <code>consentId</code> as invalid.</p>
+<p>Data Holder Authorisation Servers MUST treat a Request Object that does not contain a <code>consentId</code> as invalid.</p>
 
 <p>Request Object references SHALL NOT be supported.</p>
 
@@ -949,7 +949,7 @@ Additional content will be added to this section when the Registry requirements 
 
 <ul>
 <li>This is the VoT equivalent of an <code>acr</code> essential claim.</li>
-<li>If the <code>vot</code> Claim is requested as an Essential Claim for the ID Token with a values parameter requesting specific VoT values, the Data Holder Authorization Server MUST return a <code>vot</code> Claim Value that matches one of the requested values. The Data Holder Authorization Server MAY ask the End-User to re-authenticate with additional factors to meet this requirement. If this requirement cannot be met, then the Holder Authorization Server MUST treat that outcome as a failed authentication.</li>
+<li>If the <code>vot</code> Claim is requested as an Essential Claim for the ID Token with a values parameter requesting specific VoT values, the Data Holder Authorization Server MUST return a <code>vot</code> Claim Value that matches one of the requested values. The Data Holder Authorization Server MAY ask the End-User to re-authenticate with additional factors to meet this requirement. If this requirement cannot be met, then the Data Holder Authorization Server MUST treat that outcome as a failed authentication.</li>
 </ul></li>
 </ul>
 <h2 id='12-2-data-recipient-client-using-vot'>12.2. Data Recipient Client using VoT</h2>
@@ -1455,7 +1455,7 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 <li><code>iat</code>: A JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC issued at time.</li>
 <li><code>exp</code>: A JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC expiry time.</li>
 <li><code>aud</code>: The Data Holder identifier specified at the Registry.</li>
-<li><code>jti</code>: A unique identifier generated by the Recipient client.</li>
+<li><code>jti</code>: A unique identifier generated by the Data Recipient.</li>
 <li><code>redirect_uris</code>: An Array of Redirection URI values.</li>
 <li><code>software_statement</code>: This is an encoded JWT which includes several claims that describe the Data Recipient application and the Data Recipient organisation.</li>
 <li><code>id_token_signed_response_alg</code>: Token Endpoint preferred signing algorithm.</li>
@@ -1620,14 +1620,14 @@ How querying, communication, and revocation of consent will be supported technic
 
 <ol>
 <li>The end-user may cancel the process at any point (in Parts <strong>A</strong>, <strong>B</strong> or <strong>C</strong>) and will be returned to the passed redirection URI for the Data Recipient with the relevant error code.</li>
-<li>The end-user is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the user&#39;s account.  The end-user&#39;s browser will be redirected to the passed redirection URI for the Data Recipient with the relevant error code.</li>
+<li>The end-user is denied access.  This may happen as a result of too many failed attempts or other conditions relating to the end-user&#39;s account.  The end-user&#39;s browser will be redirected to the passed redirection URI for the Data Recipient with the relevant error code.</li>
 <li>The end-user successfully authenticates and begins the authorisation step (see Part <strong>B</strong>).</li>
 </ol></li>
 </ol>
 <h3 id='part-b-data-holder-authentication'>Part B - Data Holder Authentication</h3>
 <p><img src="images/redirPartB.png" alt="Part B" /></p>
 <h4 id='steps-2'>Steps</h4>
-<p>Part <strong>B</strong> illustrates the different authentication methods a Data Holder may present to the end-user.  It is important from a usability perspective that the Data Holder authentication choices presented to the user are consistent with those currently utilised by the end-user when accessing their existing Data Holder online accounts.<br>
+<p>Part <strong>B</strong> illustrates the different authentication methods a Data Holder may present to the end-user.  It is important from a usability perspective that the Data Holder authentication choices presented to the end-user are consistent with those currently utilised by the end-user when accessing their existing Data Holder online accounts.<br>
 The following options may be used:</p>
 
 <ol>
