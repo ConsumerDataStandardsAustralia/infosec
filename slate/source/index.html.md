@@ -658,26 +658,33 @@ Host: www.holder.com.au
   "kid": "123"
 }
 {
- "iss": "12345",
- "aud": "https://www.recipient.com.au",
- "response_type": "code id_token",
- "client_id": "12345",
- "redirect_uri": "https://www.recipient.com.au/coolstuff",
- "scope": "openid",
- "state": "af0ifjsldkj",
- "nonce": "n-0S6_WzA2Mj",
- "claims":
-  {
-   "userinfo":
-    {
-     "given_name": null,
-     "family_name": null
+  "iss": "12345",
+  "aud": "https://www.recipient.com.au",
+  "response_type": "code id_token",
+  "client_id": "12345",
+  "redirect_uri": "https://www.recipient.com.au/coolstuff",
+  "scope": "openid",
+  "state": "af0ifjsldkj",
+  "nonce": "n-0S6_WzA2Mj",
+  "claims": {
+    "userinfo": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "given_name": null,
+      "family_name": null
     },
-   "id_token":
-    {
-     "acr": {"values": ["urn:cds.au:cdr:3"]}
+    "id_token": {
+       "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "acr": {
+        "values": ["urn:cds.au:cdr:3"]
+      }
     }
-  } 
+  }
 }
 
 ```
