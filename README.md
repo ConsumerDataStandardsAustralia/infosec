@@ -1,12 +1,12 @@
 # Consumer Data Right Information Security Profile
 
-## Published Profile is available at: https://consumerdatastandardsaustralia.github.io/infosec/
+## Draft Published Profile is available at: https://consumerdatastandardsaustralia.github.io/infosec/
+
+The current Information Security Profile draft standard is evolving as decisions are made.
 
 ## Consumer Data Standards Web Site: https://consumerdatastandards.org.au/
 
 Data61 has been appointed as technical advisor to the interim data standards body by the Australian federal government, as part of the introduction of [Consumer Data Right](https://www.accc.gov.au/focus-areas/consumer-data-right "ACCC Consumer Data Right webpage") legislation to give Australians greater control over their data.
-
-The current Information Security Profile draft standard that is evolving as decisions are made.
 
 ## Links
 
