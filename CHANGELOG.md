@@ -70,3 +70,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `iat` claim in not mandatory as part of private key client authentication JWT.
 - `bc-authorize` is now `backchannel_authentication_endpoint` on OIDD.
 - *user* is now *end-user* in appendix.
+
+## [0.0.3+5] - 2018-12-19
+
+### Fixed
+- Bug with consent id outside of claims [#42](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/42)

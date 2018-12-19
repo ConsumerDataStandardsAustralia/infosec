@@ -426,27 +426,33 @@ MTLS HoK allows issued tokens to be bound to a client certificate as specified i
   "kid": "123"
 }
 {
- "aud": "https://www.recipient.com.au",
- "response_type": "code id_token",
- "client_id": "12345",
- "redirect_uri": "https://www.recipient.com.au/coolstuff",
- "scope": "openid",
- "state": "af0ifjsldkj",
- "nonce": "n-0S6_WzA2Mj",
- "consentId": "144563423",
- "claims":
-  {
-   "userinfo":
-    {
-     "given_name": null,
-     "family_name": null
+  "aud": "https://www.recipient.com.au",
+  "response_type": "code id_token",
+  "client_id": "12345",
+  "redirect_uri": "https://www.recipient.com.au/coolstuff",
+  "scope": "openid",
+  "state": "af0ifjsldkj",
+  "nonce": "n-0S6_WzA2Mj",
+  "claims": {
+    "id_token": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "acr": {
+        "essential": true,
+        "values": ["urn:cds.au:cdr:3"]
+      }
     },
-   "id_token":
-    {
-     "acr": {"essential": true,
-             "values": ["urn:cds.au:cdr:3"]}
+    "userinfo": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "given_name": null,
+      "family_name": null
     }
-  } 
+  }
 }
 ```
 
@@ -454,9 +460,9 @@ The Request Object is a signed and encoded JWT specified in [section 6.1](https:
 
 Request Objects MUST be signed by Data Recipients as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
-Data Recipients MUST include a `consentId` value in the Request Object.  A high-level overview of consent is provided in the [section 14](#consent) of this artifact.
+Data Recipients MUST include a `cdr_consent_id` value in the Request Object.  A high-level overview of consent is provided in the [section 14](#consent) of this artifact.
 
-Data Holder Authorisation Servers MUST treat a Request Object that does not contain a `consentId` as invalid.
+Data Holder Authorisation Servers MUST treat a Request Object that does not contain a `cdr_consent_id` as an essential claim as invalid.
 
 Request Object references SHALL NOT be supported.
 
@@ -474,29 +480,36 @@ Decoded Request Object JWT
   "kid": "123"
 }
 {
- "aud": "https://www.recipient.com.au",
- "response_type": "code id_token",
- "client_id": "12345",
- "redirect_uri": "https://www.recipient.com.au/coolstuff",
- "scope": "openid",
- "state": "af0ifjsldkj",
- "nonce": "n-0S6_WzA2Mj",
- "vtr":" "CL2 CL1",
- "consentId": "144563423",
- "claims":
-  {
-   "userinfo":
-    {
-     "given_name": null,
-     "family_name": null
+  "aud": "https://www.recipient.com.au",
+  "response_type": "code id_token",
+  "client_id": "12345",
+  "redirect_uri": "https://www.recipient.com.au/coolstuff",
+  "scope": "openid",
+  "state": "af0ifjsldkj",
+  "nonce": "n-0S6_WzA2Mj",
+  "vtr":" "CL2 CL1",
+  "claims": {
+    "id_token": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      }
     },
-  } 
+    "userinfo": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "given_name": null,
+      "family_name": null
+    }
+  }
 }
 ```
 
 If a Data Holder supports Vectors of Trust **[VOT]**, they MUST accept Request objects which MAY contain:
 
-- A `vtr` value. 
+- A `vtr` value.
   - Allowed Values are specified in the [VoT values section](#vot-values) of this artifact.  
   - This value MUST contain a space-separated string that specifies the `vot` values that the Authorization Server is being requested to use for processing this Authentication Request, with the values appearing in order of preference. The VoT satisfied by the authentication performed is returned as the `vot` Claim Value. 
   - The `vot` Claim is requested as a Voluntary Claim by this parameter.
@@ -517,22 +530,25 @@ Decoded Request Object JWT
   "kid": "123"
 }
 {
- "aud": "https://www.recipient.com.au",
- "response_type": "code id_token",
- "client_id": "12345",
- "redirect_uri": "https://www.recipient.com.au/coolstuff",
- "scope": "openid",
- "state": "af0ifjsldkj",
- "nonce": "n-0S6_WzA2Mj",
- "consentId": "144563423",
- "claims":
-  {
-   "id_token":
-    {
-     "vot": {"essential": true,
-             "values": ["CL2"]}
+  "aud": "https://www.recipient.com.au",
+  "response_type": "code id_token",
+  "client_id": "12345",
+  "redirect_uri": "https://www.recipient.com.au/coolstuff",
+  "scope": "openid",
+  "state": "af0ifjsldkj",
+  "nonce": "n-0S6_WzA2Mj",
+  "claims": {
+    "id_token": {
+      "vot": {
+        "essential": true,
+        "values": ["CL2"]
+      },
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      }
     }
-  } 
+  }
 }
 ```
 	
@@ -642,26 +658,33 @@ Host: www.holder.com.au
   "kid": "123"
 }
 {
- "iss": "12345",
- "aud": "https://www.recipient.com.au",
- "response_type": "code id_token",
- "client_id": "12345",
- "redirect_uri": "https://www.recipient.com.au/coolstuff",
- "scope": "openid",
- "state": "af0ifjsldkj",
- "nonce": "n-0S6_WzA2Mj",
- "claims":
-  {
-   "userinfo":
-    {
-     "given_name": null,
-     "family_name": null
+  "iss": "12345",
+  "aud": "https://www.recipient.com.au",
+  "response_type": "code id_token",
+  "client_id": "12345",
+  "redirect_uri": "https://www.recipient.com.au/coolstuff",
+  "scope": "openid",
+  "state": "af0ifjsldkj",
+  "nonce": "n-0S6_WzA2Mj",
+  "claims": {
+    "userinfo": {
+      "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "given_name": null,
+      "family_name": null
     },
-   "id_token":
-    {
-     "acr": {"values": ["urn:cds.au:cdr:3"]}
+    "id_token": {
+       "cdr_consent_id":  {
+        "value": "adceecd3-3437-4369-909e-1ac82abdc288",
+        "essential": true
+      },
+      "acr": {
+        "values": ["urn:cds.au:cdr:3"]
+      }
     }
-  } 
+  }
 }
 
 ```
@@ -893,7 +916,7 @@ The Data Holder MUST respond in accordance with [OpenID Connect Registration](ht
 How querying, communication, and revocation of consent will be supported technically are a current key area of focus. An approach to consent will be published in January 2019, for the purposes of delivering version 1 of the standards.
 </aside>
 
-Prior to initiating an authentication request to a Data Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Data Holder.  A Consent occurrence is assigned a unique `consentId` and is referenced by the Data Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Data Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Data Recipient is to be considered the Resource Owner of the Consent occurrence.
+Prior to initiating an authentication request to a Data Holder's Authorisation Server, a Data Recipient MUST have captured indicative Consumer Consent and passed this to the Data Holder.  A Consent occurrence is assigned a unique `cdr_consent_id` and is referenced by the Data Holder as part of an authorisation process with a Consumer.  This process binds the Consent to the authorisation.  In order to support this functionality, a Data Holder MUST implement and host an API to support the creation of a Consent, the querying of a Consent, and the deletion of a Consent. In this instance the Data Recipient is to be considered the Resource Owner of the Consent occurrence.
 
 The specifics of the Consent API and processing of Consent are beyond the scope of this document.
 
