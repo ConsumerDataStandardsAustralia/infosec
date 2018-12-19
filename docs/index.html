@@ -210,7 +210,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo.png" class="logo" alt="Logo" />
+      <img src="images/logoSanta.png" class="logo" alt="Logosanta" />
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
         </div>
@@ -1650,11 +1650,12 @@ How querying, communication, and revocation of consent will be supported technic
 <h3 id='part-b-data-holder-authentication'>Part B - Data Holder Authentication</h3>
 <p><img src="images/redirPartB.png" alt="Part B" /></p>
 <h4 id='steps-2'>Steps</h4>
-<p>Part <strong>B</strong> illustrates the different authentication methods a Data Holder may present to the end-user.  It is important from a usability perspective that the Data Holder authentication choices presented to the end-user are consistent with those currently utilised by the end-user when accessing their existing Data Holder online accounts.<br>
-The following options may be used:</p>
+<p>Part <strong>B</strong> illustrates the different authentication methods a Data Holder may present to the end-user.  It is important from a usability perspective that the Data Holder authentication choices presented to the end-user are consistent with those currently utilised by the end-user when accessing their existing Data Holder online accounts.  </p>
+
+<p>The following options may be used:</p>
 
 <ol>
-<li>All Credentials/Factors are captured through the Browser.  On success, the consent process begins (Part <strong>C</strong>) .</li>
+<li>All Credentials/Factors are captured through the Browser.  On success, the authorisation process begins (Part <strong>C</strong>) .</li>
 <li>Two Factor Authentication (2FA)
 
 <ol>
@@ -1664,18 +1665,18 @@ The following options may be used:</p>
 <li><em>One</em> of the following may occur:
 
 <ol>
-<li>The end-user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the consent process begins (Part <strong>C</strong>).</li>
-<li>The end-user does not enter the code into the browser.  The end-user acknowledges the authentication through the device and a secure message is sent from the device to the Data Holder via a backchannel. On receipt of the message, the Data Holder&#39;s website redirects the end-user&#39;s browser to the consent page (Part <strong>C</strong>).</li>
+<li>The end-user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the authorisation process begins (Part <strong>C</strong>).</li>
+<li>The end-user does not enter the code into the browser.  The end-user acknowledges the authentication through the device and a secure message is sent from the device to the Data Holder via a backchannel. On receipt of the message, the Data Holder&#39;s website redirects the end-user&#39;s browser to the authorisation page (Part <strong>C</strong>).</li>
 </ol></li>
 </ol></li>
 </ol>
-<h3 id='part-c-post-consent-data-recipient-to-data-holder'>Part C - Post Consent Data Recipient to Data Holder</h3>
+<h3 id='part-c-post-authorisation-data-recipient-to-data-holder'>Part C - Post Authorisation Data Recipient to Data Holder</h3>
 <p><img src="images/redirPartC.png" alt="Part C" /></p>
 <h4 id='steps-3'>Steps</h4>
 <p>This process continues from Part <strong>B</strong> after a successful authentication.</p>
 
 <ol>
-<li>The end-user provides consent authorising the presented scopes and/or data claims.</li>
+<li>The end-user authorises the transaction.</li>
 <li><em>One</em> of the following may occur:
 
 <ol>
