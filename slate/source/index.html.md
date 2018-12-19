@@ -983,23 +983,24 @@ A Data Holder Token Endpoint MUST:
 ![Part B](/images/redirPartB.png)
 #### Steps
 Part **B** illustrates the different authentication methods a Data Holder may present to the end-user.  It is important from a usability perspective that the Data Holder authentication choices presented to the end-user are consistent with those currently utilised by the end-user when accessing their existing Data Holder online accounts.  
+
 The following options may be used:
 
-1. All Credentials/Factors are captured through the Browser.  On success, the consent process begins (Part **C**) .
+1. All Credentials/Factors are captured through the Browser.  On success, the authorisation process begins (Part **C**) .
 2. Two Factor Authentication (2FA)
     1. A userId and optionally a password are entered to the browser and submitted by the end-user.
     2. A code or notification is sent to a end-user's pre-registered mobile/device application (detached authentication device).  This step is optional as an end-user's device application may generate codes in isolation, as is the case for Time-based One-Time Password (TOTP).
     3.  The end-user views the code or event on their detached authentication device.
     4. *One* of the following may occur:
-        1. The end-user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the consent process begins (Part **C**).
-        2. The end-user does not enter the code into the browser.  The end-user acknowledges the authentication through the device and a secure message is sent from the device to the Data Holder via a backchannel. On receipt of the message, the Data Holder's website redirects the end-user's browser to the consent page (Part **C**).
+        1. The end-user directly enters the code (or scans a QR Code) into the browser and submits the request.  On success, the authorisation process begins (Part **C**).
+        2. The end-user does not enter the code into the browser.  The end-user acknowledges the authentication through the device and a secure message is sent from the device to the Data Holder via a backchannel. On receipt of the message, the Data Holder's website redirects the end-user's browser to the authorisation page (Part **C**).
 
-### Part C - Post Consent Data Recipient to Data Holder
+### Part C - Post Authorisation Data Recipient to Data Holder
 ![Part C](/images/redirPartC.png)
 #### Steps
 This process continues from Part **B** after a successful authentication.
 
-1. The end-user provides consent authorising the presented scopes and/or data claims.
+1. The end-user authorises the transaction.
 2. *One* of the following may occur:
   1. The Data Holder creates a new pairwise identifier for the end-user and Data Recipient combination.  This is the first time the end-user has authenticated to the Data Holder in the context of a request from this Data Recipient.
   2. This is a reauthentication.  The end-user has previously authenticated to the Data Holder in the context of an authentication request from this Data Recipient.  The existing pairwise identifier for the end-user and Data Recipient is allocated to the authorisation.
