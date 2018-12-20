@@ -75,3 +75,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Bug with consent id outside of claims [#42](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/42)
+
+## [0.1.0+1] - 2018-12-20
+### Added
+- Published 0.1.0 build 1.
