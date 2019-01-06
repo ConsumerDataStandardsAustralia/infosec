@@ -210,7 +210,7 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logoSanta.png" class="logo" alt="Logosanta" />
+      <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
               <a href="#" data-language-name="http">http</a>
         </div>
@@ -223,7 +223,7 @@
             <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
           </li>
           <li>
-            <a href="#1-infosec-profile-0-1-0" class="toc-h1 toc-link" data-title="1. InfoSec Profile 0.1.0">1. InfoSec Profile 0.1.0</a>
+            <a href="#1-infosec-profile-0-1-1" class="toc-h1 toc-link" data-title="1. InfoSec Profile 0.1.1">1. InfoSec Profile 0.1.1</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#1-1-history" class="toc-h2 toc-link" data-title="1.1. History">1.1. History</a>
@@ -269,9 +269,6 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#5-1-private_key_jwt" class="toc-h2 toc-link" data-title="5.1. private_key_jwt">5.1. private_key_jwt</a>
-                  </li>
-                  <li>
-                    <a href="#5-2-tls_client_auth" class="toc-h2 toc-link" data-title="5.2. tls_client_auth">5.2. tls_client_auth</a>
                   </li>
               </ul>
           </li>
@@ -426,7 +423,7 @@ Where content is present it represents decisions that have been completed.<br/>
 <br/>
 Please refer to the latest version of the <a href="https://consumerdatastandardsaustralia.github.io/standards">API Standards</a> for more detailed information.
 </aside>
-<h1 id='1-infosec-profile-0-1-0'>1. InfoSec Profile 0.1.0</h1>
+<h1 id='1-infosec-profile-0-1-1'>1. InfoSec Profile 0.1.1</h1>
 <aside class="warning">
 This is an early draft of the CDR Information Security Profile and thus subject to change.
 </aside>
@@ -461,6 +458,12 @@ This is an early draft of the CDR Information Security Profile and thus subject 
 <td>LP</td>
 <td>20/12/2018</td>
 <td>0.1.0</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>LP</td>
+<td>07/01/2019</td>
+<td>0.1.1</td>
 <td>Created</td>
 </tr>
 </tbody></table>
@@ -610,13 +613,9 @@ mechanisms <strong>[FAPI-CIBA]</strong>.  </p>
 
 <p><a id="client-authentication"></a></p>
 <h1 id='5-client-authentication'>5. Client Authentication</h1>
-<p>This profile supports the two forms of
-Client Authentication described under <a href="https://openid.net/specs/openid-financial-api-part-2.html#authorization-server">section 5.2.2</a> of the <strong>[FAPI-RW]</strong> profile: </p>
+<p>Data Holder&#39;s MUST support the <code>private_key_jwt</code> Client Authentication method specified at <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication">section 9</a> of <strong>[OIDC]</strong>.</p>
 
-<ul>
-<li><code>private_key_jwt</code> under <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication">section 9</a> of <strong>[OIDC]</strong>.</li>
-<li><code>tls_client_auth</code> specified under <a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2">section 2</a> of <strong>[MTLS]</strong>.</li>
-</ul>
+<p>The PKI Mutual TLS OAuth Client Authentication Method SHALL not be supported.  However as specified under <a href="#mutual-tls">section 11.2</a>, all back-channel communication between Data Recipient and Data Holder systems MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake.</p>
 <h2 id='5-1-private_key_jwt'>5.1. private_key_jwt</h2>
 <blockquote>
 <p>Non-Normative Example</p>
@@ -671,9 +670,6 @@ grant_type=authorization_code&amp;
 <li> <code>client_assertion_type</code>: This MUST be set to <code>urn:ietf:params:oauth:client-assertion-type:jwt-bearer</code>.</li>
 <li> <code>client_assertion</code>: The encoded assertion JWT.</li>
 </ul>
-<h2 id='5-2-tls_client_auth'>5.2. tls_client_auth</h2>
-<p>This profile supports the <a href="https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2">PKI Mutual TLS OAuth Client Authentication Method</a>
-<strong>[MTLS]</strong>. TLS handshake requirements are covered in the <a href="#mutual-tls">Mutual TLS section</a>.  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. </p>
 <h1 id='6-oidc-client-types'>6. OIDC Client Types</h1>
 <p>Only Confidential Clients SHALL be supported under this profile. Therefore, Public clients SHALL NOT be supported.</p>
 <h1 id='7-tokens'>7. Tokens</h1><h2 id='7-1-id-token'>7.1. ID Token</h2>
@@ -779,7 +775,7 @@ this profile.</p>
 <h1 id='9-identifiers-and-subject-types'>9. Identifiers and Subject Types</h1>
 <p>The identifier for an authenticated end-user (subject) MUST be passed in the <code>sub</code> claim of an <a href="https://openid.net/specs/openid-cocnnect-core-1_0.html#IDToken">ID Token</a> and <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfoResponse">UserInfo response</a> as defined by <strong>[OIDC]</strong>. The
 Data Holder MUST generate the <code>sub</code> value as a Pairwise Pseudonymous Identifier (PPID)
-as described in <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">section 8</a> of <strong>[OIDC]</strong> (Sector Identifier URIs SHALL NOT be supported under this profile). Furthermore, the identifier SHOULD also be unique relative to the scenario in which the end-user has authenticated. For example, the identifier generated for the same person when they are using a business account SHOULD be different to the identifier that is generated when that same individual is authorising as an individual.</p>
+as described in <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">section 8</a> of <strong>[OIDC]</strong>. Furthermore, the identifier SHOULD also be unique relative to the scenario in which the end-user has authenticated. For example, the identifier generated for the same person when they are using a business account SHOULD be different to the identifier that is generated when that same individual is authorising as an individual.</p>
 
 <p>It is RECOMMENDED that the <code>sub</code> value is generated as a universally unique
 Identifier (UUID) <strong>[RFC4122]</strong>.</p>
@@ -1057,7 +1053,7 @@ Content-Type: application/json
   "subject_types_supported": ["pairwise"],
   "id_token_signing_alg_values_supported": ["ES256", "PS256"],
   "request_object_signing_alg_values_supported": ["ES256", "PS256"],
-  "token_endpoint_auth_methods_supported": ["private_key_jwt", "tls_client_auth"],
+  "token_endpoint_auth_methods_supported": ["private_key_jwt"],
   "mutual_tls_sender_constrained_access_tokens": "true",
   "claims_supported": ["name", "given_name", "family_name", "vot", "acr", "auth_time", "sub"]
 }
