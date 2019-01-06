@@ -42,6 +42,7 @@ This is an early draft of the CDR Information Security Profile and thus subject 
 | LP			     | 30/11/2018 | 0.0.2  | Created  |
 | LP			     | 10/12/2018 | 0.0.3  | Created  |
 | LP			     | 20/12/2018 | 0.1.0  | Created  |
+| LP			     | 07/01/2019 | 0.1.1  | Created  |
 
 The detailed change log for this artifact is available [here](https://github.com/ConsumerDataStandardsAustralia/infosec/blob/master/CHANGELOG.md).
 
@@ -171,11 +172,9 @@ The polling mode for clients SHALL NOT be supported.
 
 <a id="client-authentication"></a>
 # 5. Client Authentication
-This profile supports the two forms of
-Client Authentication described under [section 5.2.2](https://openid.net/specs/openid-financial-api-part-2.html#authorization-server) of the **[FAPI-RW]** profile: 
+Data Holder's MUST support the `private_key_jwt` Client Authentication method specified at [section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) of **[OIDC]** for Client Authentication.
 
-- `private_key_jwt` under [section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) of **[OIDC]**.
-- `tls_client_auth` specified under [section 2](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2) of **[MTLS]**.
+The PKI Mutual TLS OAuth Client Authentication Method SHALL not be supported.  However as stated under [section 11.2](#mutual-tls), all back-channel communication between Data Recipient and Data Holder systems MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake.
 
 ## 5.1. private\_key\_jwt
 
@@ -228,10 +227,6 @@ When invoking a protected endpoint, the aforementioned assertion MUST be sent wi
 -  `client_id`: The ID of the calling Client.
 -  `client_assertion_type`: This MUST be set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
 -  `client_assertion`: The encoded assertion JWT.
-
-## 5.2. tls\_client\_auth
-This profile supports the [PKI Mutual TLS OAuth Client Authentication Method](https://tools.ietf.org/html/draft-ietf-oauth-mtls-12#section-2)
-**[MTLS]**. TLS handshake requirements are covered in the [Mutual TLS section](#mutual-tls).  In addition to these requirements, the Client SHALL be successfully authenticated if the subject information in the certificate matches the expected DN configured or registered for the Client. 
 
 # 6. OIDC Client Types
 Only Confidential Clients SHALL be supported under this profile. Therefore, Public clients SHALL NOT be supported.
@@ -340,7 +335,7 @@ The following **[VOT]** claims MAY be supported:
 # 9. Identifiers and Subject Types
 The identifier for an authenticated end-user (subject) MUST be passed in the `sub` claim of an [ID Token](https://openid.net/specs/openid-cocnnect-core-1_0.html#IDToken) and [UserInfo response](https://openid.net/specs/openid-connect-core-1_0.html#UserInfoResponse) as defined by **[OIDC]**. The
 Data Holder MUST generate the `sub` value as a Pairwise Pseudonymous Identifier (PPID)
-as described in [section 8](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) of **[OIDC]** (Sector Identifier URIs SHALL NOT be supported under this profile). Furthermore, the identifier SHOULD also be unique relative to the scenario in which the end-user has authenticated. For example, the identifier generated for the same person when they are using a business account SHOULD be different to the identifier that is generated when that same individual is authorising as an individual.
+as described in [section 8](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) of **[OIDC]**. Furthermore, the identifier SHOULD also be unique relative to the scenario in which the end-user has authenticated. For example, the identifier generated for the same person when they are using a business account SHOULD be different to the identifier that is generated when that same individual is authorising as an individual.
 
 It is RECOMMENDED that the `sub` value is generated as a universally unique
 Identifier (UUID) **[RFC4122]**.
@@ -609,7 +604,7 @@ Content-Type: application/json
   "subject_types_supported": ["pairwise"],
   "id_token_signing_alg_values_supported": ["ES256", "PS256"],
   "request_object_signing_alg_values_supported": ["ES256", "PS256"],
-  "token_endpoint_auth_methods_supported": ["private_key_jwt", "tls_client_auth"],
+  "token_endpoint_auth_methods_supported": ["private_key_jwt"],
   "mutual_tls_sender_constrained_access_tokens": "true",
   "claims_supported": ["name", "given_name", "family_name", "vot", "acr", "auth_time", "sub"]
 }

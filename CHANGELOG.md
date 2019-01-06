@@ -79,3 +79,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0+1] - 2018-12-20
 ### Added
 - Published 0.1.0 build 1.
+
+## [0.1.1+1] - 2019-01-07
+### Added
+- Published 0.1.1 build 1.
+- Only private key JWT will be supported as outlined in proposal [Client Authentication - Private Key Support Only #7](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/7)
+- Sector URIs will be supported.  This issue is discussed under issue [#48](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/48).
