@@ -28,7 +28,7 @@ Where content is present it represents decisions that have been completed.<br/>
 Please refer to the latest version of the <a href="https://consumerdatastandardsaustralia.github.io/standards">API Standards</a> for more detailed information.
 </aside>
 
-# 1. InfoSec Profile 0.1.0
+# 1. InfoSec Profile 0.1.1
 
 <aside class="warning">
 This is an early draft of the CDR Information Security Profile and thus subject to change.
