@@ -174,7 +174,7 @@ The polling mode for clients SHALL NOT be supported.
 # 5. Client Authentication
 Data Holder's MUST support the `private_key_jwt` Client Authentication method specified at [section 9](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication) of **[OIDC]**.
 
-The PKI Mutual TLS OAuth Client Authentication Method SHALL not be supported.  However as stated under [section 11.2](#mutual-tls), all back-channel communication between Data Recipient and Data Holder systems MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake.
+The PKI Mutual TLS OAuth Client Authentication Method SHALL not be supported.  However as specified under [section 11.2](#mutual-tls), all back-channel communication between Data Recipient and Data Holder systems MUST incorporate, unless stated otherwise, MTLS as part of the TLS handshake.
 
 ## 5.1. private\_key\_jwt
 
