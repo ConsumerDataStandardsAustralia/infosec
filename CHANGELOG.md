@@ -85,3 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Published 0.1.1 build 1.
 - Only private key JWT will be supported as outlined in proposal [Client Authentication - Private Key Support Only #7](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/7)
 - Sector URIs will be supported.  This issue is discussed under issue [#48](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/48).
+
+## [0.1.1+2] - 2019-01-07
+### Added
+- Reflect FAPI and CIBA Core updates in Profile as per feature issue [#50](https://github.com/ConsumerDataStandardsAustralia/infosec/issues/50).

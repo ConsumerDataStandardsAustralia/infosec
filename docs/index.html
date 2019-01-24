@@ -600,7 +600,7 @@ authorisation code flow detailed under <strong>[OIDC]</strong>.</p>
 <p><a id="ciba-flow"></a></p>
 <h2 id='4-2-client-initiated-backchannel-authentication-ciba'>4.2. Client-Initiated Backchannel Authentication (CIBA)</h2>
 <p>Client Initiated Backchannel Authentication (CIBA) enables a Data Recipient (Client) to
-initiate the authentication of an end-user at a Data Holder (OpenID Provider) by means of detached or out-band
+initiate the authentication of an end-user at a Data Holder (OpenID Provider) by means of decoupled or out-band
 mechanisms <strong>[FAPI-CIBA]</strong>.  </p>
 
 <p>Authorisation server rules for <strong>[FAPI-CIBA]</strong> are covered under <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-522-authorization-server">section 5.2.2 of the FAPI CIBA profile</a>.  </p>
@@ -608,8 +608,6 @@ mechanisms <strong>[FAPI-CIBA]</strong>.  </p>
 <p>Login hints MUST not reveal Personal Information (PI) about the consumer or end-user.</p>
 
 <p>Client rules for <strong>[FAPI-CIBA]</strong> are outlined under <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client">section 5.2.3 of the FAPI CIBA profile</a>. </p>
-
-<p>The polling mode for clients SHALL NOT be supported.</p>
 
 <p><a id="client-authentication"></a></p>
 <h1 id='5-client-authentication'>5. Client Authentication</h1>
@@ -715,8 +713,6 @@ Endpoint and Token Endpoint. </p>
 <li><code>c_hash</code>: Hash of the authorisation_code value.</li>
 </ul>
 
-<p>The <code>amr</code> claim, which represents Authentication Methods References, MAY be returned as part of <a href="#hybrid">Hybrid Flow authentication</a> but MUST be returned as part of a <a href="#ciba-flow">CIBA authentication flow</a>.</p>
-
 <p>ID Tokens MUST be signed by Data Holders as specified in <a href="https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations">section 8.6</a> of <strong>[FAPI-RW]</strong>.</p>
 
 <p>The ID Token returned from the Authorisation Endpoint MUST NOT contain any Personal Information (PI) claims.</p>
@@ -754,14 +750,13 @@ this profile.</p>
 <p>The following <a href="https://openid.net/specs/openid-connect-core-1_0.html#NormalClaims">normal</a> <strong>[OIDC]</strong> claims MUST be supported. This list includes, but is not limited to, <strong>[OIDC]</strong> <a href="https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims">standard claims</a> :</p>
 
 <ul>
-<li> <code>sub</code>: <a href="#identifiers">Pairwise Pseudonymous Identifier (PPID)</a> for the End-User at the Data Holder.</li>
-<li> <code>acr</code>: Authentication Context Class Reference.  MUST contain a valid <a href="#ordinal-loa">ordinal LoA value</a>.</li>
-<li> <code>amr</code>: Authentication Methods References.</li>
-<li> <code>auth_time</code>: Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC <code>auth_time</code>.</li>
-<li>  <code>name</code>: End-User&#39;s full name in displayable form including all name parts.</li>
-<li>  <code>given_name</code>: Given name(s) or first name(s) of the End-User.</li>
-<li>  <code>family_name</code>: Surname(s) or last name(s) of the End-User.</li>
-<li>  <code>updated_at</code>: Time the End-User&#39;s information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC <code>updated_at</code> time.</li>
+<li><code>sub</code>: <a href="#identifiers">Pairwise Pseudonymous Identifier (PPID)</a> for the End-User at the Data Holder.</li>
+<li><code>acr</code>: Authentication Context Class Reference.  MUST contain a valid <a href="#ordinal-loa">ordinal LoA value</a>.</li>
+<li><code>auth_time</code>: Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC <code>auth_time</code>.</li>
+<li><code>name</code>: End-User&#39;s full name in displayable form including all name parts.</li>
+<li><code>given_name</code>: Given name(s) or first name(s) of the End-User.</li>
+<li><code>family_name</code>: Surname(s) or last name(s) of the End-User.</li>
+<li><code>updated_at</code>: Time the End-User&#39;s information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC <code>updated_at</code> time.</li>
 </ul>
 
 <p>The following <strong>[VOT]</strong> claims MAY be supported:</p>
@@ -1044,10 +1039,12 @@ Content-Type: application/json
   "jwks_uri": "https://www.dh.com.au/jwks",
   "registration_endpoint": "https://www.dh.com.au/register",
   "backchannel_authentication_endpoint": "https://www.dh.com.au/bc-authorise",
+  "backchannel_token_delivery_modes_supported": ["poll", "ping"],
+  "backchannel_authentication_request_signing_alg_values_supported": ["ES256", "PS256"],
   "scopes_supported": ["openid", "profile"],
   "response_types_supported": ["code id_token"],
   "response_modes_supported": ["fragment"],
-  "grant_types_supported": ["authorization_code", "client_credentials"],
+  "grant_types_supported": ["authorization_code", "client_credentials", "urn:openid:params:modrna:grant-type:backchannel_request"],
   "acr_values_supported": ["urn:cds.au:cdr:2","urn:cds.au:cdr:3"],
   "vot_values_supported": ["CL1","CL2"],
   "subject_types_supported": ["pairwise"],
@@ -1115,6 +1112,7 @@ OpenID Provider Configuration is directly impacted by the emerging requirements 
 
 <ul>
 <li><code>backchannel_authentication_endpoint</code>: The CIBA Authorisation Endpoint.</li>
+<li><code>backchannel_authentication_request_signing_alg_values_supported</code>: JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for signed authentication requests. Only <code>ES256</code> and <code>PS256</code> SHALL be supported.</li>
 </ul>
 
 <p><a id="authorisation-endpoint"></a></p>
@@ -1229,7 +1227,7 @@ Host: www.holder.com.au
 
 <p>The requirements for the Backchannel Authorisation Endpoint are specified in the <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client">Client Initiated Backchannel Authentication Profile</a> <strong>[FAPI-CIBA]</strong>.  This endpoint is invoked as part of the <a href="#ciba-flow">Client-Initiated Backchannel Authentication flow</a>.</p>
 
-<p>The polling mode for clients SHALL NOT be supported.</p>
+<p>Data Holder&#39;s that feature <strong>[FAPI-CIBA]</strong> MUST support the <code>poll</code> mode and MAY support the <code>ping</code> mode.  The <code>push</code> mode SHALL not be supported.  </p>
 
 <p>A description of requirements relating to the <code>request</code> parameter can be found in the <a href="#request-object">section 12</a>.</p>
 <h2 id='13-4-token-endpoint'>13.4. Token Endpoint</h2>
@@ -1342,8 +1340,8 @@ Private keys MUST NOT be published at this endpoint.
 <p>The JWKS Endpoint returns a <strong>[JSON]</strong> document containing a JSON Web Key Set described in <a href="https://tools.ietf.org/html/rfc7517#section-5">section 5</a> of <strong>[JWK]</strong>.  The JWK format is described in <a href="https://tools.ietf.org/html/rfc7517#section-4">section 4</a> of <strong>[JWK]</strong>.  In addition to the mandatory fields specified in <strong>[JWK]</strong>, each JWK MUST include, at a minimum, the following fields:</p>
 
 <ul>
-<li>  <code>kid</code>: This is used to match a specific key within a JWKS and thus must be unique within the set.</li>
-<li>  <code>use</code>: This is used to identify the intended use of the public key.  Supported values are <code>sig</code> and <code>enc</code>.</li>
+<li><code>kid</code>: This is used to match a specific key within a JWKS and thus must be unique within the set.</li>
+<li><code>use</code>: This is used to identify the intended use of the public key.  Supported values are <code>sig</code> and <code>enc</code>.</li>
 </ul>
 <h2 id='13-7-introspection-endpoint'>13.7. Introspection Endpoint</h2>
 <table><thead>
@@ -1505,10 +1503,17 @@ Dynamic Client Registration functionality is directly impacted by the emerging r
 <li><code>token_endpoint_auth_method</code>: The chosen Client authentication mechanism.</li>
 </ul>
 
-<p>If the Client supports a <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">FAPI-CIBA</a> <strong>[FAPI-CIBA]</strong> notification endpoint, this MUST be specified as:</p>
+<p>If the Data Holder supports <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">FAPI-CIBA</a> <strong>[FAPI-CIBA]</strong> and the Client wishes to utilise this feature, the registration MUST include the following fields:</p>
 
 <ul>
-<li><code>client_notification_endpoint</code>: A callback URI.</li>
+<li><code>backchannel_token_delivery_mode</code>:  This MUST be set to a value of <code>ping</code> or <code>poll</code>.  <code>push</code> mode SHALL NOT be supported.</li>
+<li><code>backchannel_authentication_request_signing_alg</code>: MUST be set to <code>ES256</code> or <code>PS256</code>.</li>
+</ul>
+
+<p>If the Client supports a delivery mode of <code>ping</code>, the registration MUST include the following fields:</p>
+
+<ul>
+<li><code>backchannel_client_notification_endpoint</code>: This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.</li>
 </ul>
 
 <p>This request MUST be made with MTLS as specified in <a href="#mutual-tls">section 11.2</a>.  </p>
@@ -1540,87 +1545,29 @@ How querying, communication, and revocation of consent will be supported technic
 <th><strong>Description</strong></th>
 </tr>
 </thead><tbody>
-<tr>
-<td><a id="CIBA"></a><strong>[FAPI-CIBA]</strong></td>
-<td>Financial Services – Financial API: Client Initiated Backchannel Authentication Profile 1.0: <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default</a></td>
-</tr>
-<tr>
-<td><a id="FAPI-R"></a><strong>[FAPI-R]</strong></td>
-<td>Financial-grade API - Part 1: Read Only API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-1.html">https://openid.net/specs/openid-financial-api-part-1.html</a></td>
-</tr>
-<tr>
-<td><a id="FAPI-RW"></a><strong>[FAPI-RW]</strong></td>
-<td>Financial-grade API - Part 2: Read and Write API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-2.html">https://openid.net/specs/openid-financial-api-part-2.html</a></td>
-</tr>
-<tr>
-<td><a id="JSON"></a><strong>[JSON]</strong></td>
-<td>The JavaScript Object Notation (JSON) Data Interchange Format: <a href="https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a></td>
-</tr>
-<tr>
-<td><a id="JWA"></a><strong>[JWA]</strong></td>
-<td>JSON Web Algorithms (JWA): <a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40">https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40</a></td>
-</tr>
-<tr>
-<td><a id="JWK"></a><strong>[JWK]</strong></td>
-<td>JSON Web Key (JWK): <a href="https://tools.ietf.org/html/rfc7517">https://tools.ietf.org/html/rfc7517</a></td>
-</tr>
-<tr>
-<td><a id="JWT"></a><strong>[JWT]</strong></td>
-<td>JSON Web Token (JWT): <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32</a></td>
-</tr>
-<tr>
-<td><a id="JWS"></a><strong>[JWS]</strong></td>
-<td>JSON Web Signature (JWS): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-signature">http://tools.ietf.org/html/draft-ietf-jose-json-web-signature</a></td>
-</tr>
-<tr>
-<td><a id="JWE"></a><strong>[JWE]</strong></td>
-<td>JSON Web Encryption (JWE): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption">http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption</a></td>
-</tr>
-<tr>
-<td><a id="MTLS"></a><strong>[MTLS]</strong></td>
-<td>OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens: <a href="https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html">https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html</a></td>
-</tr>
-<tr>
-<td><a id="OAUTH2"></a><strong>[OAUTH2]</strong></td>
-<td>The OAuth 2.0 Authorization Framework: <a href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a></td>
-</tr>
-<tr>
-<td><a id="OIDC"></a><strong>[OIDC]</strong></td>
-<td>OpenID Connect Core 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a></td>
-</tr>
-<tr>
-<td><a id="OIDD"></a><strong>[OIDD]</strong></td>
-<td>OpenID Connect Discovery 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">http://openid.net/specs/openid-connect-discovery-1_0.html</a></td>
-</tr>
-<tr>
-<td><a id="OIDC-CR"></a><strong>[OIDC-CR]</strong></td>
-<td>OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 1: <a href="https://openid.net/specs/openid-connect-registration-1_0.html">https://openid.net/specs/openid-connect-registration-1_0.html</a></td>
-</tr>
-<tr>
-<td><a id="TDIF"></a><strong>[TDIF]</strong></td>
-<td>Digital Transformation Agency - Trusted Digital Identity Framework <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework</a></td>
-</tr>
-<tr>
-<td><a id="RFC2119"></a><strong>[RFC2119]</strong></td>
-<td>Key words for use in RFCs to Indicate Requirement Levels <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a></td>
-</tr>
-<tr>
-<td><a id="RFC7009"></a><strong>[RFC7009]</strong></td>
-<td>OAuth 2.0 Token Revocation: <a href="https://tools.ietf.org/html/rfc7009">https://tools.ietf.org/html/rfc7009</a></td>
-</tr>
-<tr>
-<td><a id="RFC7523"></a><strong>[RFC7523]</strong></td>
-<td>JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <a href="https://tools.ietf.org/html/rfc7523">https://tools.ietf.org/html/rfc7523</a></td>
-</tr>
-<tr>
-<td><a id="RFC7662"></a><strong>[RFC7662]</strong></td>
-<td>OAuth 2.0 Token Introspection: <a href="https://tools.ietf.org/html/rfc7662">https://tools.ietf.org/html/rfc7662</a></td>
-</tr>
-<tr>
-<td><a id="VOT"></a><strong>[VOT]</strong></td>
-<td>Vectors of Trust, draft-richer-vectors-of-trust-15 <a href="https://tools.ietf.org/html/draft-richer-vectors-of-trust-15">https://tools.ietf.org/html/draft-richer-vectors-of-trust-15</a></td>
-</tr>
 </tbody></table>
+
+<p>| <a id="CIBA"></a><strong>[CIBA]</strong>     | OpenID Connect Client Initiated Backchannel Authentication Flow - Core 1.0 draft-01: <a href="https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html">https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html</a> |
+| <a id="FAPI-CIBA"></a><strong>[FAPI-CIBA]</strong>     | Financial Services – Financial API: Client Initiated Backchannel Authentication Profile 1.0: <a href="https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default">https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default</a> |
+| <a id="FAPI-R"></a><strong>[FAPI-R]</strong>   | Financial-grade API - Part 1: Read Only API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-1.html">https://openid.net/specs/openid-financial-api-part-1.html</a>                                                         |
+| <a id="FAPI-RW"></a><strong>[FAPI-RW]</strong>  | Financial-grade API - Part 2: Read and Write API Security Profile: <a href="https://openid.net/specs/openid-financial-api-part-2.html">https://openid.net/specs/openid-financial-api-part-2.html</a>                                                    |
+| <a id="JSON"></a><strong>[JSON]</strong>     | The JavaScript Object Notation (JSON) Data Interchange Format: <a href="https://tools.ietf.org/html/rfc7159">https://tools.ietf.org/html/rfc7159</a>                                                                              |
+| <a id="JWA"></a><strong>[JWA]</strong>      | JSON Web Algorithms (JWA): <a href="https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40">https://tools.ietf.org/html/draft-ietf-jose-json-web-algorithms-40</a>                                                                                   |
+| <a id="JWK"></a><strong>[JWK]</strong>      | JSON Web Key (JWK): <a href="https://tools.ietf.org/html/rfc7517">https://tools.ietf.org/html/rfc7517</a>                                                                                                                 |
+| <a id="JWT"></a><strong>[JWT]</strong>      | JSON Web Token (JWT): <a href="https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32">https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32</a>                                                                                            |
+| <a id="JWS"></a><strong>[JWS]</strong>      | JSON Web Signature (JWS): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-signature">http://tools.ietf.org/html/draft-ietf-jose-json-web-signature</a>                                                                                         |
+| <a id="JWE"></a><strong>[JWE]</strong>      | JSON Web Encryption (JWE): <a href="http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption">http://tools.ietf.org/html/draft-ietf-jose-json-web-encryption</a>                                                                                       |
+| <a id="MTLS"></a><strong>[MTLS]</strong>     | OAuth 2.0 Mutual TLS Client Authentication and Certificate Bound Access Tokens: <a href="https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html">https://tools.ietf.org/id/draft-ietf-oauth-mtls-07.html</a>                                          |
+| <a id="OAUTH2"></a><strong>[OAUTH2]</strong>   | The OAuth 2.0 Authorization Framework: <a href="https://tools.ietf.org/html/rfc6749">https://tools.ietf.org/html/rfc6749</a>                                                                                                                                    |
+| <a id="OIDC"></a><strong>[OIDC]</strong>     | OpenID Connect Core 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-core-1_0.html">http://openid.net/specs/openid-connect-core-1_0.html</a>                                                                        |
+| <a id="OIDD"></a><strong>[OIDD]</strong>     | OpenID Connect Discovery 1.0 incorporating errata set 1: <a href="http://openid.net/specs/openid-connect-discovery-1_0.html">http://openid.net/specs/openid-connect-discovery-1_0.html</a>                                                              |
+| <a id="OIDC-CR"></a><strong>[OIDC-CR]</strong>  | OpenID Connect Dynamic Client Registration 1.0 incorporating errata set 1: <a href="https://openid.net/specs/openid-connect-registration-1_0.html">https://openid.net/specs/openid-connect-registration-1_0.html</a> |
+| <a id="TDIF"></a><strong>[TDIF]</strong> | Digital Transformation Agency - Trusted Digital Identity Framework <a href="https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework">https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework</a>
+| <a id="RFC2119"></a><strong>[RFC2119]</strong>  | Key words for use in RFCs to Indicate Requirement Levels <a href="https://tools.ietf.org/html/rfc2119">https://tools.ietf.org/html/rfc2119</a>   |
+| <a id="RFC7009"></a><strong>[RFC7009]</strong>  | OAuth 2.0 Token Revocation: <a href="https://tools.ietf.org/html/rfc7009">https://tools.ietf.org/html/rfc7009</a>|
+| <a id="RFC7523"></a><strong>[RFC7523]</strong>  | JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <a href="https://tools.ietf.org/html/rfc7523">https://tools.ietf.org/html/rfc7523</a> |<br>
+| <a id="RFC7662"></a><strong>[RFC7662]</strong>  | OAuth 2.0 Token Introspection: <a href="https://tools.ietf.org/html/rfc7662">https://tools.ietf.org/html/rfc7662</a>| 
+| <a id="VOT"></a><strong>[VOT]</strong> | Vectors of Trust, draft-richer-vectors-of-trust-15 <a href="https://tools.ietf.org/html/draft-richer-vectors-of-trust-15">https://tools.ietf.org/html/draft-richer-vectors-of-trust-15</a>      </p>
 <h1 id='16-informative-references'>16. Informative References</h1>
 <table><thead>
 <tr>

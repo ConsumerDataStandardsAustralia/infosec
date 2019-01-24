@@ -159,7 +159,7 @@ The `request_uri` parameter SHALL NOT be supported.
 <a id="ciba-flow"></a>
 ## 4.2. Client-Initiated Backchannel Authentication (CIBA)
 Client Initiated Backchannel Authentication (CIBA) enables a Data Recipient (Client) to
-initiate the authentication of an end-user at a Data Holder (OpenID Provider) by means of detached or out-band
+initiate the authentication of an end-user at a Data Holder (OpenID Provider) by means of decoupled or out-band
 mechanisms **[FAPI-CIBA]**.  
 
 Authorisation server rules for **[FAPI-CIBA]** are covered under [section 5.2.2 of the FAPI CIBA profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-522-authorization-server).  
@@ -167,8 +167,6 @@ Authorisation server rules for **[FAPI-CIBA]** are covered under [section 5.2.2 
 Login hints MUST not reveal Personal Information (PI) about the consumer or end-user.
 
 Client rules for **[FAPI-CIBA]** are outlined under [section 5.2.3 of the FAPI CIBA profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client). 
-
-The polling mode for clients SHALL NOT be supported.
 
 <a id="client-authentication"></a>
 # 5. Client Authentication
@@ -277,8 +275,6 @@ As described under [section 5.2.2](https://openid.net/specs/openid-financial-api
 - `s_hash`: Hash of the state value.
 - `c_hash`: Hash of the authorisation_code value.
 
-The `amr` claim, which represents Authentication Methods References, MAY be returned as part of [Hybrid Flow authentication](#hybrid) but MUST be returned as part of a [CIBA authentication flow](#ciba-flow).
-
 ID Tokens MUST be signed by Data Holders as specified in [section 8.6](https://openid.net/specs/openid-financial-api-part-2.html#jws-algorithm-considerations) of **[FAPI-RW]**.
 
 The ID Token returned from the Authorisation Endpoint MUST NOT contain any Personal Information (PI) claims.
@@ -317,14 +313,13 @@ The following scopes MUST be supported:
 ## 8.2. Claims
 The following [normal](https://openid.net/specs/openid-connect-core-1_0.html#NormalClaims) **[OIDC]** claims MUST be supported. This list includes, but is not limited to, **[OIDC]** [standard claims](https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims) :
 
--  `sub`: [Pairwise Pseudonymous Identifier (PPID)](#identifiers) for the End-User at the Data Holder.
--  `acr`: Authentication Context Class Reference.  MUST contain a valid [ordinal LoA value](#ordinal-loa).
--  `amr`: Authentication Methods References.
--  `auth_time`: Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC `auth_time`.
--   `name`: End-User's full name in displayable form including all name parts.
--   `given_name`: Given name(s) or first name(s) of the End-User.
--   `family_name`: Surname(s) or last name(s) of the End-User.
--   `updated_at`: Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC `updated_at` time.
+- `sub`: [Pairwise Pseudonymous Identifier (PPID)](#identifiers) for the End-User at the Data Holder.
+- `acr`: Authentication Context Class Reference.  MUST contain a valid [ordinal LoA value](#ordinal-loa).
+- `auth_time`: Time when the End-User authentication occurred. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC `auth_time`.
+- `name`: End-User's full name in displayable form including all name parts.
+- `given_name`: Given name(s) or first name(s) of the End-User.
+- `family_name`: Surname(s) or last name(s) of the End-User.
+- `updated_at`: Time the End-User's information was last updated. Its value is a JSON number representing the number of seconds from 1970-01-01T00:00:00Z to the UTC `updated_at` time.
 
 The following **[VOT]** claims MAY be supported:
 
@@ -595,10 +590,12 @@ Content-Type: application/json
   "jwks_uri": "https://www.dh.com.au/jwks",
   "registration_endpoint": "https://www.dh.com.au/register",
   "backchannel_authentication_endpoint": "https://www.dh.com.au/bc-authorise",
+  "backchannel_token_delivery_modes_supported": ["poll", "ping"],
+  "backchannel_authentication_request_signing_alg_values_supported": ["ES256", "PS256"],
   "scopes_supported": ["openid", "profile"],
   "response_types_supported": ["code id_token"],
   "response_modes_supported": ["fragment"],
-  "grant_types_supported": ["authorization_code", "client_credentials"],
+  "grant_types_supported": ["authorization_code", "client_credentials", "urn:openid:params:modrna:grant-type:backchannel_request"],
   "acr_values_supported": ["urn:cds.au:cdr:2","urn:cds.au:cdr:3"],
   "vot_values_supported": ["CL1","CL2"],
   "subject_types_supported": ["pairwise"],
@@ -645,6 +642,7 @@ Data Holders that support [Vectors of Trust](https://tools.ietf.org/html/draft-r
 Data Holders that support [CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[FAPI-CIBA]** MUST include:
 
 - `backchannel_authentication_endpoint`: The CIBA Authorisation Endpoint.
+- `backchannel_authentication_request_signing_alg_values_supported`: JSON array containing a list of the JWS signing algorithms (alg values) supported by the OP for signed authentication requests. Only `ES256` and `PS256` SHALL be supported.
 
 <a id="authorisation-endpoint"></a>
 ## 13.2. Authorisation Endpoint
@@ -727,7 +725,7 @@ A description of requirements relating to the `request` parameter can be found i
 
 The requirements for the Backchannel Authorisation Endpoint are specified in the [Client Initiated Backchannel Authentication Profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client) **[FAPI-CIBA]**.  This endpoint is invoked as part of the [Client-Initiated Backchannel Authentication flow](#ciba-flow).
 
-The polling mode for clients SHALL NOT be supported.
+Data Holder's that feature **[FAPI-CIBA]** MUST support the `poll` mode and MAY support the `ping` mode.  The `push` mode SHALL not be supported.  
 
 A description of requirements relating to the `request` parameter can be found in the [section 12](#request-object).
 
@@ -793,8 +791,8 @@ Private keys MUST NOT be published at this endpoint.
 
 The JWKS Endpoint returns a **[JSON]** document containing a JSON Web Key Set described in [section 5](https://tools.ietf.org/html/rfc7517#section-5) of **[JWK]**.  The JWK format is described in [section 4](https://tools.ietf.org/html/rfc7517#section-4) of **[JWK]**.  In addition to the mandatory fields specified in **[JWK]**, each JWK MUST include, at a minimum, the following fields:
 
--   `kid`: This is used to match a specific key within a JWKS and thus must be unique within the set.
--   `use`: This is used to identify the intended use of the public key.  Supported values are `sig` and `enc`.
+- `kid`: This is used to match a specific key within a JWKS and thus must be unique within the set.
+- `use`: This is used to identify the intended use of the public key.  Supported values are `sig` and `enc`.
 
 ## 13.7. Introspection Endpoint
 
@@ -909,9 +907,14 @@ The registering **[JWT]** MUST include, at a minimum, the following fields:
 - `request_object_signing_alg`:  Request Object signing algorithm.
 - `token_endpoint_auth_method`: The chosen Client authentication mechanism.
 
-If the Client supports a [FAPI-CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[FAPI-CIBA]** notification endpoint, this MUST be specified as:
+If the Data Holder supports [FAPI-CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[FAPI-CIBA]** and the Client wishes to utilise this feature, the registration MUST include the following fields:
 
-- `client_notification_endpoint`: A callback URI.
+- `backchannel_token_delivery_mode`:  This MUST be set to a value of `ping` or `poll`.  `push` mode SHALL NOT be supported.
+- `backchannel_authentication_request_signing_alg`: MUST be set to `ES256` or `PS256`.
+
+If the Client supports a delivery mode of `ping`, the registration MUST include the following fields:
+
+- `backchannel_client_notification_endpoint`: This is the endpoint to which the OP will post a notification after a successful or failed end-user authentication.
 
 This request MUST be made with MTLS as specified in [section 11.2](#mutual-tls).  
 
@@ -941,8 +944,10 @@ A Data Holder Token Endpoint MUST:
 # 15. Normative References
 
 | **Reference**  | **Description**                                                                                                                                                                   |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                             
-| <a id="CIBA"></a>**[FAPI-CIBA]**     | Financial Services – Financial API: Client Initiated Backchannel Authentication Profile 1.0: <https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default> |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                          
+
+| <a id="CIBA"></a>**[CIBA]**     | OpenID Connect Client Initiated Backchannel Authentication Flow - Core 1.0 draft-01: <https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html> |
+| <a id="FAPI-CIBA"></a>**[FAPI-CIBA]**     | Financial Services – Financial API: Client Initiated Backchannel Authentication Profile 1.0: <https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default> |
 | <a id="FAPI-R"></a>**[FAPI-R]**   | Financial-grade API - Part 1: Read Only API Security Profile: <https://openid.net/specs/openid-financial-api-part-1.html>                                                         |
 | <a id="FAPI-RW"></a>**[FAPI-RW]**  | Financial-grade API - Part 2: Read and Write API Security Profile: <https://openid.net/specs/openid-financial-api-part-2.html>                                                    |
 | <a id="JSON"></a>**[JSON]**     | The JavaScript Object Notation (JSON) Data Interchange Format: <https://tools.ietf.org/html/rfc7159>                                                                              |
