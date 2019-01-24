@@ -943,9 +943,8 @@ A Data Holder Token Endpoint MUST:
 
 # 15. Normative References
 
-| **Reference**  | **Description**                                                                                                                                                                   |
-|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|                          
-
+| **Reference**  | **Description**  |
+| --- | --- | --- |
 | <a id="CIBA"></a>**[CIBA]**     | OpenID Connect Client Initiated Backchannel Authentication Flow - Core 1.0 draft-01: <https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html> |
 | <a id="FAPI-CIBA"></a>**[FAPI-CIBA]**     | Financial Services – Financial API: Client Initiated Backchannel Authentication Profile 1.0: <https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default> |
 | <a id="FAPI-R"></a>**[FAPI-R]**   | Financial-grade API - Part 1: Read Only API Security Profile: <https://openid.net/specs/openid-financial-api-part-1.html>                                                         |
