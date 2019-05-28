@@ -11,6 +11,13 @@ toc_footers:
 search: true
 ---
 
+<aside class="warning">
+Note that this repository is no longer being used to maintain the CDR Information Security Profile.  Change has been moved to the main Standards repository.  This repository is being retained for history of change and consultation only.<br/>
+<br/>
+The main standards repository can be found at:<br/>
+<a href="https://consumerdatastandardsaustralia.github.io/standards">https://consumerdatastandardsaustralia.github.io/standards</a>
+</aside>
+
 # Introduction
 
 This Information Security profile has been developed as part of the introduction in Australia of the [Consumer Data Right](https://www.accc.gov.au/focus-areas/consumer-data-right "ACCC Consumer Data Right webpage") legislation to give Australians greater control over their data.
@@ -118,7 +125,7 @@ A Data Holder assumes the role of an **[OIDC]** [OpenID Provider](https://openid
 A Data Recipient (DR) is system entity that is authorised by a
 Data Holder to access consumer resources (APIs). A Data Recipient MUST capture consumer consent prior to commencing an authorisation process with a Data Holder.
 
-A Data Recipient MUST be accredited in order to participate in the CDR Federation.  Accreditation rules for Data Recipients are beyond the scope of this artifact. 
+A Data Recipient MUST be accredited in order to participate in the CDR Federation.  Accreditation rules for Data Recipients are beyond the scope of this artifact.
 
 A Data Recipient assumes the role of an **[OIDC]** [Relying Party (Client)](https://openid.net/specs/openid-connect-core-1_0.html#Overview).
 
@@ -166,7 +173,7 @@ Authorisation server rules for **[FAPI-CIBA]** are covered under [section 5.2.2 
 
 Login hints MUST not reveal Personal Information (PI) about the consumer or end-user.
 
-Client rules for **[FAPI-CIBA]** are outlined under [section 5.2.3 of the FAPI CIBA profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client). 
+Client rules for **[FAPI-CIBA]** are outlined under [section 5.2.3 of the FAPI CIBA profile](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default#markdown-header-523-confidential-client).
 
 <a id="client-authentication"></a>
 # 5. Client Authentication
@@ -221,7 +228,7 @@ The following claims MAY be included:
 When invoking a protected endpoint, the aforementioned assertion MUST be sent with the `POST` method and MUST include the following parameters:
 
 -  `grant_type`: This parameter MUST only be included when invoking the Token Endpoint and MUST be set to `authorisation_code` or `client_credentials`.
--  `code`: This parameter MUST only be included when invoking the Token Endpoint after utilising the [Hybrid Authentication flow](#hybrid-flow).  This is the value of the code parameter returned in the authorisation response. 
+-  `code`: This parameter MUST only be included when invoking the Token Endpoint after utilising the [Hybrid Authentication flow](#hybrid-flow).  This is the value of the code parameter returned in the authorisation response.
 -  `client_id`: The ID of the calling Client.
 -  `client_assertion_type`: This MUST be set to `urn:ietf:params:oauth:client-assertion-type:jwt-bearer`.
 -  `client_assertion`: The encoded assertion JWT.
@@ -267,7 +274,7 @@ Only Confidential Clients SHALL be supported under this profile. Therefore, Publ
 
 ID Tokens are specified in [section 2](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) of the **[OIDC]** standard.  In accordance with **[FAPI-RW]**, ID Tokens must be signed and encrypted when returned
 to a Data Recipient from both the Authorisation
-Endpoint and Token Endpoint. 
+Endpoint and Token Endpoint.
 
 As described under [section 5.2.2](https://openid.net/specs/openid-financial-api-part-2.html#authorization-server) of the **[FAPI-RW]** profile, ID Tokens MUST include the following claims (in addition to the mandatory claims specified in [section 2](https://openid.net/specs/openid-connect-core-1_0.html#IDToken) of the **[OIDC]** standard) as part of [Hybrid Flow authentication](#hybrid):
 
@@ -286,7 +293,7 @@ If the ID Token contains a `vot` claim, it MUST also contain a `vtm` claim:
 - `vtm`: The trustmark URI as specified in [section 5](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15#section-5) of **[VOT]** .
 
 ### 7.1.1. Hashing value for state and authorisation code
-The `c_hash` value MUST be generated according to [section 3.3.2.11](https://openid.net/specs/openid-connect-core-1_0.html#HybridIDToken) of **[OIDC]**. 
+The `c_hash` value MUST be generated according to [section 3.3.2.11](https://openid.net/specs/openid-connect-core-1_0.html#HybridIDToken) of **[OIDC]**.
 
 The `s_hash` value MUST be generated according to [section 5.1](https://openid.net/specs/openid-financial-api-part-2.html#introduction) of **[FAPI-RW]**.
 
@@ -340,7 +347,7 @@ Identifier (UUID) **[RFC4122]**.
 Levels Of Assurance (LoAs), returned after a successful authentication, MAY be represented in 2 different forms:
 
 - [Single Ordinal](#ordinal-loa): A single LoA value is represented.
-  - Data Holder's MUST support this mechanism. 
+  - Data Holder's MUST support this mechanism.
 - [Vector](#vector-loas): One or more LoAs, represented by a vector value, are represented.
   - Data Holder's MAY support this mechanism.
 
@@ -382,7 +389,7 @@ The following VoT values SHALL be supported to represent authentication assuranc
 - `CL1`: This is Credential Level CL1 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
 
 - `CL2`: This is Credential Level CL2 [defined](https://www.dta.gov.au/our-projects/digital-identity/join-identity-federation/accreditation-and-onboarding/trusted-digital-identity-framework) by the **[TDIF]** Authentication Credential Requirements specification.
-  
+
 *READ* operations SHALL only be allowed where __at least__ a `CL1` has been provided.
 
 *WRITE* operations SHALL only be allowed where __at least__ a `CL2` has been provided.
@@ -519,7 +526,7 @@ If a Data Holder supports Vectors of Trust **[VOT]**, they MUST accept Request o
 
 - A `vtr` value.
   - Allowed Values are specified in the [VoT values section](#vot-values) of this artifact.  
-  - This value MUST contain a space-separated string that specifies the `vot` values that the Authorization Server is being requested to use for processing this Authentication Request, with the values appearing in order of preference. The VoT satisfied by the authentication performed is returned as the `vot` Claim Value. 
+  - This value MUST contain a space-separated string that specifies the `vot` values that the Authorization Server is being requested to use for processing this Authentication Request, with the values appearing in order of preference. The VoT satisfied by the authentication performed is returned as the `vot` Claim Value.
   - The `vot` Claim is requested as a Voluntary Claim by this parameter.
   - The `vtr` takes precedence over `acr_values`
 - A `vot` essential claim.
@@ -559,7 +566,7 @@ Decoded Request Object JWT
   }
 }
 ```
-	
+
 For *WRITE* operations, a Data Recipient:
 
 - SHALL, where a Data Holder supports **[VOT]**, request user authentication with a Credential Level of 2 (`CL2`) or greater by requesting the `vot` claim as an essential claim.
@@ -580,7 +587,7 @@ Host: www.dh.com.au
 
 HTTP/1.1 200 OK
 Content-Type: application/json
-{ 
+{
   "issuer": "https://www.dh.com.au",
   "authorization_endpoint": "https://www.dh.com.au/authorise",
   "token_endpoint": "https://www.dh.com.au/token",
@@ -614,18 +621,18 @@ OpenID Provider Configuration is directly impacted by the emerging requirements 
 | Description | Value   |  
 |---|---|
 | Hosted By  | Data Holder  |  
-|  Transport Security |  TLS | 
+|  Transport Security |  TLS |
 | Client Authentication Required| No|
 | Bearer Token Required| No|
 
-Data Holders MUST make their OpenID Provider Metadata available via a configuration endpoint as outlined in [Section 3 and 4 of the OpenID Connect Discovery standards] (https://openid.net/specs/openid-connect-discovery-1_0.html) **[OIDD]**. 
+Data Holders MUST make their OpenID Provider Metadata available via a configuration endpoint as outlined in [Section 3 and 4 of the OpenID Connect Discovery standards] (https://openid.net/specs/openid-connect-discovery-1_0.html) **[OIDD]**.
 
 Where a Data Holder is supporting [Vectors of Trust](https://tools.ietf.org/html/draft-richer-vectors-of-trust-15) **[VOT]** or [FAPI-CIBA](https://bitbucket.org/openid/fapi/src/master/Financial_API_WD_CIBA.md?fileviewer=file-view-default) **[FAPI-CIBA]**, the published OpenID Provider metadata SHALL reflect that support.
 
 At a minimum, the Data Provider metadata MUST include:
 
 - `issuer`: URL that the Data Holder asserts as its Issuer Identifier.
-- `authorization_endpoint`: URL of the Authorization Endpoint. 
+- `authorization_endpoint`: URL of the Authorization Endpoint.
 - `token_endpoint`: URL of the Token Endpoint.
 - `introspection_endpoint`: URL of the Introspection Endpoint.
 - `revocation_endpoint`: URL of the Revocation Endpoint.
@@ -733,7 +740,7 @@ A description of requirements relating to the `request` parameter can be found i
 | Description | Value   |  
 |---|---|
 | Hosted By  | Data Holder  |  
-|  Transport Security |  MTLS | 
+|  Transport Security |  MTLS |
 | Client Authentication Required| Yes|
 | Bearer Token Required| No|
 
@@ -747,7 +754,7 @@ Data Holders MUST support a Token Endpoint.
 | Description | Value   |  
 |---|---|
 | Hosted By  | Data Holder  |  
-|  Transport Security |  MTLS | 
+|  Transport Security |  MTLS |
 | Client Authentication Required| No|
 | Bearer Token Required| Yes|
 
@@ -785,7 +792,7 @@ Private keys MUST NOT be published at this endpoint.
 | Description | Value   |  
 |---|---|
 | Hosted By  | Registry  |  
-|  Transport Security |  TLS | 
+|  Transport Security |  TLS |
 | Client Authentication Required| No|
 | Bearer Token Required| No|
 
@@ -799,11 +806,11 @@ The JWKS Endpoint returns a **[JSON]** document containing a JSON Web Key Set de
 | Description | Value   |  
 |---|---|
 | Hosted By  | Data Holder  |  
-|  Transport Security |  MTLS | 
+|  Transport Security |  MTLS |
 | Client Authentication Required| Yes|
 | Bearer Token Required| No|
 
-Data Holders MUST implement an Introspection Endpoint to allow Data Recipients to determine the status and expiry date of Refresh Tokens.  The requirements for an Introspection Endpoint are described in [section 2](https://tools.ietf.org/html/rfc7662#section-2) of **[RFC7662]**. 
+Data Holders MUST implement an Introspection Endpoint to allow Data Recipients to determine the status and expiry date of Refresh Tokens.  The requirements for an Introspection Endpoint are described in [section 2](https://tools.ietf.org/html/rfc7662#section-2) of **[RFC7662]**.
 
 Introspection of Refresh Tokens MUST be supported.
 
@@ -820,7 +827,7 @@ An Introspection Endpoint Response SHALL only include the following fields:
 | Description | Value   |  
 |---|---|
 | Hosted By  | Data Holder  |  
-|  Transport Security |  MTLS | 
+|  Transport Security |  MTLS |
 | Client Authentication Required| Yes|
 | Bearer Token Required| No|
 
@@ -867,7 +874,7 @@ eyJhbGciOiJQUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjEyMzQ1In0.ey ...
 
 HTTP/1.1 201 OK
 Content-Type: application/json
-{ 
+{
   "client_id": "12345",
   "client_name": "Awesome Recipient Software",
   "redirect_uris": ["https://www.recipient.com.au/coolstuff"],
@@ -964,7 +971,7 @@ A Data Holder Token Endpoint MUST:
 | <a id="RFC2119"></a>**[RFC2119]**  | Key words for use in RFCs to Indicate Requirement Levels <https://tools.ietf.org/html/rfc2119>   |
 | <a id="RFC7009"></a>**[RFC7009]**  | OAuth 2.0 Token Revocation: <https://tools.ietf.org/html/rfc7009>|
 | <a id="RFC7523"></a>**[RFC7523]**  | JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants: <https://tools.ietf.org/html/rfc7523> |                                              
-| <a id="RFC7662"></a>**[RFC7662]**  | OAuth 2.0 Token Introspection: <https://tools.ietf.org/html/rfc7662>| 
+| <a id="RFC7662"></a>**[RFC7662]**  | OAuth 2.0 Token Introspection: <https://tools.ietf.org/html/rfc7662>|
 | <a id="VOT"></a>**[VOT]** | Vectors of Trust, draft-richer-vectors-of-trust-15 <https://tools.ietf.org/html/draft-richer-vectors-of-trust-15>      
 
 # 16. Informative References
