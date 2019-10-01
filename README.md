@@ -4,3 +4,5 @@
 
 
 Ongoing development of the Information Security Profile for CDR is being conducted in the main CDR Standards repository at https://github.com/ConsumerDataStandardsAustralia/standards
+
+Maintenance is being conducted on the standards maintenance repository at https://github.com/ConsumerDataStandardsAustralia/standards-maintenance
